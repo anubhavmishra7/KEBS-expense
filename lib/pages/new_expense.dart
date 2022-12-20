@@ -65,79 +65,76 @@ class _NewExpenseState extends State<NewExpense> {
   }
 }
 
-Center _buildContents1(BuildContext context) {
-  return Center(
-      child: Container(
+_buildContents1(BuildContext context) {
+  return Container(
     decoration: const BoxDecoration(
         color: Color(0xFFF6F6F7),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-    child: SingleChildScrollView(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Text(
-                      "     No Expenses!",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ],
-            ),
+    child: Column(
+      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 25.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    "     No Expenses!",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 118.0),
-            child: Column(
-              children: [
-                Container(
-                  child: Image.asset(
-                    "assets/images/expense.png",
-                    scale: 2,
-                  ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 102.0),
+          child: Column(
+            children: [
+              Container(
+                child: Image.asset(
+                  "assets/images/expense.png",
+                  scale: 2,
                 ),
-                RichText(
-                    textAlign: TextAlign.center,
-                    strutStyle: StrutStyle(height: 1),
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                        children: <InlineSpan>[
-                          TextSpan(
-                              text: "It's Empty Here!",
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.black)),
-                          TextSpan(
-                              text:
-                                  "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
-                        ])),
-                SizedBox(
-                  width: 211,
-                  height: 64,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          elevation: 17,
-                          backgroundColor: Colors.redAccent),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => CreateNewClaim()));
-                      },
-                      child: Text(
-                        " +  Create New Claim",
-                        style: TextStyle(fontSize: 14),
-                      )),
-                )
-              ],
-            ),
+              ),
+              RichText(
+                  textAlign: TextAlign.center,
+                  strutStyle: StrutStyle(height: 1),
+                  text: TextSpan(
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      children: <InlineSpan>[
+                        TextSpan(
+                            text: "It's Empty Here!",
+                            style:
+                                TextStyle(fontSize: 18, color: Colors.black)),
+                        TextSpan(
+                            text:
+                                "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
+                      ])),
+              SizedBox(
+                width: 211,
+                height: 64,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: StadiumBorder(),
+                        elevation: 17,
+                        backgroundColor: Colors.redAccent),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CreateNewClaim()));
+                    },
+                    child: Text(
+                      " +  Create New Claim",
+                      style: TextStyle(fontSize: 14),
+                    )),
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     ),
-  ));
+  );
 }
