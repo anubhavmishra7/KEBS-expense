@@ -1,4 +1,0 @@
-#Tue Dec 20 20:56:55 IST 2022
-base.0=C\:\\KEBS\\Expense\\expense\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

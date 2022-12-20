@@ -1,4 +1,0 @@
-#Tue Dec 20 20:47:37 IST 2022
-base.0=C\:\\KEBS\\Expense\\expense\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
