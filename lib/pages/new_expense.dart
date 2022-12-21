@@ -103,7 +103,7 @@ _buildContents1(BuildContext context) {
               RichText(
                   textAlign: TextAlign.center,
                   strutStyle: StrutStyle(height: 1),
-                  text: TextSpan(
+                  text: const TextSpan(
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                       children: <InlineSpan>[
                         TextSpan(

@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'KEBS',
       theme: ThemeData(
-          // primarySwatch: Colors.rd,
+           //primarySwatch: Co,
           ),
       home: const SplashScreen(),
       routes: <String, WidgetBuilder>{
