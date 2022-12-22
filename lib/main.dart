@@ -22,10 +22,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'KEBS',
-      theme: ThemeData(
-           //primarySwatch: Co,
-          ),
-      home: const SplashScreen(),
+      theme: ThemeData(),
+      home: const Dashboard(),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => const LoginPage()
       },

@@ -6,7 +6,8 @@ class Statistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    Scaffold(
       // floatingActionButton: Container(
       //   width: MediaQuery.of(context).size.width,
       //   child: FloatingActionButton(
@@ -93,7 +94,7 @@ Center _buildContents() {
   return Center(
       child: Container(
     decoration: const BoxDecoration(
-        color: const Color(0xFFF6F6F7),
+        color:  Color(0xFFF6F6F7),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20), topRight: Radius.circular(20))),
     child: Column(

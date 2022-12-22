@@ -1,8 +1,6 @@
 //import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:expense/pages/about_kaar.dart';
 import 'package:expense/pages/bookmarks.dart';

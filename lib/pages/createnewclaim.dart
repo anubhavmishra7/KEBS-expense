@@ -1,3 +1,4 @@
+import 'package:expense/pages/new_claim_created.dart';
 import 'package:flutter/material.dart';
 
 class CreateNewClaim extends StatefulWidget {
@@ -16,7 +17,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
       //   child: FloatingActionButton(
       //       onPressed: () {}, child: Image.asset("assets/images/bottom4.png")),
       // ),
-      backgroundColor: Color(0xFFEE4961),
+      backgroundColor: const Color(0xFFEE4961),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -93,6 +94,7 @@ Center _buildContents1(BuildContext context) {
         initialDate: DateTime.now(),
         firstDate: DateTime(1999),
         lastDate: DateTime(2100));
+    return null;
   }
 
   return Center(
@@ -111,8 +113,8 @@ Center _buildContents1(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "     Create New Claim Request",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )
@@ -122,7 +124,7 @@ Center _buildContents1(BuildContext context) {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
             child: Form(
                 key: _formKey,
                 child: Column(
@@ -132,25 +134,29 @@ Center _buildContents1(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Legal Entity\n"),
-                          TextFormField(
-                            readOnly: true,
-                            validator: (msg) {
-                              if (msg!.isEmpty) {
-                                return "Enter Name";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black,
-                                        style: BorderStyle.solid),
-                                    borderRadius: BorderRadius.circular(10)),
-                                hintText: "Kaar Technologies India Pvt Ltd",
-                                labelText: "Kaar Technologies India Pvt Ltd",
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never),
+                          const Text("Legal Entity\n"),
+                          Card(
+                            elevation: 0,
+                            child: TextFormField(
+                              readOnly: true,
+                              // validator: (msg) {
+                              //   if (msg!.isEmpty) {
+                              //     return "Enter Name";
+                              //   }
+                              //   return null;
+                              // },
+                              decoration: InputDecoration(
+                                  fillColor: Colors.black,
+                                  border: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Colors.black,
+                                          style: BorderStyle.solid),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  hintText: "Kaar Technologies India Pvt Ltd",
+                                  labelText: "Kaar Technologies India Pvt Ltd",
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.never),
+                            ),
                           ),
                         ],
                       ),
@@ -160,35 +166,47 @@ Center _buildContents1(BuildContext context) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Cost Center *\n"),
+                          const Text("Cost Center *\n"),
                           Container(
                             height: 58,
-                            child: TextFormField(
-                              readOnly: true,
-                              onTap: () {
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        child: ListView.builder(
-                                          itemCount: costCenterList.length,
-                                          itemBuilder: ((context, index) {
-                                            return GestureDetector(
-                                                child: ListTile(
-                                              leading: Icon(Icons.food_bank),
-                                              title:
-                                                  Text(costCenterList[index]),
-                                            ));
-                                          }),
-                                        ),
-                                      );
-                                    });
-                              },
-                              decoration: InputDecoration(
-                                  labelText: "Select One",
-                                  labelStyle: TextStyle(color: Colors.blueGrey),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
+                            child: Card(
+                              elevation: 0,
+                              child: TextFormField(
+                                readOnly: true,
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.5,
+                                          child: ListView.builder(
+                                            itemCount: costCenterList.length,
+                                            itemBuilder: ((context, index) {
+                                              return GestureDetector(
+                                                  child: ListTile(
+                                                leading:
+                                                    const Icon(Icons.food_bank),
+                                                title:
+                                                    Text(costCenterList[index]),
+                                              ));
+                                            }),
+                                          ),
+                                        );
+                                      });
+                                },
+                                decoration: InputDecoration(
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                    labelText: "Select One",
+                                    labelStyle: const TextStyle(
+                                        color: Color(0xff868686)),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10))),
+                              ),
                             ),
 
                             // child: DropdownButtonFormField(
@@ -208,11 +226,11 @@ Center _buildContents1(BuildContext context) {
                       ),
                     ),
                     Padding(
-                        padding: EdgeInsets.only(top: 70),
+                        padding: const EdgeInsets.only(top: 70),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Claim Type *\n"),
+                            const Text("Claim Type *\n"),
                             Container(
                               width: 344,
                               height: 58,
@@ -221,14 +239,14 @@ Center _buildContents1(BuildContext context) {
                                     border: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10))),
-                                hint: Text(
+                                hint: const Text(
                                   "Select One",
-                                  style: TextStyle(color: Colors.blueGrey),
+                                  style: TextStyle(color: Color(0xff868686)),
                                 ),
                                 items: claimTypeList
                                     .map((e1) => DropdownMenuItem(
-                                          child: Text(e1),
                                           value: e1,
+                                          child: Text(e1),
                                         ))
                                     .toList(),
                                 onChanged: (val1) {},
@@ -240,16 +258,16 @@ Center _buildContents1(BuildContext context) {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Description *\n"),
+                                  const Text("Description *\n"),
                                   TextFormField(
                                     onTap: (() {}),
                                     maxLines: 3,
                                     decoration: InputDecoration(
                                       hintText: "Enter Here",
-                                      hintStyle:
-                                          TextStyle(color: Colors.blueGrey),
+                                      hintStyle: const TextStyle(
+                                          color: Color(0xff868686)),
                                       border: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: Colors.black,
                                               style: BorderStyle.solid),
                                           borderRadius:
@@ -265,19 +283,20 @@ Center _buildContents1(BuildContext context) {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Amount *\n"),
+                                  const Text("Amount *\n"),
                                   TextFormField(
+                                    keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                                 color: Colors.black,
                                                 style: BorderStyle.solid),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         hintText: "",
                                         labelText: "Enter Amount Here",
-                                        labelStyle:
-                                            TextStyle(color: Colors.blueGrey),
+                                        labelStyle: const TextStyle(
+                                            color: Color(0xff868686)),
                                         floatingLabelBehavior:
                                             FloatingLabelBehavior.never),
                                   ),
@@ -290,25 +309,25 @@ Center _buildContents1(BuildContext context) {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Billed Date *\n"),
+                                  const Text("Billed Date *\n"),
                                   TextFormField(
                                     readOnly: true,
                                     onTap: () async {
                                       datepick();
                                     },
                                     decoration: InputDecoration(
-                                        suffixIcon:
-                                            Icon(Icons.calendar_month_outlined),
+                                        suffixIcon: const Icon(
+                                            Icons.calendar_month_outlined),
                                         border: OutlineInputBorder(
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                                 color: Colors.black,
                                                 style: BorderStyle.solid),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         hintText: "",
                                         labelText: "DD MM YYYY",
-                                        labelStyle:
-                                            TextStyle(color: Colors.blueGrey),
+                                        labelStyle: const TextStyle(
+                                            color: Color(0xff868686)),
                                         floatingLabelBehavior:
                                             FloatingLabelBehavior.never),
                                   ),
@@ -320,23 +339,24 @@ Center _buildContents1(BuildContext context) {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Attachments If Any\n",
+                                  const Text("Attachments If Any\n",
                                       style: TextStyle(color: Colors.black)),
                                   TextFormField(
                                     readOnly: true,
                                     onTap: () async {},
                                     decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.attach_file),
+                                        prefixIcon:
+                                            const Icon(Icons.attach_file),
                                         border: OutlineInputBorder(
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                                 color: Colors.black,
                                                 style: BorderStyle.solid),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         hintText: "Uploading",
                                         labelText: "Tap To Add Attachment",
-                                        labelStyle:
-                                            TextStyle(color: Colors.blueGrey),
+                                        labelStyle: const TextStyle(
+                                            color: Color(0xff868686)),
                                         floatingLabelBehavior:
                                             FloatingLabelBehavior.never),
                                   ),
@@ -354,7 +374,7 @@ Center _buildContents1(BuildContext context) {
               alignment: Alignment.topLeft,
               child: TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "+ Add Another Claim",
                     style: TextStyle(color: Colors.black),
                   )),
@@ -371,16 +391,95 @@ Center _buildContents1(BuildContext context) {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        _formKey.currentState!.validate();
+                        // _formKey.currentState!.validate();
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) => Container(
+                                  decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 30),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.4,
+                                  width: double.maxFinite,
+                                  child: Center(
+                                      child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                        Image.asset(
+                                          "assets/images/claimsubmission1.png",
+                                          scale: 1.4,
+                                        ),
+                                        const Text(
+                                          "Confirm Submission",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "Plus Jakarta Sans"),
+                                        ),
+                                        const Text(
+                                          "Are you sure to submit this claim request?\nIf yes, tap Submit Claim below.",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: Color(0xff868686),
+                                              fontSize: 14,
+                                              fontFamily: "Plus Jakarta Sans"),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 11.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.065,
+                                                child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                            backgroundColor:
+                                                                const Color(
+                                                                    0xffee4961)),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  const NewClaimCreated()));
+                                                    },
+                                                    child: const Text(
+                                                        "Submit Claim")),
+                                              ),
+                                              const SizedBox(
+                                                width: 20,
+                                              ),
+                                              TextButton(
+                                                  onPressed: () {},
+                                                  child: const Text(
+                                                    "Save as Draft",
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ))
+                                            ],
+                                          ),
+                                        )
+                                      ])),
+                                ));
                       },
-                      child: Text("Submit Claim Request"),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent),
+                      child: const Text("Submit Claim Request"),
                     ),
                   ),
                   TextButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Clear",
                         style: TextStyle(fontSize: 14, color: Colors.black),
                       ))
@@ -388,7 +487,7 @@ Center _buildContents1(BuildContext context) {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           )
         ],

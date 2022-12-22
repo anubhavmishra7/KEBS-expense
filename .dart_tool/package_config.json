@@ -152,6 +152,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "pie_chart",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/pie_chart-5.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0",
       "packageUri": "lib/",
@@ -284,7 +290,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-12-20T15:33:15.040973Z",
+  "generated": "2022-12-22T07:37:27.855879Z",
   "generator": "pub",
   "generatorVersion": "2.18.5"
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_walkthrough_screen/flutter_walkthrough_screen.dart';
+// import 'package:flutter_walkthrough_screen/flutter_walkthrough_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,7 @@ class OnbordingData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       alignment: Alignment.bottomLeft,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -87,7 +87,7 @@ class OnbordingData extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 48.0),
                   child: Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     //color: Colors.red,
                     //alignment: Alignment.bottomRight,
                     child: Column(
@@ -234,7 +234,7 @@ class IntroScreen extends StatefulWidget {
 }
 
 class IntroScreenState extends State<IntroScreen> {
-  final PageController controller = new PageController();
+  final PageController controller = PageController();
   int currentPage = 0;
   bool lastPage = false;
 
@@ -267,7 +267,7 @@ class IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(1),
+        padding: const EdgeInsets.all(1),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           gradient: widget.gradient ??
@@ -285,9 +285,9 @@ class IntroScreenState extends State<IntroScreen> {
             Expanded(
               flex: 11,
               child: PageView(
-                children: widget.onbordingDataList,
                 controller: controller,
                 onPageChanged: _onPageChanged,
+                children: widget.onbordingDataList,
               ),
             ),
             Container(
@@ -302,7 +302,7 @@ class IntroScreenState extends State<IntroScreen> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(240, 48),
+                  minimumSize: const Size(240, 48),
                   padding: const EdgeInsets.symmetric(),
                   elevation: 0,
                   // shape: const StadiumBorder(

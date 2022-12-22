@@ -2,6 +2,7 @@ import 'package:expense/pages/casestudy.dart';
 import 'package:expense/pages/home_casestudy.dart';
 import 'package:expense/pages/new_expense.dart';
 import 'package:expense/utilities/style.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -16,7 +17,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F7),
+      backgroundColor: const Color(0xFFF6F6F7),
       body: CustomScrollView(
         // primary:
         slivers: <Widget>[
@@ -101,6 +102,9 @@ class _DashboardState extends State<Dashboard> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
                             const Text(
                               'Welcome Back,John!',
                               style:
@@ -114,7 +118,7 @@ class _DashboardState extends State<Dashboard> {
                               style:
                                   TextStyle(color: Colors.white, fontSize: 12),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             const Text(
@@ -135,7 +139,7 @@ class _DashboardState extends State<Dashboard> {
                             //crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                               Container(
@@ -176,7 +180,7 @@ class _DashboardState extends State<Dashboard> {
                                 //   // ),
                                 // ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Container(
@@ -190,7 +194,7 @@ class _DashboardState extends State<Dashboard> {
                                     child: Text('Leave\nRequest',
                                         style: TextStyle(color: Colors.white))),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Container(
@@ -204,7 +208,7 @@ class _DashboardState extends State<Dashboard> {
                                     child: Text('Tasks',
                                         style: TextStyle(color: Colors.white))),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Container(
@@ -218,7 +222,7 @@ class _DashboardState extends State<Dashboard> {
                                     child: Text('Varience',
                                         style: TextStyle(color: Colors.white))),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 25,
                               ),
                             ],
@@ -282,19 +286,18 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Center _buildContent() {
-    return Center(
-        child: SingleChildScrollView(
+  _buildContent() {
+    return SingleChildScrollView(
       child: Container(
         alignment: Alignment.topCenter,
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: const BoxDecoration(color: Color(0xFFF6F6F7)),
         child: Column(children: <Widget>[
           Container(
             child: Card(
               margin: EdgeInsets.zero,
               elevation: 0,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Container(
                 width: double.maxFinite,
@@ -307,7 +310,7 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Container(
                       alignment: Alignment.topLeft,
-                      child: Text(
+                      child: const Text(
                         "        Finance",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -321,14 +324,14 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.dashboard,
+                                        icon: const Icon(Icons.dashboard,
                                             color: Colors.black))),
                               ),
-                              Text(
+                              const Text(
                                 "Dashboard",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -347,7 +350,7 @@ class _DashboardState extends State<Dashboard> {
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "MIS",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -357,7 +360,7 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
@@ -376,7 +379,7 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
@@ -384,14 +387,14 @@ class _DashboardState extends State<Dashboard> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                       NewExpense()));
+                                                      const NewExpense()));
                                         },
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Expenses",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -409,16 +412,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon4.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Invoices",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -428,16 +431,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon5.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "General Ledges",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -447,16 +450,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon6.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Dashboard",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -466,16 +469,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon7.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Dashboard",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -489,7 +492,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
@@ -528,10 +531,10 @@ class _DashboardState extends State<Dashboard> {
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.dashboard,
+                                        icon: const Icon(Icons.dashboard,
                                             color: Colors.black))),
                               ),
-                              Text(
+                              const Text(
                                 "PMS",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -541,16 +544,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon1.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Timesheet",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -560,16 +563,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon2.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "EMP 360",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -579,7 +582,7 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
@@ -589,12 +592,12 @@ class _DashboardState extends State<Dashboard> {
                                                   builder: (context) =>
                                                       const HomeCasestudy()));
                                         },
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Leave Application",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -608,7 +611,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
@@ -616,7 +619,7 @@ class _DashboardState extends State<Dashboard> {
             child: Card(
               margin: EdgeInsets.zero,
               elevation: 0,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Container(
                 width: double.maxFinite,
@@ -629,7 +632,7 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Container(
                       alignment: Alignment.topLeft,
-                      child: Text(
+                      child: const Text(
                         "        Project Management",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -643,14 +646,14 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.dashboard,
+                                        icon: const Icon(Icons.dashboard,
                                             color: Colors.black))),
                               ),
-                              Text(
+                              const Text(
                                 "PMS",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -660,16 +663,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon1.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Timesheet",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -679,16 +682,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon2.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "EMP 360",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -698,7 +701,7 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
@@ -708,12 +711,12 @@ class _DashboardState extends State<Dashboard> {
                                                   builder: (context) =>
                                                       const HomeCasestudy()));
                                         },
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Leave Application",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -727,7 +730,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
@@ -735,7 +738,7 @@ class _DashboardState extends State<Dashboard> {
             child: Card(
               margin: EdgeInsets.zero,
               elevation: 0,
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Container(
                 width: double.maxFinite,
@@ -748,7 +751,7 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Container(
                       alignment: Alignment.topLeft,
-                      child: Text(
+                      child: const Text(
                         "        Ticketing System",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -762,14 +765,14 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: Icon(Icons.dashboard,
+                                        icon: const Icon(Icons.dashboard,
                                             color: Colors.black))),
                               ),
-                              Text(
+                              const Text(
                                 "PMS",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -779,16 +782,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon1.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Timesheet",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -798,16 +801,16 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {},
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon2.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "EMP 360",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -817,7 +820,7 @@ class _DashboardState extends State<Dashboard> {
                             children: [
                               CircleAvatar(
                                 radius: 26,
-                                backgroundColor: Color(0xFFF6F6F7),
+                                backgroundColor: const Color(0xFFF6F6F7),
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
@@ -827,12 +830,12 @@ class _DashboardState extends State<Dashboard> {
                                                   builder: (context) =>
                                                       const HomeCasestudy()));
                                         },
-                                        icon: ImageIcon(
+                                        icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
                                           color: Colors.black,
                                         ))),
                               ),
-                              Text(
+                              const Text(
                                 "Leave Application",
                                 style: TextStyle(fontSize: 10),
                               )
@@ -874,7 +877,7 @@ class _DashboardState extends State<Dashboard> {
           //Positioned(child: Icon(Icons.work))
         ]),
       ),
-    ));
+    );
   }
 }
 

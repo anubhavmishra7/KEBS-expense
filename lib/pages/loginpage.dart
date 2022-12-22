@@ -17,10 +17,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passController = TextEditingController();
-    String uname = "kebs";
-    String pass = "123";
+    // final emailController = TextEditingController();
+    // final passController = TextEditingController();
+    // String uname = "kebs";
+    // String pass = "123";
 
     return Scaffold(
       backgroundColor: Colors.white,
