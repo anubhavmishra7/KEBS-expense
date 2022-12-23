@@ -301,7 +301,7 @@ class _DashboardState extends State<Dashboard> {
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Container(
                 width: double.maxFinite,
-                height: MediaQuery.of(context).size.height * 0.24,
+                height: MediaQuery.of(context).size.height * 0.25,
                 margin: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.030,
                     vertical: MediaQuery.of(context).size.height * 0.03),

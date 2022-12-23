@@ -5,8 +5,9 @@ import 'package:expense/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]).then((_) {
     Caselist.getBookmark();
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'KEBS',
       theme: ThemeData(),
-      home: const Dashboard(),
+      home: const SplashScreen(),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => const LoginPage()
       },

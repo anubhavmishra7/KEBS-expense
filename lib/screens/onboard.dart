@@ -49,97 +49,100 @@ class OnbordingData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 10),
-      alignment: Alignment.bottomLeft,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          //const SizedBox(height: 18.0),
-          // Padding(
-          //     padding: titlePadding == null
-          //         ? const EdgeInsets.symmetric(horizontal: 8.0)
-          //         : titlePadding!,
-          //     child: Wrap(
-          //       children: [
-          //         titleText,
-          //       ],
-          //     )),
-          Container(
-            //color: Colors.blue,
-            //alignment: Alignment.topLeft,
-            child: Row(
-              children: [
-                Image(
-                  image: image,
-                  width: 140,
-                ),
-
-                // Image(
-                //   fit: fit ?? BoxFit.cover,
-                //   width:
-                //       imageWidth ?? MediaQuery.of(context).size.width * 0.3,
-                //   height:
-                //       imageHeight ?? MediaQuery.of(context).size.height * 0.5,
-                //   image: image,
-                // ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 48.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10),
-                    //color: Colors.red,
-                    //alignment: Alignment.bottomRight,
-                    child: Column(
-                      children: [
-                        Image(
-                          width: 135,
-                          // fit: BoxFit.cover,
-
-                          // fit: fit ?? BoxFit.cover,
-                          // width: imageWidth ??
-                          //     MediaQuery.of(context).size.width * 0.4,
-                          // height: imageHeight ??
-                          //     MediaQuery.of(context).size.height * 0.4,
-                          image: image3,
-                        ),
-                        Image(
-                          width: 160,
-                          // fit: fit ?? BoxFit.cover,
-                          // width: imageWidth ??
-                          //     MediaQuery.of(context).size.width * 0.4,
-                          // height: imageHeight ??
-                          //     MediaQuery.of(context).size.height * 0.3,
-                          image: image2,
-                        ),
-                        Image(
-                          width: 130,
-                          // fit: fit ?? BoxFit.cover,
-                          // width: imageWidth ??
-                          //     MediaQuery.of(context).size.width * 0.35,
-                          // height: imageHeight ??
-                          //     MediaQuery.of(context).size.height * 0.3,
-                          image: image1,
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-              padding: descPadding == null
-                  ? const EdgeInsets.symmetric()
-                  : descPadding!,
-              child: Center(
-                child: Wrap(
+    return Flexible(
+      child: SingleChildScrollView(
+        child: Container(
+          //padding: const EdgeInsets.only(bottom: 10),
+          //alignment: Alignment.bottomLeft,
+          child: Column(
+            children: <Widget>[
+              // const SizedBox(height: 18.0),
+              // Padding(
+              //     padding: titlePadding == null
+              //         ? const EdgeInsets.symmetric(horizontal: 8.0)
+              //         : titlePadding!,
+              //     child: Wrap(
+              //       children: [
+              //         titleText,
+              //       ],
+              //     )),
+              Container(
+                //alignment: Alignment.topLeft,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    descText,
+                    Image(
+                      image: image,
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      height: MediaQuery.of(context).size.height * 0.45,
+                    ),
+
+                    // Image(
+                    //   fit: fit ?? BoxFit.cover,
+                    //   width:
+                    //       imageWidth ?? MediaQuery.of(context).size.width * 0.3,
+                    //   height:
+                    //       imageHeight ?? MediaQuery.of(context).size.height * 0.5,
+                    //   image: image,
+                    // ),
+                    Container(
+                      // width: MediaQuery.of(context).size.width * 0.35,
+                      // height: MediaQuery.of(context).size.height * 0.45,
+                      //margin: const EdgeInsets.all(10),
+                      //color: Colors.red,
+                      //alignment: Alignment.bottomRight,
+                      child: Column(
+                        children: [
+                          Image(
+                            //width: 135,
+                            // fit: BoxFit.cover,
+
+                            // fit: fit ?? BoxFit.cover,
+                            width: MediaQuery.of(context).size.width * 0.45,
+                            //height: MediaQuery.of(context).size.height * 0.45,
+                            // height: imageHeight ??
+                            //     MediaQuery.of(context).size.height * 0.4,
+                            image: image3,
+                          ),
+                          Image(
+                            // width: 160,
+                            // fit: fit ?? BoxFit.cover,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            // height: MediaQuery.of(context).size.height * 0.45,
+                            // height: imageHeight ??
+                            //     MediaQuery.of(context).size.height * 0.3,
+                            image: image2,
+                          ),
+                          SizedBox(height: 20),
+                          Image(
+                            //width: 130,
+                            // fit: fit ?? BoxFit.cover,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            // height: imageHeight ??
+                            //     MediaQuery.of(context).size.height * 0.3,
+                            image: image1,
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-              )),
-        ],
+              ),
+              Padding(
+                  padding: descPadding == null
+                      ? const EdgeInsets.symmetric()
+                      : descPadding!,
+                  child: Center(
+                    child: Wrap(
+                      children: [
+                        descText,
+                      ],
+                    ),
+                  )),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -290,13 +293,10 @@ class IntroScreenState extends State<IntroScreen> {
                 children: widget.onbordingDataList,
               ),
             ),
-            Container(
-              //color: Colors.yellow,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(widget.onbordingDataList.length,
-                      (index) => _buildPageIndicator(index))),
-            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(widget.onbordingDataList.length,
+                    (index) => _buildPageIndicator(index))),
             const SizedBox(
               height: 30,
             ),

@@ -8,7 +8,8 @@ var kTitleStyle = const TextStyle(
 
 var kTextStyle = const TextStyle(fontFamily: 'Serif', fontSize: 15.0);
 var kColor = const Color(0xFFF6F6F7);
-var text="";
+var kprimary = const Color(0xffee4961);
+var text = "";
 var kButton = Container(
   width: 280,
   height: 48,

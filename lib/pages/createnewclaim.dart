@@ -1,4 +1,6 @@
+import 'package:camera/camera.dart';
 import 'package:expense/pages/new_claim_created.dart';
+import 'package:expense/screens/camera_image.dart';
 import 'package:flutter/material.dart';
 
 class CreateNewClaim extends StatefulWidget {
@@ -96,6 +98,12 @@ Center _buildContents1(BuildContext context) {
         lastDate: DateTime(2100));
     return null;
   }
+
+  // Future<void> camera() async {
+  //   final cameras = await availableCameras();
+
+  //   final firstCamera = cameras.first;
+  // }
 
   return Center(
       child: SingleChildScrollView(
@@ -343,7 +351,18 @@ Center _buildContents1(BuildContext context) {
                                       style: TextStyle(color: Colors.black)),
                                   TextFormField(
                                     readOnly: true,
-                                    onTap: () async {},
+                                    onTap: () async {
+                                      WidgetsFlutterBinding.ensureInitialized();
+
+                                      final cameras = await availableCameras();
+                                      final firstCamera = cameras.first;
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CameraImages(
+                                                      camera: firstCamera)));
+                                    },
                                     decoration: InputDecoration(
                                         prefixIcon:
                                             const Icon(Icons.attach_file),
@@ -401,7 +420,7 @@ Center _buildContents1(BuildContext context) {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 30),
                                   height:
-                                      MediaQuery.of(context).size.height * 0.4,
+                                      MediaQuery.of(context).size.height * 0.45,
                                   width: double.maxFinite,
                                   child: Center(
                                       child: Column(

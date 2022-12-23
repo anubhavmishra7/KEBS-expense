@@ -22,46 +22,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       image3: const AssetImage("assets/images/walkthrough4.png"),
 
       imageHeight: 200,
-      fit: BoxFit.contain,
+      fit: BoxFit.cover,
       titleText: Text("", style: kTitleStyle
           // TextStyle(
           //   fontSize: 48,
           //   fontWeight: FontWeight.bold,
           // ),
           ),
+      descPadding: EdgeInsets.only(top: 50),
 
       descText: Column(
         children: [
-          const SizedBox(
-            height: 40,
-          ),
           Text("Your Office In Your Hands.", style: kTitleStyle),
           const SizedBox(height: 18),
-          const Text(
-              "Manage all your business process \n          with KEBS seamlessly",
+          const Text("Manage all your business process \nwith KEBS seamlessly",
+              textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey, fontSize: 13)),
-          // const SizedBox(
-          //   height: 20,
-          // ),
-          // ElevatedButton(
-          //   style: ElevatedButton.styleFrom(
-          //       padding:
-          //           EdgeInsets.only(top: 13, bottom: 13, left: 20, right: 20),
-          //       elevation: 20,
-          //       shape: const StadiumBorder(
-          //           side: BorderSide(
-          //               style: BorderStyle.solid,
-          //               color: Colors.redAccent,
-          //               width: 2.0)),
-          //       backgroundColor: Colors.redAccent),
-          //   onPressed: (() {}),
-          //   child: const Text('Next'),
-          // ),
-          // const SizedBox(height: 40),
-          // const Text(
-          //   "Skip",
-          //   style: TextStyle(color: Colors.black, fontFamily: 'Ariel'),
-          // )
         ],
       ),
     ),
@@ -80,48 +56,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           //   fontWeight: FontWeight.bold,
           // ),
           ),
-
+      descPadding: EdgeInsets.only(top: 10),
       descText: Column(
         children: [
-          const SizedBox(
-            height: 40,
-          ),
-          Text("Approval & Notifications", style: kTitleStyle),
+          Text("Your Office In Your Hands.", style: kTitleStyle),
           const SizedBox(height: 18),
-          const Text(
-              "Take decisions on various request you get \n        like timesheet,expense,varience.",
+          const Text("Manage all your business process \nwith KEBS seamlessly",
+              textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey, fontSize: 13)),
-          // const SizedBox(
-          //   height: 20,
-          // ),
-          // ElevatedButton(
-          //   style: ElevatedButton.styleFrom(
-          //       padding:
-          //           EdgeInsets.only(top: 13, bottom: 13, left: 20, right: 20),
-          //       elevation: 20,
-          //       shape: const StadiumBorder(
-          //           side: BorderSide(
-          //               style: BorderStyle.solid,
-          //               color: Colors.redAccent,
-          //               width: 2.0)),
-          //       backgroundColor: Colors.redAccent),
-          //   onPressed: (() {}),
-          //   child: const Text('Next'),
-          // ),
-          // const SizedBox(height: 40),
-          // const Text(
-          //   "Skip",
-          //   style: TextStyle(color: Colors.black, fontFamily: 'Ariel'),
-          // )
         ],
       ),
     ),
     OnbordingData(
       //image: _imageFile ?? Image.asset('assets/tom.jpg') as ImageProvider,
-      image: const AssetImage("assets/images/walkthrough9.png"),
-      image1: const AssetImage("assets/images/walkthrough12.png"),
-      image2: const AssetImage("assets/images/walkthrough10.png"),
-      image3: const AssetImage("assets/images/walkthrough11.png"),
+      image: const AssetImage("assets/images/walkthrough11.png"),
+      image1: const AssetImage("assets/images/walkthrough10.png"),
+      image2: const AssetImage("assets/images/walkthrough9.png"),
+      image3: const AssetImage("assets/images/walkthrough12.png"),
 
       imageHeight: 200,
       fit: BoxFit.contain,
@@ -131,42 +82,121 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           //   fontWeight: FontWeight.bold,
           // ),
           ),
+      //descPadding: EdgeInsets.symmetric(vertical: 30),
 
       descText: Column(
         children: [
-          const SizedBox(
-            height: 40,
-          ),
-          Text("Dashboard & Reports", style: kTitleStyle),
+          Text("Your Office In Your Hands.", style: kTitleStyle),
           const SizedBox(height: 18),
-          const Text(
-              "Know what's happening in your organisation with\n             intuitive reports and dashboards",
+          const Text("Manage all your business process \nwith KEBS seamlessly",
+              textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey, fontSize: 13)),
-          // const SizedBox(
-          //   height: 20,
-          // ),
-          // ElevatedButton(
-          //   style: ElevatedButton.styleFrom(
-          //       padding:
-          //           EdgeInsets.only(top: 13, bottom: 13, left: 20, right: 20),
-          //       elevation: 20,
-          //       shape: const StadiumBorder(
-          //           side: BorderSide(
-          //               style: BorderStyle.solid,
-          //               color: Colors.redAccent,
-          //               width: 2.0)),
-          //       backgroundColor: Colors.redAccent),
-          //   onPressed: (() {}),
-          //   child: const Text('Next'),
-          // ),
-          // const SizedBox(height: 40),
-          // const Text(
-          //   "Skip",
-          //   style: TextStyle(color: Colors.black, fontFamily: 'Ariel'),
-          // )
         ],
       ),
+      descPadding: EdgeInsets.only(top: 40),
     ),
+    // OnbordingData(
+    //   //image: _imageFile ?? Image.asset('assets/tom.jpg') as ImageProvider,
+    //   image: const AssetImage("assets/images/walkthrough1.png"),
+    //   image1: const AssetImage("assets/images/walkthrough2.png"),
+    //   image2: const AssetImage("assets/images/walkthrough3.png"),
+    //   image3: const AssetImage("assets/images/walkthrough4.png"),
+
+    //   imageHeight: 200,
+    //   fit: BoxFit.contain,
+    //   titleText: Text("", style: kTitleStyle
+    //       // TextStyle(
+    //       //   fontSize: 48,
+    //       //   fontWeight: FontWeight.bold,
+    //       // ),
+    //       ),
+
+    //   descText: Column(
+    //     children: [
+    //       const SizedBox(
+    //         height: 40,
+    //       ),
+    //       Text("Approval & Notifications", style: kTitleStyle),
+    //       const SizedBox(height: 18),
+    //       const Text(
+    //           "Take decisions on various request you get \n        like timesheet,expense,varience.",
+    //           style: TextStyle(color: Colors.grey, fontSize: 13)),
+    //       // const SizedBox(
+    //       //   height: 20,
+    //       // ),
+    //       // ElevatedButton(
+    //       //   style: ElevatedButton.styleFrom(
+    //       //       padding:
+    //       //           EdgeInsets.only(top: 13, bottom: 13, left: 20, right: 20),
+    //       //       elevation: 20,
+    //       //       shape: const StadiumBorder(
+    //       //           side: BorderSide(
+    //       //               style: BorderStyle.solid,
+    //       //               color: Colors.redAccent,
+    //       //               width: 2.0)),
+    //       //       backgroundColor: Colors.redAccent),
+    //       //   onPressed: (() {}),
+    //       //   child: const Text('Next'),
+    //       // ),
+    //       // const SizedBox(height: 40),
+    //       // const Text(
+    //       //   "Skip",
+    //       //   style: TextStyle(color: Colors.black, fontFamily: 'Ariel'),
+    //       // )
+    //     ],
+    //   ),
+    // ),
+    // OnbordingData(
+    //   //image: _imageFile ?? Image.asset('assets/tom.jpg') as ImageProvider,
+    //   image: const AssetImage("assets/images/walkthrough9.png"),
+    //   image1: const AssetImage("assets/images/walkthrough12.png"),
+    //   image2: const AssetImage("assets/images/walkthrough10.png"),
+    //   image3: const AssetImage("assets/images/walkthrough11.png"),
+
+    //   imageHeight: 200,
+    //   fit: BoxFit.contain,
+    //   titleText: Text("", style: kTitleStyle
+    //       // TextStyle(
+    //       //   fontSize: 48,
+    //       //   fontWeight: FontWeight.bold,
+    //       // ),
+    //       ),
+
+    //   descText: Column(
+    //     children: [
+    //       const SizedBox(
+    //         height: 40,
+    //       ),
+    //       Text("Dashboard & Reports", style: kTitleStyle),
+    //       const SizedBox(height: 18),
+    //       const Text(
+    //           "Know what's happening in your organisation with\n             intuitive reports and dashboards",
+    //           style: TextStyle(color: Colors.grey, fontSize: 13)),
+    //       // const SizedBox(
+    //       //   height: 20,
+    //       // ),
+    //       // ElevatedButton(
+    //       //   style: ElevatedButton.styleFrom(
+    //       //       padding:
+    //       //           EdgeInsets.only(top: 13, bottom: 13, left: 20, right: 20),
+    //       //       elevation: 20,
+    //       //       shape: const StadiumBorder(
+    //       //           side: BorderSide(
+    //       //               style: BorderStyle.solid,
+    //       //               color: Colors.redAccent,
+    //       //               width: 2.0)),
+    //       //       backgroundColor: Colors.redAccent),
+    //       //   onPressed: (() {}),
+    //       //   child: const Text('Next'),
+    //       // ),
+    //       // const SizedBox(height: 40),
+    //       // const Text(
+    //       //   "Skip",
+    //       //   style: TextStyle(color: Colors.black, fontFamily: 'Ariel'),
+    //       // )
+    //     ],
+    //   ),
+    // ),
 
     // OnbordingData(
     //   imageHeight: 180,

@@ -70,75 +70,75 @@ class _NewExpenseState extends State<NewExpense> {
 final checked = true;
 _buildContents1(BuildContext context) {
   if (checked) {
-    return Container(
-      decoration: const BoxDecoration(
-          color: Color(0xFFF6F6F7),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      "     No Expenses!",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 102.0),
-            child: Column(
-              children: [
-                Container(
-                  child: Image.asset(
-                    "assets/images/expense.png",
-                    scale: 2,
+    return Center(
+      child: Container(
+        decoration: const BoxDecoration(
+            color: Color(0xFFF6F6F7),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Text(
+                        "     No Expenses!",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    ],
                   ),
-                ),
-                RichText(
-                    textAlign: TextAlign.center,
-                    strutStyle: const StrutStyle(height: 1),
-                    text: const TextSpan(
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                        children: <InlineSpan>[
-                          TextSpan(
-                              text: "It's Empty Here!",
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.black)),
-                          TextSpan(
-                              text:
-                                  "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
-                        ])),
-                SizedBox(
-                  width: 211,
-                  height: 64,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                          elevation: 17,
-                          backgroundColor: Colors.redAccent),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const CreateNewClaim()));
-                      },
-                      child: const Text(
-                        " +  Create New Claim",
-                        style: TextStyle(fontSize: 14),
-                      )),
-                )
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 65.0),
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/images/expense.png",
+                    scale: 2.2,
+                  ),
+                  RichText(
+                      textAlign: TextAlign.center,
+                      strutStyle: const StrutStyle(height: 1),
+                      text: const TextSpan(
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                          children: <InlineSpan>[
+                            TextSpan(
+                                text: "It's Empty Here!",
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black)),
+                            TextSpan(
+                                text:
+                                    "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
+                          ])),
+                  SizedBox(
+                    width: 211,
+                    height: 64,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: const StadiumBorder(),
+                            elevation: 17,
+                            backgroundColor: Colors.redAccent),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const CreateNewClaim()));
+                        },
+                        child: const Text(
+                          " +  Create New Claim",
+                          style: TextStyle(fontSize: 14),
+                        )),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   } else {
@@ -334,7 +334,7 @@ _buildContents2(BuildContext context) {
                                 ),
                                 SizedBox(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.65,
+                                      MediaQuery.of(context).size.width * 0.45,
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,

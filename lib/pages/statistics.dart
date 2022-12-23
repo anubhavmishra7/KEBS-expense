@@ -6,8 +6,7 @@ class Statistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return Scaffold(
       // floatingActionButton: Container(
       //   width: MediaQuery.of(context).size.width,
       //   child: FloatingActionButton(

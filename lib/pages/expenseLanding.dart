@@ -111,204 +111,230 @@ _buildContents2(BuildContext context) {
     "Figma Subscription\nINR 10,000",
     "Team Outing with Design Team\nINR 20,000"
   ];
-  return SingleChildScrollView(
-    child: Container(
-      decoration: const BoxDecoration(
-          color: Color(0xFFF6F6F7),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "     8 Expenses",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 18.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Icon(Icons.search),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(Icons.filter_list)
-                    ],
-                  ),
-                ),
-              ],
-            ),
+  return Scaffold(
+    backgroundColor: const Color(0xffee4961),
+    floatingActionButton: Padding(
+      padding: const EdgeInsets.only(bottom: 40.0),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.09,
+          width: MediaQuery.of(context).size.width * 0.35,
+          child: FloatingActionButton(
+            backgroundColor: Color(0xffee4961),
+            shape: StadiumBorder(),
+            child: Text("+ Create"),
+            onPressed: () {},
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 42.0),
-            child: Column(
-              children: [
-                Text("Summary Of Claims"),
-                Container(
-                  child: PieChart(
-                    dataMap: dataMap,
-                    chartRadius: 140,
-                    chartValuesOptions:
-                        ChartValuesOptions(showChartValues: false),
-                    legendOptions: LegendOptions(
-                        showLegendsInRow: true,
-                        legendPosition: LegendPosition.bottom),
+        ),
+      ),
+    ),
+    body: SingleChildScrollView(
+      child: Container(
+        decoration: const BoxDecoration(
+            color: Color(0xFFF6F6F7),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "     8 Expenses",
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: claimsList.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 18.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Icon(Icons.search),
+                        SizedBox(
+                          width: 20,
                         ),
-                        margin: EdgeInsets.zero,
-                        elevation: 0,
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.14,
-                          margin: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.030,
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.005),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    // color: Colors.green,
-                                    borderRadius: BorderRadius.circular(100)
-                                    //more than 50% of width makes circle
+                        Icon(Icons.filter_list)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 42.0, horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Summary Of Claims",
+                  ),
+                  Container(
+                    child: PieChart(
+                      dataMap: dataMap,
+                      chartRadius: 160,
+                      chartValuesOptions:
+                          ChartValuesOptions(showChartValues: false),
+                      legendOptions: LegendOptions(
+                          showLegendsInRow: true,
+                          legendPosition: LegendPosition.bottom),
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: claimsList.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          margin: EdgeInsets.zero,
+                          elevation: 0,
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.24,
+                            margin: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.030,
+                                vertical:
+                                    MediaQuery.of(context).size.height * 0.010),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                    // decoration: BoxDecoration(
+                                    //     // color: Colors.green,
+                                    //     borderRadius: BorderRadius.circular(100)
+                                    //     //more than 50% of width makes circle
+                                    //     ),
                                     ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.65,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        claimsList[index],
-                                        textAlign: TextAlign.left,
-                                        style: const TextStyle(
-                                            color:
-                                                Color.fromRGBO(17, 20, 52, 1),
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            fontSize: 14,
-                                            letterSpacing:
-                                                0 /*percentages not used in flutter. defaulting to zero*/,
-                                            fontWeight: FontWeight.normal,
-                                            height: 1.7142857142857142),
-                                      ),
-                                      // FittedBox(
-                                      //   child: Padding(
-                                      //     padding: const EdgeInsets.all(8.0),
-                                      //     child: Text(
-                                      //       caselists[index].title,
-                                      //       style: TextStyle(
-                                      //           fontSize: 15,
-                                      //           fontWeight: FontWeight.bold),
-                                      //
-                                      //       //style: Theme.of(context).textTheme,
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // const Text(
-                                      //   'SAP Success Factors, S4HANA',
-                                      //   textAlign: TextAlign.left,
-                                      //   style: TextStyle(
-                                      //       color: Color.fromRGBO(
-                                      //           125, 131, 139, 1),
-                                      //       fontFamily: 'Plus Jakarta Sans',
-                                      //       fontSize: 12,
-                                      //       letterSpacing:
-                                      //           0 /*percentages not used in flutter. defaulting to zero*/,
-                                      //       fontWeight: FontWeight.normal,
-                                      //       height: 1.3),
-                                      // ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.65,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          claimsList[index],
+                                          textAlign: TextAlign.left,
+                                          style: const TextStyle(
+                                              color:
+                                                  Color.fromRGBO(17, 20, 52, 1),
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              fontSize: 14,
+                                              letterSpacing:
+                                                  0 /*percentages not used in flutter. defaulting to zero*/,
+                                              fontWeight: FontWeight.normal,
+                                              height: 2),
+                                        ),
+                                        // FittedBox(
+                                        //   child: Padding(
+                                        //     padding: const EdgeInsets.all(8.0),
+                                        //     child: Text(
+                                        //       caselists[index].title,
+                                        //       style: TextStyle(
+                                        //           fontSize: 15,
+                                        //           fontWeight: FontWeight.bold),
+                                        //
+                                        //       //style: Theme.of(context).textTheme,
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        // const Text(
+                                        //   'SAP Success Factors, S4HANA',
+                                        //   textAlign: TextAlign.left,
+                                        //   style: TextStyle(
+                                        //       color: Color.fromRGBO(
+                                        //           125, 131, 139, 1),
+                                        //       fontFamily: 'Plus Jakarta Sans',
+                                        //       fontSize: 12,
+                                        //       letterSpacing:
+                                        //           0 /*percentages not used in flutter. defaulting to zero*/,
+                                        //       fontWeight: FontWeight.normal,
+                                        //       height: 1.3),
+                                        // ),
 
-                                      // Text(
-                                      //   claimsList[index],
-                                      //   textAlign: TextAlign.left,
-                                      //   style: const TextStyle(
-                                      //       color: Color.fromRGBO(
-                                      //           242, 122, 108, 1),
-                                      //       fontFamily: 'Plus Jakarta Sans',
-                                      //       fontSize: 11,
-                                      //       letterSpacing:
-                                      //           0 /*percentages not used in flutter. defaulting to zero*/,
-                                      //       fontWeight: FontWeight.normal,
-                                      //       height: 1.4),
-                                      // )
-                                      // RichText(text: TextSpan(
-                                      //   ch
-                                      // ))
-                                    ],
+                                        // Text(
+                                        //   claimsList[index],
+                                        //   textAlign: TextAlign.left,
+                                        //   style: const TextStyle(
+                                        //       color: Color.fromRGBO(
+                                        //           242, 122, 108, 1),
+                                        //       fontFamily: 'Plus Jakarta Sans',
+                                        //       fontSize: 11,
+                                        //       letterSpacing:
+                                        //           0 /*percentages not used in flutter. defaulting to zero*/,
+                                        //       fontWeight: FontWeight.normal,
+                                        //       height: 1.4),
+                                        // )
+                                        // RichText(text: TextSpan(
+                                        //   ch
+                                        // ))
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                //crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                      padding: EdgeInsets.zero,
-                                      icon: const Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.grey,
-                                        size: 10,
-                                      ),
-                                      color: Color(0xFFD9D9D9),
-                                      onPressed: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //         route[index]
-                                        //       // DetailedCustomercase(
-                                        //       //     caselists[index])
-                                        //     ));
-                                      }),
-                                ],
-                              ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        icon: const Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.grey,
+                                          size: 10,
+                                        ),
+                                        color: Color(0xFFD9D9D9),
+                                        onPressed: () {
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //         route[index]
+                                          //       // DetailedCustomercase(
+                                          //       //     caselists[index])
+                                          //     ));
+                                        }),
+                                  ],
+                                ),
 
-                              // IconButton(
-                              //     onPressed: () {
-                              //       Navigator.push(
-                              //           context,
-                              //           MaterialPageRoute(
-                              //               builder: (context) =>
-                              //                   route[index]
-                              //               // DetailedCustomercase(
-                              //               //     caselists[index])
-                              //               ));
-                              //     },
-                              //     icon: Icon(Icons.arrow_forward_ios))
-                            ],
+                                // IconButton(
+                                //     onPressed: () {
+                                //       Navigator.push(
+                                //           context,
+                                //           MaterialPageRoute(
+                                //               builder: (context) =>
+                                //                   route[index]
+                                //               // DetailedCustomercase(
+                                //               //     caselists[index])
+                                //               ));
+                                //     },
+                                //     icon: Icon(Icons.arrow_forward_ios))
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
