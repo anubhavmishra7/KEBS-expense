@@ -40,7 +40,7 @@ class _NewExpenseState extends State<NewExpense> {
             ),
             Padding(
                 padding: const EdgeInsets.only(top: 78.0),
-                child: Expanded(
+                child: SingleChildScrollView(
                   child: Container(
                       decoration: const BoxDecoration(
                           color: Color(0xffF6F6F7),

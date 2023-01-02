@@ -111,9 +111,9 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
               alignment: Alignment.topRight,
               child: Image.asset("assets/images/landing3.png"),
             ),
-            SingleChildScrollView(
-              child: Padding(
-                  padding: const EdgeInsets.only(top: 78.0),
+            Padding(
+                padding: const EdgeInsets.only(top: 78.0),
+                child: SingleChildScrollView(
                   child: Container(
                       decoration: const BoxDecoration(
                           color: Color(0xFFF6F6F7),
@@ -1039,8 +1039,8 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                             ),
                           ),
                         ],
-                      ))),
-            )
+                      )),
+                ))
           ]),
         ));
   }
@@ -1093,7 +1093,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 18.0),
+        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16),
         child: Container(
             decoration: BoxDecoration(
                 color: Colors.white,
