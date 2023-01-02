@@ -1,7 +1,10 @@
 import 'package:expense/models/bookmarks.dart';
+import 'package:expense/pages/createnewclaim.dart';
 import 'package:expense/pages/dashboard.dart';
+import 'package:expense/pages/expenselanding.dart';
 import 'package:expense/pages/loginpage.dart';
 import 'package:expense/screens/splash_screen.dart';
+import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,8 +26,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'KEBS',
-      theme: ThemeData(),
-      home: const SplashScreen(),
+      theme: ThemeData(primarySwatch: Colors.red),
+      home: CreateNewClaim(),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => const LoginPage()
       },

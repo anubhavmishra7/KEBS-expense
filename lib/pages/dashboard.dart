@@ -2,7 +2,6 @@ import 'package:expense/pages/casestudy.dart';
 import 'package:expense/pages/home_casestudy.dart';
 import 'package:expense/pages/new_expense.dart';
 import 'package:expense/utilities/style.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -288,6 +287,7 @@ class _DashboardState extends State<Dashboard> {
 
   _buildContent() {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Container(
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -586,11 +586,11 @@ class _DashboardState extends State<Dashboard> {
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const HomeCasestudy()));
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             const HomeCasestudy()));
                                         },
                                         icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
@@ -705,11 +705,11 @@ class _DashboardState extends State<Dashboard> {
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const HomeCasestudy()));
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             const HomeCasestudy()));
                                         },
                                         icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
@@ -824,11 +824,11 @@ class _DashboardState extends State<Dashboard> {
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const HomeCasestudy()));
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             const HomeCasestudy()));
                                         },
                                         icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),
