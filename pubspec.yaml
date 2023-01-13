@@ -46,6 +46,10 @@ dependencies:
   path: ^1.8.2
   # intl: ^0.18.0
   table_calendar: ^3.0.8
+  material_floating_search_bar: ^0.3.7
+  http: ^0.13.5
+  
+
 
 dev_dependencies:
   flutter_test:

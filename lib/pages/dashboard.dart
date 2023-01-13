@@ -61,16 +61,16 @@ class _DashboardState extends State<Dashboard> {
                   child: Center(
                       child: Container(
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(131, 158, 158, 158),
-                        borderRadius: BorderRadius.circular(10)),
+                        color: Color(0xffDADCE2),
+                        borderRadius: BorderRadius.circular(2)),
                     width: 60,
-                    height: 7,
+                    height: 6,
                   )),
                 )),
             iconTheme: const IconThemeData(
               color: Colors.black,
             ),
-            backgroundColor: Colors.redAccent,
+            backgroundColor: kprimary,
             pinned: true,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
@@ -79,7 +79,7 @@ class _DashboardState extends State<Dashboard> {
               //   style: TextStyle(color: Colors.black),
               // ),
               background: Container(
-                color: const Color.fromARGB(175, 255, 82, 82),
+                color: kprimary,
                 child: Stack(
                   children: <Widget>[
                     Container(
@@ -131,16 +131,17 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 180.0),
-                      child: Container(
+                      child: SizedBox(
+                        //width: double.infinity,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: Row(
+                          child: Wrap(
+                            alignment: WrapAlignment.end,
+                            spacing: 12,
                             //crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                             children: [
-                              const SizedBox(
-                                width: 15,
-                              ),
+                              SizedBox(),
                               Container(
                                 width: 116,
                                 height: 104,
@@ -179,9 +180,6 @@ class _DashboardState extends State<Dashboard> {
                                 //   // ),
                                 // ),
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
                               Container(
                                 width: 116,
                                 height: 104,
@@ -192,9 +190,6 @@ class _DashboardState extends State<Dashboard> {
                                 child: const Center(
                                     child: Text('Leave\nRequest',
                                         style: TextStyle(color: Colors.white))),
-                              ),
-                              const SizedBox(
-                                width: 10,
                               ),
                               Container(
                                 width: 116,
@@ -207,9 +202,6 @@ class _DashboardState extends State<Dashboard> {
                                     child: Text('Tasks',
                                         style: TextStyle(color: Colors.white))),
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
                               Container(
                                 width: 116,
                                 height: 104,
@@ -221,9 +213,7 @@ class _DashboardState extends State<Dashboard> {
                                     child: Text('Varience',
                                         style: TextStyle(color: Colors.white))),
                               ),
-                              const SizedBox(
-                                width: 25,
-                              ),
+                              SizedBox()
                             ],
                           ),
                         ),
@@ -265,20 +255,19 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      floatingActionButton: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 600.0, left: 40),
-          child: SizedBox(
-            // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-            width: 130,
-            child: FloatingActionButton(
-              elevation: 20,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)),
-              backgroundColor: const Color(0xFFEE4961),
-              onPressed: () {},
-              child: const Text('+ Create'),
-            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 30.0),
+        child: SizedBox(
+          // decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          width: 130,
+          child: FloatingActionButton(
+            elevation: 20,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+            backgroundColor: kprimary,
+            onPressed: () {},
+            child: const Text('+ Create'),
           ),
         ),
       ),
@@ -289,6 +278,7 @@ class _DashboardState extends State<Dashboard> {
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
       child: Container(
+        clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: const BoxDecoration(color: Color(0xFFF6F6F7)),
@@ -586,11 +576,11 @@ class _DashboardState extends State<Dashboard> {
                                 child: ClipOval(
                                     child: IconButton(
                                         onPressed: () {
-                                          // Navigator.push(
-                                          //     context,
-                                          //     MaterialPageRoute(
-                                          //         builder: (context) =>
-                                          //             const HomeCasestudy()));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const HomeCasestudy()));
                                         },
                                         icon: const ImageIcon(
                                           AssetImage("assets/images/icon3.png"),

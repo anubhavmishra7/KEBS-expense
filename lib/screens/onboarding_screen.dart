@@ -59,9 +59,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       descPadding: EdgeInsets.only(top: 10),
       descText: Column(
         children: [
-          Text("Your Office In Your Hands.", style: kTitleStyle),
+          Text("Approval & Notifications", style: kTitleStyle),
           const SizedBox(height: 18),
-          const Text("Manage all your business process \nwith KEBS seamlessly",
+          const Text(
+              "Take decisions on various request you get\nlike timesheet, expense, varience.",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey, fontSize: 13)),
         ],
@@ -86,9 +87,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
       descText: Column(
         children: [
-          Text("Your Office In Your Hands.", style: kTitleStyle),
+          Text("Dashboard & Reports", style: kTitleStyle),
           const SizedBox(height: 18),
-          const Text("Manage all your business process \nwith KEBS seamlessly",
+          const Text(
+              "Know what's happening in your organisation with\nintuitive reports and dashboards",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey, fontSize: 13)),
         ],

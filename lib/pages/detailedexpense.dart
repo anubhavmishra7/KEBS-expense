@@ -115,7 +115,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
           elevation: 0,
           backgroundColor: Colors.transparent),
       body: Container(
-        child: Stack(children: [
+        child: Stack(fit: StackFit.expand, children: [
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -152,191 +152,186 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        //padding: EdgeInsets.symmetric(horizontal: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Amount Requested",
-                                  style: TextStyle(color: Color(0xff868686)),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  " INR 4,500",
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Amount Claimed",
-                                  style: TextStyle(color: Color(0xff868686)),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "INR 0.00",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
+                      Wrap(
+                        spacing: 70,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Amount Requested",
+                                style: TextStyle(color: Color(0xff868686)),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                " INR 4,500",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Amount Claimed",
+                                style: TextStyle(color: Color(0xff868686)),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "INR 0.00",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          )
+                        ],
                       ),
                       Text(
                         '---------------------------------------------------------------------------------------------',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      Container(
-                        //padding: EdgeInsets.symmetric(horizontal: 1),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Cost Center",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "CKTXXXKBS",
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    // mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Created By",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Aswini B",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Exp-Code",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "INR 4,500",
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                      Wrap(
+                        //crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 80,
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Cost Center",
+                                      style:
+                                          TextStyle(color: Color(0xff868686)),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "CKTXXXKBS",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Column(
+                                  // mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Created By",
+                                      style:
+                                          TextStyle(color: Color(0xff868686)),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Aswini B",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Exp-Code",
+                                      style:
+                                          TextStyle(color: Color(0xff868686)),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "INR 4,500",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
-                            Container(
-                              child: Column(
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Department",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Product Development",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
+                                  Text(
+                                    "Department",
+                                    style: TextStyle(color: Color(0xff868686)),
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Days Elapsed",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "2 Days",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
+                                  SizedBox(
+                                    height: 5,
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Amount Claimed",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "INR 0.00",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
+                                  Text(
+                                    "Product Development",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Days Elapsed",
+                                    style: TextStyle(color: Color(0xff868686)),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "2 Days",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Amount Claimed",
+                                    style: TextStyle(color: Color(0xff868686)),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "INR 0.00",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -344,7 +339,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
             ),
           ),
           Positioned(
-              top: 430,
+              top: 450,
               left: 25,
               child: Column(
                 children: [
@@ -357,8 +352,8 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                               elevation: 0,
                               expansionCallback: (int index, bool isExpanded) {
                                 setState(() {
-                                  items[index].IsExpanded =
-                                      !items[index].IsExpanded;
+                                  items[index].isExpanded =
+                                      !items[index].isExpanded;
                                 });
                               },
                               children: items.map((ExpansionItem item) {
@@ -382,7 +377,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                           ],
                                         ));
                                   },
-                                  isExpanded: item.IsExpanded,
+                                  isExpanded: item.isExpanded,
                                   body: Container(
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 20),
@@ -412,12 +407,12 @@ class _DetailedExpenseState extends State<DetailedExpense> {
 }
 
 class ExpansionItem {
-  bool IsExpanded;
+  bool isExpanded;
   final String header;
   final String body;
 
   ExpansionItem({
-    this.IsExpanded = false,
+    this.isExpanded = false,
     required this.header,
     required this.body,
   });

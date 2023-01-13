@@ -46,7 +46,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
   static List<DynamicWidget> listDynamic = [];
 
-  var currency = "currencyy";
+  var currency = "INR";
 
   addDynamic() {
     listDynamic.add(new DynamicWidget());
@@ -112,7 +112,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
               child: Image.asset("assets/images/landing3.png"),
             ),
             Padding(
-                padding: const EdgeInsets.only(top: 78.0),
+                padding: const EdgeInsets.only(top: 90.0),
                 child: SingleChildScrollView(
                   child: Container(
                       decoration: const BoxDecoration(
@@ -123,567 +123,732 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                       child: Column(
                         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 2.0,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 25.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "     Create New Claim Request",
-                                            style: TextStyle(
-                                                fontFamily: kfontFamily,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SingleChildScrollView(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 15, horizontal: 16),
-                                    child: Form(
-                                        key: _formKey,
-                                        child: Column(
-                                          children: <Widget>[
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8))),
-                                              padding: EdgeInsets.all(24),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Legal Entity\n",
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                title: Text("Create New Claim Request",
+                                    style: TextStyle(
+                                        fontFamily: kfontFamily,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600)),
+                                // trailing: Wrap(spacing: 10, children: [
+                                //   Icon(
+                                //     Icons.search,
+                                //     color: Colors.black,
+                                //   ),
+                                //   Icon(
+                                //     Icons.filter_list,
+                                //     color: Colors.black,
+                                //   )
+                                // ]
+                                // ),
+                              ),
+                              SingleChildScrollView(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 6, horizontal: 16),
+                                  child: Form(
+                                      key: _formKey,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(8))),
+                                            padding: EdgeInsets.all(24),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Legal Entity\n",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontFamily: kfontFamily,
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: 60,
+                                                  child: Card(
+                                                    elevation: 0,
+                                                    child: TextFormField(
+                                                      enabled: true,
+                                                      readOnly: true,
+                                                      // validator: (msg) {
+                                                      //   if (msg!.isEmpty) {
+                                                      //     return "Enter Name";
+                                                      //   }
+                                                      //   return null;
+                                                      // },
+                                                      decoration:
+                                                          InputDecoration(
+                                                              enabledBorder: OutlineInputBorder(
+                                                                  borderSide: BorderSide(
+                                                                      color: Colors
+                                                                          .black)),
+                                                              focusedBorder: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                          color: Colors
+                                                                              .black)),
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          const BorderSide(
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                      borderRadius: BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              hintText:
+                                                                  "Kaar Technologies India Pvt Ltd",
+                                                              hintStyle: TextStyle(
+                                                                  fontFamily:
+                                                                      kfontFamily),
+                                                              labelText:
+                                                                  "Kaar Technologies India Pvt Ltd",
+                                                              labelStyle: TextStyle(
+                                                                  fontFamily:
+                                                                      kfontFamily),
+                                                              floatingLabelBehavior:
+                                                                  FloatingLabelBehavior
+                                                                      .never),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 12.0),
+                                                  child: Text(
+                                                    "Cost Center *\n",
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontFamily: kfontFamily,
                                                     ),
                                                   ),
-                                                  Container(
-                                                    height: 60,
-                                                    child: Card(
-                                                      elevation: 0,
-                                                      child: TextFormField(
-                                                        readOnly: true,
-                                                        // validator: (msg) {
-                                                        //   if (msg!.isEmpty) {
-                                                        //     return "Enter Name";
-                                                        //   }
-                                                        //   return null;
-                                                        // },
-                                                        decoration: InputDecoration(
-                                                            fillColor:
-                                                                Colors.black,
-                                                            border: OutlineInputBorder(
-                                                                borderSide: const BorderSide(
-                                                                    color: Colors
-                                                                        .black,
-                                                                    style: BorderStyle
-                                                                        .solid),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            hintText:
-                                                                "Kaar Technologies India Pvt Ltd",
-                                                            hintStyle: TextStyle(
-                                                                fontFamily:
-                                                                    kfontFamily),
-                                                            labelText:
-                                                                "Kaar Technologies India Pvt Ltd",
-                                                            labelStyle: TextStyle(
-                                                                fontFamily:
-                                                                    kfontFamily),
-                                                            floatingLabelBehavior:
-                                                                FloatingLabelBehavior
-                                                                    .never),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 12.0),
-                                                    child: Text(
-                                                      "Cost Center *\n",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontFamily: kfontFamily,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 60,
-                                                    child: Card(
-                                                      elevation: 0,
-                                                      child: TextFormField(
-                                                        controller: costcenter,
-                                                        readOnly: true,
-                                                        onTap: () {
-                                                          showModalBottomSheet(
-                                                              context: context,
-                                                              builder:
-                                                                  (context) {
-                                                                return Container(
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.5,
-                                                                  child: ListView
-                                                                      .separated(
-                                                                    separatorBuilder:
-                                                                        (context,
-                                                                            index) {
-                                                                      return Divider(
-                                                                        thickness:
-                                                                            1,
-                                                                      );
-                                                                    },
-                                                                    itemCount:
-                                                                        costCenterList
-                                                                            .length,
-                                                                    itemBuilder:
-                                                                        ((context,
-                                                                            index) {
-                                                                      return GestureDetector(
-                                                                          onTap:
+                                                ),
+                                                SizedBox(
+                                                  height: 60,
+                                                  child: Card(
+                                                    elevation: 0,
+                                                    child: TextFormField(
+                                                      controller: costcenter,
+                                                      readOnly: true,
+                                                      onTap: () {
+                                                        showModalBottomSheet(
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Container(
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.5,
+                                                                child: ListView
+                                                                    .separated(
+                                                                  separatorBuilder:
+                                                                      (context,
+                                                                          index) {
+                                                                    return Divider(
+                                                                      thickness:
+                                                                          1,
+                                                                    );
+                                                                  },
+                                                                  itemCount:
+                                                                      costCenterList
+                                                                          .length,
+                                                                  itemBuilder:
+                                                                      ((context,
+                                                                          index) {
+                                                                    return GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          setState(
                                                                               () {
-                                                                            setState(() {
-                                                                              costcenter.text = costCenterList[index];
-                                                                            });
+                                                                            costcenter.text =
+                                                                                costCenterList[index];
+                                                                          });
 
-                                                                            Navigator.pop(context);
-                                                                          },
-                                                                          child:
-                                                                              ListTile(
-                                                                            title:
-                                                                                Text(costCenterList[index]),
-                                                                          ));
-                                                                    }),
-                                                                  ),
-                                                                );
-                                                              });
-                                                        },
-                                                        decoration:
-                                                            InputDecoration(
-                                                                suffixIcon:
-                                                                    Icon(
-                                                                  Icons.search,
-                                                                  color: Colors
-                                                                      .black,
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        },
+                                                                        child:
+                                                                            ListTile(
+                                                                          title:
+                                                                              Text(costCenterList[index]),
+                                                                        ));
+                                                                  }),
                                                                 ),
-                                                                floatingLabelBehavior:
-                                                                    FloatingLabelBehavior
-                                                                        .never,
-                                                                labelText:
-                                                                    "Select One",
-                                                                labelStyle:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xff868686),
-                                                                  fontFamily:
-                                                                      kfontFamily,
-                                                                ),
+                                                              );
+                                                            });
+                                                      },
+                                                      decoration:
+                                                          InputDecoration(
+                                                              suffixIcon: Icon(
+                                                                Icons.search,
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                              floatingLabelBehavior:
+                                                                  FloatingLabelBehavior
+                                                                      .never,
+                                                              labelText:
+                                                                  "Select One",
+                                                              labelStyle:
+                                                                  TextStyle(
+                                                                color: Color(
+                                                                    0xff868686),
+                                                                fontFamily:
+                                                                    kfontFamily,
+                                                              ),
+                                                              border: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10))),
+                                                    ),
+                                                  ),
+
+                                                  // child: DropdownButtonFormField(
+                                                  //     hint: Text("Select One"),
+                                                  //     icon: Icon(Icons.search),
+                                                  //     decoration: InputDecoration(
+                                                  //         border: OutlineInputBorder(
+                                                  //             borderRadius:
+                                                  //                 BorderRadius.circular(10))),
+                                                  //     items: costCenterList
+                                                  //         .map((e) => DropdownMenuItem(
+                                                  //             child: Text(e), value: e))
+                                                  //         .toList(),
+                                                  //     onChanged: (val) {}),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 18.0),
+                                            child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                8))),
+                                                padding: EdgeInsets.all(24),
+                                                child: Column(
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          "Claim Type *\n",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                kfontFamily,
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          height: 58,
+                                                          child:
+                                                              DropdownButtonFormField(
+                                                            decoration: InputDecoration(
                                                                 border: OutlineInputBorder(
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             10))),
-                                                      ),
-                                                    ),
-
-                                                    // child: DropdownButtonFormField(
-                                                    //     hint: Text("Select One"),
-                                                    //     icon: Icon(Icons.search),
-                                                    //     decoration: InputDecoration(
-                                                    //         border: OutlineInputBorder(
-                                                    //             borderRadius:
-                                                    //                 BorderRadius.circular(10))),
-                                                    //     items: costCenterList
-                                                    //         .map((e) => DropdownMenuItem(
-                                                    //             child: Text(e), value: e))
-                                                    //         .toList(),
-                                                    //     onChanged: (val) {}),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 18.0),
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  8))),
-                                                  padding: EdgeInsets.all(24),
-                                                  child: Column(
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "Claim Type *\n",
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontFamily:
-                                                                  kfontFamily,
+                                                            hint: Text(
+                                                              "Select One",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      kfontFamily,
+                                                                  color: Color(
+                                                                      0xff868686)),
                                                             ),
+                                                            items: claimTypeList
+                                                                .map((e1) =>
+                                                                    DropdownMenuItem(
+                                                                      value: e1,
+                                                                      child: Text(
+                                                                          e1),
+                                                                    ))
+                                                                .toList(),
+                                                            onChanged:
+                                                                (val1) {},
                                                           ),
-                                                          Container(
-                                                            height: 58,
-                                                            child:
-                                                                DropdownButtonFormField(
-                                                              decoration: InputDecoration(
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      12.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Description *\n",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      kfontFamily,
+                                                                ),
+                                                              ),
+                                                              TextFormField(
+                                                                onTap: (() {}),
+                                                                maxLines: 3,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  hintText:
+                                                                      "Enter Here",
+                                                                  hintStyle:
+                                                                      const TextStyle(
+                                                                          color:
+                                                                              Color(0xff868686)),
                                                                   border: OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          style: BorderStyle
+                                                                              .solid),
                                                                       borderRadius:
                                                                           BorderRadius.circular(
-                                                                              10))),
-                                                              hint: Text(
-                                                                "Select One",
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        kfontFamily,
-                                                                    color: Color(
-                                                                        0xff868686)),
+                                                                              10)),
+                                                                ),
                                                               ),
-                                                              items:
-                                                                  claimTypeList
-                                                                      .map((e1) =>
-                                                                          DropdownMenuItem(
-                                                                            value:
-                                                                                e1,
-                                                                            child:
-                                                                                Text(e1),
-                                                                          ))
-                                                                      .toList(),
-                                                              onChanged:
-                                                                  (val1) {},
-                                                            ),
+                                                            ],
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        12.0),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  "Description *\n",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        kfontFamily,
-                                                                  ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      10.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Amount *\n",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      kfontFamily,
                                                                 ),
-                                                                TextFormField(
-                                                                  onTap:
-                                                                      (() {}),
-                                                                  maxLines: 3,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    hintText:
-                                                                        "Enter Here",
-                                                                    hintStyle:
-                                                                        const TextStyle(
-                                                                            color:
-                                                                                Color(0xff868686)),
-                                                                    border: OutlineInputBorder(
-                                                                        borderSide: const BorderSide(
-                                                                            color: Colors
-                                                                                .black,
-                                                                            style: BorderStyle
-                                                                                .solid),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(10)),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        10.0),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  "Amount *\n",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        kfontFamily,
-                                                                  ),
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Container(
-                                                                      width: 99,
-                                                                      height:
-                                                                          60,
-                                                                      child:
-                                                                          TextFormField(
-                                                                        onTap:
-                                                                            () {
-                                                                          showDialog(
-                                                                              useSafeArea: true,
-                                                                              context: context,
-                                                                              builder: (context) => Dialog(
-                                                                                    child: Container(
-                                                                                      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
-                                                                                      // width: MediaQuery.of(context).size.width * 0.3,
-                                                                                      //height: MediaQuery.of(context).size.height * 0.5,
-                                                                                      child: Container(
-                                                                                        padding: EdgeInsets.symmetric(horizontal: 24),
-                                                                                        child: ListView.separated(
-                                                                                            shrinkWrap: true,
-                                                                                            itemBuilder: (context, index) {
-                                                                                              return ListTile(
-                                                                                                onTap: () {
-                                                                                                  setState(() {
-                                                                                                    currency = currencyTypeList[index];
-                                                                                                    Navigator.pop(context);
-                                                                                                  });
-                                                                                                },
-                                                                                                title: Text(currencyTypeList[index]),
-                                                                                              );
-                                                                                            },
-                                                                                            separatorBuilder: (context, index) {
-                                                                                              return Divider(
-                                                                                                thickness: 1,
-                                                                                              );
-                                                                                            },
-                                                                                            itemCount: currencyTypeList.length),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ));
-                                                                        },
-                                                                        readOnly:
-                                                                            true,
-                                                                        decoration: InputDecoration(
-                                                                            suffixIcon: Icon(
-                                                                              Icons.arrow_drop_down,
-                                                                            ),
-                                                                            floatingLabelBehavior: FloatingLabelBehavior.never,
-                                                                            hintText: currencyTypeList[0],
-                                                                            hintStyle: TextStyle(color: Colors.black, fontFamily: kfontFamily),
-                                                                            labelText: currencyTypeList[0],
-                                                                            labelStyle: TextStyle(color: Color(0xff868686), fontFamily: kfontFamily),
-                                                                            border: OutlineInputBorder()),
-                                                                      ),
-                                                                    ),
-                                                                    // Container(
-                                                                    //   width: 70,
-                                                                    //   child: DropdownButtonFormField(
-                                                                    //     value: currencyTypeList[0],
-                                                                    //     items: currencyTypeList.map((e1) {
-                                                                    //       return DropdownMenuItem(
-                                                                    //         child: Text(e1),
-                                                                    //         value: e1,
-                                                                    //       );
-                                                                    //     }).toList(),
-                                                                    //     onChanged: (country) {
-                                                                    //       print("You selected: $country");
-                                                                    //     },
-                                                                    //   ),
-                                                                    // ),
-                                                                    Container(
-                                                                      height:
-                                                                          60,
-                                                                      width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.54,
-                                                                      child:
-                                                                          TextFormField(
-                                                                        keyboardType:
-                                                                            TextInputType.number,
-                                                                        decoration: InputDecoration(
-                                                                            border:
-                                                                                OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
-                                                                            hintText: "",
-                                                                            labelText: "Enter Amount Here",
-                                                                            labelStyle: TextStyle(color: Color(0xff868686), fontFamily: kfontFamily),
-                                                                            floatingLabelBehavior: FloatingLabelBehavior.never),
-                                                                      ),
-                                                                    ),
-
-                                                                    // DropdownButtonFormField(
-                                                                    //     items: currencyTypeList
-                                                                    //         .map((e2) => DropdownMenuItem(
-                                                                    //               child: Text(e2),
-                                                                    //               value: e2,
-                                                                    //             ))
-                                                                    //         .toList(),
-                                                                    //     onChanged: ((e2) {})),
-                                                                  ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        12.0),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  "Billed Date *\n",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        kfontFamily,
-                                                                  ),
-                                                                ),
-                                                                Container(
-                                                                  height: 60,
-                                                                  child:
-                                                                      TextFormField(
-                                                                    controller:
-                                                                        date,
-                                                                    readOnly:
-                                                                        true,
-
-                                                                    // onTap: (() {
-                                                                    //   showDialog(
-                                                                    //       useSafeArea:
-                                                                    //           true,
-                                                                    //       context:
-                                                                    //           context,
-                                                                    //       builder:
-                                                                    //           (context) =>
-                                                                    //               Dialog(
-                                                                    //                 child:
-                                                                    //                     Container(
-                                                                    //                   height: MediaQuery.of(context).size.height * 0.45,
-                                                                    //                   //width: MediaQuery.of(context).size.width * 1.0,
-                                                                    //                   child: Container(
-                                                                    //                     //  height: MediaQuery.of(context).size.height * 0.7,
-                                                                    //                     color: kColor,
-                                                                    //                     child: TableCalendar(
-                                                                    //                       availableGestures: AvailableGestures.all,
-                                                                    //                       rowHeight: 42,
-                                                                    //                       focusedDay: today,
-                                                                    //                       selectedDayPredicate: (days) => isSameDay(days, today),
-                                                                    //                       headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
-                                                                    //                       firstDay: DateTime.utc(2010, 10, 16),
-                                                                    //                       lastDay: DateTime.utc(2030, 10, 15),
-                                                                    //                       onDaySelected: _onDaySelected,
-                                                                    //                     ),
-                                                                    //                   ),
-                                                                    //                 ),
-                                                                    //               ));
-
-                                                                    //   setState(() {
-                                                                    //     if (datepick !=
-                                                                    //         null) {
-                                                                    //       date.text = DateFormat(
-                                                                    //               'dd-MM-yyyy')
-                                                                    //           .format(
-                                                                    //               datepick);
-                                                                    //     }
-                                                                    //   });
-                                                                    // },
-                                                                    // Dialog(
-                                                                    //     child:
-                                                                    //         Container(
-                                                                    //   child: TableCalendar(
-                                                                    //       focusedDay:
-                                                                    //           today,
-                                                                    //       firstDay:
-                                                                    //           DateTime.utc(
-                                                                    //               2010,
-                                                                    //               10,
-                                                                    //               16),
-                                                                    //       lastDay:
-                                                                    //           DateTime.utc(
-                                                                    //               2030,
-                                                                    //               10,
-                                                                    //               15)),
-                                                                    // ));
-                                                                    //}),
-                                                                    onTap:
-                                                                        () async {
-                                                                      DateTime? datepick = await showDatePicker(
-                                                                          helpText: "",
-                                                                          builder: (context, child) {
-                                                                            return Theme(
-                                                                              child: child!,
-                                                                              data: ThemeData().copyWith(
-
-                                                                                  // backgroundColor: Colors.white,
-                                                                                  colorScheme: ColorScheme.dark(onPrimary: Colors.black, onSurface: Colors.black, surface: Colors.white)),
-                                                                            );
-                                                                          },
-                                                                          context: context,
-                                                                          initialDate: DateTime.now(),
-                                                                          firstDate: DateTime(1999),
-                                                                          lastDate: DateTime(2100));
-
-                                                                      setState(
+                                                              ),
+                                                              Wrap(
+                                                                spacing: 0,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 99,
+                                                                    height: 60,
+                                                                    child:
+                                                                        TextFormField(
+                                                                      onTap:
                                                                           () {
-                                                                        if (datepick !=
-                                                                            null) {
-                                                                          date.text =
-                                                                              DateFormat('dd-MM-yyyy').format(datepick);
-                                                                        }
-                                                                      });
-                                                                    },
-                                                                    decoration: InputDecoration(
-                                                                        suffixIcon:
-                                                                            const Icon(Icons
-                                                                                .calendar_month_outlined),
+                                                                        showDialog(
+                                                                            useSafeArea:
+                                                                                true,
+                                                                            context:
+                                                                                context,
+                                                                            builder: (context) =>
+                                                                                Dialog(
+                                                                                  child: Container(
+                                                                                    // decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
+                                                                                    // width: MediaQuery.of(context).size.width * 0.3,
+                                                                                    //height: MediaQuery.of(context).size.height * 0.5,
+                                                                                    child: Container(
+                                                                                      padding: EdgeInsets.symmetric(horizontal: 24),
+                                                                                      child: ListView.separated(
+                                                                                          shrinkWrap: true,
+                                                                                          itemBuilder: (context, index) {
+                                                                                            return ListTile(
+                                                                                              onTap: () {
+                                                                                                setState(() {
+                                                                                                  currency = currencyTypeList[index];
+                                                                                                  Navigator.pop(context);
+                                                                                                });
+                                                                                              },
+                                                                                              title: Text(currencyTypeList[index]),
+                                                                                            );
+                                                                                          },
+                                                                                          separatorBuilder: (context, index) {
+                                                                                            return Divider(
+                                                                                              thickness: 1,
+                                                                                            );
+                                                                                          },
+                                                                                          itemCount: currencyTypeList.length),
+                                                                                    ),
+                                                                                  ),
+                                                                                ));
+                                                                      },
+                                                                      readOnly:
+                                                                          true,
+                                                                      decoration: InputDecoration(
+                                                                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))),
+                                                                          suffixIcon: Icon(
+                                                                            Icons.arrow_drop_down,
+                                                                            color:
+                                                                                Colors.black,
+                                                                          ),
+                                                                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                                                                          hintText: currency,
+                                                                          hintStyle: TextStyle(color: Colors.black, fontFamily: kfontFamily, fontSize: 14),
+                                                                          labelText: currency,
+                                                                          labelStyle: TextStyle(color: Color(0xff868686), fontFamily: kfontFamily, fontSize: 14),
+                                                                          border: OutlineInputBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)))),
+                                                                    ),
+                                                                  ),
+                                                                  // Container(
+                                                                  //   width: 70,
+                                                                  //   child: DropdownButtonFormField(
+                                                                  //     value: currencyTypeList[0],
+                                                                  //     items: currencyTypeList.map((e1) {
+                                                                  //       return DropdownMenuItem(
+                                                                  //         child: Text(e1),
+                                                                  //         value: e1,
+                                                                  //       );
+                                                                  //     }).toList(),
+                                                                  //     onChanged: (country) {
+                                                                  //       print("You selected: $country");
+                                                                  //     },
+                                                                  //   ),
+                                                                  // ),
+                                                                  Container(
+                                                                    height: 60,
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.54,
+                                                                    child:
+                                                                        TextFormField(
+                                                                      keyboardType:
+                                                                          TextInputType
+                                                                              .number,
+                                                                      decoration: InputDecoration(
+                                                                          focusedBorder: OutlineInputBorder(
+                                                                              borderSide: BorderSide(color: Colors.black),
+                                                                              borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
+                                                                          border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
+                                                                          hintText: "",
+                                                                          labelText: "Enter Amount Here",
+                                                                          labelStyle: TextStyle(color: Color(0xff868686), fontFamily: kfontFamily),
+                                                                          floatingLabelBehavior: FloatingLabelBehavior.never),
+                                                                    ),
+                                                                  ),
+
+                                                                  // DropdownButtonFormField(
+                                                                  //     items: currencyTypeList
+                                                                  //         .map((e2) => DropdownMenuItem(
+                                                                  //               child: Text(e2),
+                                                                  //               value: e2,
+                                                                  //             ))
+                                                                  //         .toList(),
+                                                                  //     onChanged: ((e2) {})),
+                                                                ],
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      12.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Billed Date *\n",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      kfontFamily,
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                height: 60,
+                                                                child:
+                                                                    TextFormField(
+                                                                  controller:
+                                                                      date,
+                                                                  readOnly:
+                                                                      true,
+
+                                                                  // onTap: (() {
+                                                                  //   showDialog(
+                                                                  //       useSafeArea:
+                                                                  //           true,
+                                                                  //       context:
+                                                                  //           context,
+                                                                  //       builder:
+                                                                  //           (context) =>
+                                                                  //               Dialog(
+                                                                  //                 child:
+                                                                  //                     Container(
+                                                                  //                   height: MediaQuery.of(context).size.height * 0.45,
+                                                                  //                   //width: MediaQuery.of(context).size.width * 1.0,
+                                                                  //                   child: Container(
+                                                                  //                     //  height: MediaQuery.of(context).size.height * 0.7,
+                                                                  //                     color: kColor,
+                                                                  //                     child: TableCalendar(
+                                                                  //                       availableGestures: AvailableGestures.all,
+                                                                  //                       rowHeight: 42,
+                                                                  //                       focusedDay: today,
+                                                                  //                       selectedDayPredicate: (days) => isSameDay(days, today),
+                                                                  //                       headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                                                                  //                       firstDay: DateTime.utc(2010, 10, 16),
+                                                                  //                       lastDay: DateTime.utc(2030, 10, 15),
+                                                                  //                       onDaySelected: _onDaySelected,
+                                                                  //                     ),
+                                                                  //                   ),
+                                                                  //                 ),
+                                                                  //               ));
+
+                                                                  //   setState(() {
+                                                                  //     if (datepick !=
+                                                                  //         null) {
+                                                                  //       date.text = DateFormat(
+                                                                  //               'dd-MM-yyyy')
+                                                                  //           .format(
+                                                                  //               datepick);
+                                                                  //     }
+                                                                  //   });
+                                                                  // },
+                                                                  // Dialog(
+                                                                  //     child:
+                                                                  //         Container(
+                                                                  //   child: TableCalendar(
+                                                                  //       focusedDay:
+                                                                  //           today,
+                                                                  //       firstDay:
+                                                                  //           DateTime.utc(
+                                                                  //               2010,
+                                                                  //               10,
+                                                                  //               16),
+                                                                  //       lastDay:
+                                                                  //           DateTime.utc(
+                                                                  //               2030,
+                                                                  //               10,
+                                                                  //               15)),
+                                                                  // ));
+                                                                  //}),
+                                                                  onTap:
+                                                                      () async {
+                                                                    DateTime? datepick = await showDatePicker(
+                                                                        helpText: "",
+                                                                        builder: (context, child) {
+                                                                          return Theme(
+                                                                            child:
+                                                                                child!,
+                                                                            data: ThemeData().copyWith(
+
+                                                                                // backgroundColor: Colors.white,
+                                                                                colorScheme: ColorScheme.dark(onPrimary: Colors.black, onSurface: Colors.black, surface: Colors.white)),
+                                                                          );
+                                                                        },
+                                                                        context: context,
+                                                                        initialDate: DateTime.now(),
+                                                                        firstDate: DateTime(1999),
+                                                                        lastDate: DateTime(2100));
+
+                                                                    setState(
+                                                                        () {
+                                                                      if (datepick !=
+                                                                          null) {
+                                                                        date.text =
+                                                                            DateFormat('dd-MM-yyyy').format(datepick);
+                                                                      }
+                                                                    });
+                                                                  },
+                                                                  decoration: InputDecoration(
+                                                                      focusedBorder: OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              color: Colors
+                                                                                  .black),
+                                                                          borderRadius: BorderRadius.all(Radius.circular(
+                                                                              8))),
+                                                                      suffixIcon:
+                                                                          const Icon(Icons
+                                                                              .calendar_month_outlined),
+                                                                      border: OutlineInputBorder(
+                                                                          borderSide: const BorderSide(
+                                                                              color: Colors.black,
+                                                                              style: BorderStyle.solid),
+                                                                          borderRadius: BorderRadius.circular(10)),
+                                                                      hintText: "",
+                                                                      labelText: "DD MM YYYY",
+                                                                      labelStyle: TextStyle(fontFamily: kfontFamily, color: Color(0xff868686)),
+                                                                      floatingLabelBehavior: FloatingLabelBehavior.never),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  top: 10.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Attachments If Any\n",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      kfontFamily,
+                                                                ),
+                                                              ),
+                                                              TextFormField(
+                                                                controller:
+                                                                    attachment,
+                                                                readOnly: true,
+                                                                onTap:
+                                                                    () async {
+                                                                  showModalBottomSheet(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) =>
+                                                                              Container(
+                                                                                height: MediaQuery.of(context).size.height * 0.25,
+                                                                                child: Center(
+                                                                                  child: Container(
+                                                                                    decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(10))),
+                                                                                    padding: EdgeInsets.only(top: 45),
+                                                                                    child: Row(
+                                                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                                      children: [
+                                                                                        Column(
+                                                                                          children: [
+                                                                                            CircleAvatar(
+                                                                                              radius: 40,
+                                                                                              backgroundColor: kColor,
+                                                                                              // Theme.of(context)
+                                                                                              //     .backgroundColor,
+                                                                                              child: ClipOval(
+                                                                                                  child: Icon(
+                                                                                                Icons.add_a_photo,
+                                                                                                color: Colors.black,
+                                                                                              )),
+                                                                                            ),
+                                                                                            Text("Take photo")
+                                                                                          ],
+                                                                                        ),
+                                                                                        Column(
+                                                                                          children: [
+                                                                                            CircleAvatar(
+                                                                                              radius: 40,
+                                                                                              backgroundColor: kColor,
+                                                                                              // Theme.of(context)
+                                                                                              //     .backgroundColor,
+                                                                                              child: ClipOval(
+                                                                                                  child: IconButton(
+                                                                                                onPressed: () async {
+                                                                                                  WidgetsFlutterBinding.ensureInitialized();
+                                                                                                  final cameras = await availableCameras();
+                                                                                                  final firstCamera = cameras.first;
+                                                                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
+                                                                                                },
+                                                                                                icon: Icon(Icons.folder),
+                                                                                                color: Colors.black,
+                                                                                              )),
+                                                                                            ),
+                                                                                            Text("Photo Library")
+                                                                                          ],
+                                                                                        ),
+                                                                                        Column(
+                                                                                          children: [
+                                                                                            CircleAvatar(
+                                                                                              radius: 40,
+                                                                                              backgroundColor: kColor,
+                                                                                              // Theme.of(context)
+                                                                                              //     .backgroundColor,
+                                                                                              child: ClipOval(
+                                                                                                  child: Icon(
+                                                                                                Icons.add_photo_alternate,
+                                                                                                color: Colors.black,
+                                                                                              )),
+                                                                                            ),
+                                                                                            Text("Choose File")
+                                                                                          ],
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ));
+
+                                                                  if (availableCameras() !=
+                                                                      null) {
+                                                                    attachment
+                                                                            .text =
+                                                                        ("Uploading")
+                                                                            .toString();
+                                                                  }
+                                                                  // WidgetsFlutterBinding.ensureInitialized();
+                                                                  // final cameras = await availableCameras();
+                                                                  // final firstCamera = cameras.first;
+                                                                  // Navigator.push(
+                                                                  //     context,
+                                                                  //     MaterialPageRoute(
+                                                                  //         builder: (context) =>
+                                                                  //             CameraImages(
+                                                                  //                 camera: firstCamera)));
+                                                                },
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                        focusedBorder: OutlineInputBorder(
+                                                                            borderSide: BorderSide(
+                                                                                color: Colors
+                                                                                    .black),
+                                                                            borderRadius: BorderRadius.all(Radius.circular(
+                                                                                8))),
+                                                                        prefixIcon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .attachment,
+                                                                          color:
+                                                                              Color(0xff868686),
+                                                                        ),
                                                                         border: OutlineInputBorder(
                                                                             borderSide: const BorderSide(
                                                                                 color: Colors
@@ -692,351 +857,207 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                     .solid),
                                                                             borderRadius: BorderRadius.circular(
                                                                                 10)),
-                                                                        hintText:
-                                                                            "",
                                                                         labelText:
-                                                                            "DD MM YYYY",
-                                                                        labelStyle: TextStyle(
-                                                                            fontFamily:
-                                                                                kfontFamily,
-                                                                            color: Color(
-                                                                                0xff868686)),
+                                                                            "Tap To Add Attachment",
+                                                                        labelStyle:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xff868686),
+                                                                          fontFamily:
+                                                                              kfontFamily,
+                                                                        ),
                                                                         floatingLabelBehavior:
                                                                             FloatingLabelBehavior.never),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    top: 10.0),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  "Attachments If Any\n",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontFamily:
-                                                                        kfontFamily,
-                                                                  ),
-                                                                ),
-                                                                TextFormField(
-                                                                  controller:
-                                                                      attachment,
-                                                                  readOnly:
-                                                                      true,
-                                                                  onTap:
-                                                                      () async {
-                                                                    showModalBottomSheet(
-                                                                        context:
-                                                                            context,
-                                                                        builder: (context) =>
-                                                                            Container(
-                                                                              height: MediaQuery.of(context).size.height * 0.25,
-                                                                              child: Center(
-                                                                                child: Container(
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(10))),
-                                                                                  padding: EdgeInsets.only(top: 45),
-                                                                                  child: Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                                    children: [
-                                                                                      Column(
-                                                                                        children: [
-                                                                                          CircleAvatar(
-                                                                                            radius: 40,
-                                                                                            backgroundColor: kColor,
-                                                                                            // Theme.of(context)
-                                                                                            //     .backgroundColor,
-                                                                                            child: ClipOval(
-                                                                                                child: Icon(
-                                                                                              Icons.add_a_photo,
-                                                                                              color: Colors.black,
-                                                                                            )),
-                                                                                          ),
-                                                                                          Text("Take photo")
-                                                                                        ],
-                                                                                      ),
-                                                                                      Column(
-                                                                                        children: [
-                                                                                          CircleAvatar(
-                                                                                            radius: 40,
-                                                                                            backgroundColor: kColor,
-                                                                                            // Theme.of(context)
-                                                                                            //     .backgroundColor,
-                                                                                            child: ClipOval(
-                                                                                                child: IconButton(
-                                                                                              onPressed: () async {
-                                                                                                WidgetsFlutterBinding.ensureInitialized();
-                                                                                                final cameras = await availableCameras();
-                                                                                                final firstCamera = cameras.first;
-                                                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
-                                                                                              },
-                                                                                              icon: Icon(Icons.folder),
-                                                                                              color: Colors.black,
-                                                                                            )),
-                                                                                          ),
-                                                                                          Text("Photo Library")
-                                                                                        ],
-                                                                                      ),
-                                                                                      Column(
-                                                                                        children: [
-                                                                                          CircleAvatar(
-                                                                                            radius: 40,
-                                                                                            backgroundColor: kColor,
-                                                                                            // Theme.of(context)
-                                                                                            //     .backgroundColor,
-                                                                                            child: ClipOval(
-                                                                                                child: Icon(
-                                                                                              Icons.add_photo_alternate,
-                                                                                              color: Colors.black,
-                                                                                            )),
-                                                                                          ),
-                                                                                          Text("Choose File")
-                                                                                        ],
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ));
-
-                                                                    if (availableCameras() !=
-                                                                        null) {
-                                                                      attachment
-                                                                              .text =
-                                                                          ("Uploading")
-                                                                              .toString();
-                                                                    }
-                                                                    // WidgetsFlutterBinding.ensureInitialized();
-                                                                    // final cameras = await availableCameras();
-                                                                    // final firstCamera = cameras.first;
-                                                                    // Navigator.push(
-                                                                    //     context,
-                                                                    //     MaterialPageRoute(
-                                                                    //         builder: (context) =>
-                                                                    //             CameraImages(
-                                                                    //                 camera: firstCamera)));
-                                                                  },
-                                                                  decoration: InputDecoration(
-                                                                      prefixIcon: Icon(
-                                                                        Icons
-                                                                            .attachment,
-                                                                        color: Color(
-                                                                            0xff868686),
-                                                                      ),
-                                                                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
-                                                                      labelText: "Tap To Add Attachment",
-                                                                      labelStyle: TextStyle(
-                                                                        color: Color(
-                                                                            0xff868686),
-                                                                        fontFamily:
-                                                                            kfontFamily,
-                                                                      ),
-                                                                      floatingLabelBehavior: FloatingLabelBehavior.never),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  )),
-                                            ),
-                                          ],
-                                        )),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Row(
-                                          children: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  addDynamic();
-                                                },
-                                                child: Text(
-                                                  "+ Add Another Claim",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontFamily: kfontFamily,
-                                                      color: Colors.black),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
                                                 )),
-                                          ],
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14, vertical: 8),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Wrap(
+                                        children: [
+                                          TextButton(
+                                              onPressed: () {
+                                                addDynamic();
+                                              },
+                                              child: Text(
+                                                "+ Add Another Claim",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontFamily: kfontFamily,
+                                                    color: Colors.black),
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: listDynamic.isNotEmpty,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: kprimary),
+                                          onPressed: () {
+                                            removeDynamic();
+                                          },
+                                          child: Text("Remove")),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: listDynamic.length,
+                                  itemBuilder: (_, index) =>
+                                      listDynamic[index]),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 14.0, top: 8),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 278,
+                                        height: 48,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            // _formKey.currentState!.validate();
+                                            showModalBottomSheet(
+                                                context: context,
+                                                builder: (context) => Container(
+                                                      decoration: const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 30),
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.45,
+                                                      width: double.maxFinite,
+                                                      child: Center(
+                                                          child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                            Image.asset(
+                                                              "assets/images/claimsubmission1.png",
+                                                              scale: 1.4,
+                                                            ),
+                                                            Text(
+                                                              "Confirm Submission",
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontFamily:
+                                                                      kfontFamily),
+                                                            ),
+                                                            Text(
+                                                              "Are you sure to submit this claim request?\nIf yes, tap Submit Claim below.",
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                  color: Color(
+                                                                      0xff868686),
+                                                                  fontSize: 14,
+                                                                  fontFamily:
+                                                                      kfontFamily),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top:
+                                                                          11.0),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Container(
+                                                                    height: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        0.065,
+                                                                    child: ElevatedButton(
+                                                                        style: ElevatedButton.styleFrom(backgroundColor: const Color(0xffee4961)),
+                                                                        onPressed: () {
+                                                                          Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(builder: (context) => const NewClaimCreated()));
+                                                                        },
+                                                                        child: const Text("Submit Claim")),
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    width: 20,
+                                                                  ),
+                                                                  TextButton(
+                                                                      onPressed:
+                                                                          () {},
+                                                                      child:
+                                                                          const Text(
+                                                                        "Save as Draft",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.black),
+                                                                      ))
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ])),
+                                                    ));
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: kprimary),
+                                          child: const Text(
+                                              "Submit Claim Request"),
                                         ),
                                       ),
-                                      Visibility(
-                                        child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor: kprimary),
-                                            onPressed: () {
-                                              removeDynamic();
-                                            },
-                                            child: Text("Remove")),
-                                        visible: listDynamic.isNotEmpty,
-                                      )
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                            "Clear",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.black),
+                                          ))
                                     ],
                                   ),
                                 ),
-                                Column(
-                                  children: [
-                                    ListView.builder(
-                                        physics: NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount: listDynamic.length,
-                                        itemBuilder: (_, index) =>
-                                            listDynamic[index]),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 14.0,
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: 278,
-                                          height: 48,
-                                          child: ElevatedButton(
-                                            onPressed: () {
-                                              // _formKey.currentState!.validate();
-                                              showModalBottomSheet(
-                                                  context: context,
-                                                  builder:
-                                                      (context) => Container(
-                                                            decoration: const BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        30),
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height *
-                                                                0.45,
-                                                            width: double
-                                                                .maxFinite,
-                                                            child: Center(
-                                                                child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                  Image.asset(
-                                                                    "assets/images/claimsubmission1.png",
-                                                                    scale: 1.4,
-                                                                  ),
-                                                                  Text(
-                                                                    "Confirm Submission",
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            20,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w700,
-                                                                        fontFamily:
-                                                                            kfontFamily),
-                                                                  ),
-                                                                  Text(
-                                                                    "Are you sure to submit this claim request?\nIf yes, tap Submit Claim below.",
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff868686),
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontFamily:
-                                                                            kfontFamily),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            11.0),
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Container(
-                                                                          height:
-                                                                              MediaQuery.of(context).size.height * 0.065,
-                                                                          child: ElevatedButton(
-                                                                              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xffee4961)),
-                                                                              onPressed: () {
-                                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const NewClaimCreated()));
-                                                                              },
-                                                                              child: const Text("Submit Claim")),
-                                                                        ),
-                                                                        const SizedBox(
-                                                                          width:
-                                                                              20,
-                                                                        ),
-                                                                        TextButton(
-                                                                            onPressed:
-                                                                                () {},
-                                                                            child:
-                                                                                const Text(
-                                                                              "Save as Draft",
-                                                                              style: TextStyle(color: Colors.black),
-                                                                            ))
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                ])),
-                                                          ));
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor: kprimary),
-                                            child: const Text(
-                                                "Submit Claim Request"),
-                                          ),
-                                        ),
-                                        TextButton(
-                                            onPressed: () {},
-                                            child: const Text(
-                                              "Clear",
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.black),
-                                            ))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 30,
-                                )
-                              ],
-                            ),
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              )
+                            ],
                           ),
                         ],
                       )),
@@ -1047,16 +1068,16 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 }
 
 class DynamicWidget extends StatefulWidget {
-  DynamicWidget({super.key});
+  const DynamicWidget({super.key});
 
   @override
   State<DynamicWidget> createState() => _DynamicWidgetState();
 }
 
 class _DynamicWidgetState extends State<DynamicWidget> {
-  CreateNewClaim remove = new CreateNewClaim();
+  // CreateNewClaim remove = new CreateNewClaim();
 
-  var currency1 = "currency";
+  var currency1 = "INR";
 
   final costCenterList1 = [
     "KEBS India",
@@ -1237,16 +1258,17 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                       ),
                                       floatingLabelBehavior:
                                           FloatingLabelBehavior.never,
-                                      hintText: currencyTypeList[0],
+                                      hintText: currency1,
                                       hintStyle: TextStyle(
-                                        color: Color(0xff868686),
+                                        color: Colors.black,
+                                        fontSize: 15,
                                         fontFamily: kfontFamily,
                                       ),
-                                      labelText: currencyTypeList[0],
+                                      labelText: currency1,
                                       labelStyle: TextStyle(
-                                        color: Color(0xff868686),
-                                        fontFamily: kfontFamily,
-                                      ),
+                                          color: Color(0xff868686),
+                                          fontFamily: kfontFamily,
+                                          fontSize: 15),
                                       border: OutlineInputBorder()),
                                 ),
                               ),
@@ -1270,9 +1292,9 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                 width: MediaQuery.of(context).size.width * 0.54,
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                       border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                               color: Colors.black,
                                               style: BorderStyle.solid),
                                           borderRadius: BorderRadius.only(

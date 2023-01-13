@@ -13,7 +13,7 @@ Future<void> main() async {
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]).then((_) {
-    Caselist.getBookmark();
+    //Caselist.getBookmark();
     runApp(const MyApp());
   });
 }

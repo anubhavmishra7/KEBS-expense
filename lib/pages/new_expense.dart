@@ -39,44 +39,41 @@ class _NewExpenseState extends State<NewExpense> {
               child: Image.asset("assets/images/landing3.png"),
             ),
             Padding(
-                padding: const EdgeInsets.only(top: 78.0),
-                child: SingleChildScrollView(
-                  child: Container(
-                      decoration: const BoxDecoration(
-                          color: Color(0xffF6F6F7),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20))),
-                      child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 2.0,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 25.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "     No Expenses!",
-                                            style: TextStyle(
-                                                fontFamily: kfontFamily,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Center(
+                padding: const EdgeInsets.only(top: 90.0),
+                child: Container(
+                    decoration: const BoxDecoration(
+                        color: Color(0xffF6F6F7),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 2.0,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const ListTile(
+                                title: Text("No expenses!",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                // trailing: Wrap(spacing: 10, children: [
+                                //   Icon(
+                                //     Icons.search,
+                                //     color: Colors.black,
+                                //   ),
+                                //   Icon(
+                                //     Icons.filter_list,
+                                //     color: Colors.black,
+                                //   )
+                                // ]
+                                // ),
+                              ),
+                              SingleChildScrollView(
+                                child: Center(
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 75.0),
@@ -134,15 +131,15 @@ class _NewExpenseState extends State<NewExpense> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 30,
-                                )
-                              ],
-                            ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              )
+                            ],
                           ),
-                        ],
-                      )),
-                ))
+                        ),
+                      ],
+                    )))
           ]),
         ));
 

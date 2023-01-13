@@ -24,6 +24,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
     "Figma Subscription\nINR 10,000",
     "Team Outing with Design Team\nINR 20,000"
   ];
+
   List<String> dateList = [
     "18.02.2022",
     "12.02.2022",
@@ -40,9 +41,47 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
     "KEBS Managed Services"
   ];
 
+  List<String> foundList = [];
+
+  @override
+  void initState() {
+    foundList = claimsList;
+    // TODO: implement initState
+    super.initState();
+  }
+
+  final controller = TextEditingController();
+
+  void foundelement(String enteredText) {
+    List<String> results = [];
+    if (enteredText.isEmpty) {
+      results = claimsList;
+    } else {
+      results = claimsList
+          .where((element) =>
+              element.toLowerCase().contains(enteredText.toLowerCase()))
+          .toList();
+    }
+
+    setState(() {
+      foundList = results;
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+  
+      controller.dispose();
+    
+    
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFF6F6F7),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: Text(
@@ -52,10 +91,12 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
           elevation: 0,
           backgroundColor: Colors.transparent,
         ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 40.0),
-          child: Align(
-            alignment: Alignment.bottomCenter,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        
+        floatingActionButton: Visibility(
+          visible: foundList.length == claimsList.length,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 40.0),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.09,
               width: MediaQuery.of(context).size.width * 0.35,
@@ -82,367 +123,509 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                   child: Image.asset("assets/images/landing3.png"),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 78.0),
+                    padding: const EdgeInsets.only(top: 90.0),
                     child: Container(
                         decoration: const BoxDecoration(
                             color: Color(0xFFF6F6F7),
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "     08 Expenses",
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ListTile(
+                                title: Text("${foundList.length} expenses",
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 18.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: const [
-                                        Icon(Icons.search),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Icon(Icons.filter_list)
-                                      ],
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                trailing: Wrap(spacing: 15, children: [
+                                  Container(
+                                    padding: EdgeInsets.zero,
+                                    color: Colors.white,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    height: 45,
+                                    child: Center(
+                                      child: TextField(
+                                        controller: controller,
+                                        onChanged: (value) =>
+                                            foundelement(value),
+                                        decoration: InputDecoration(
+                                            suffixIcon: foundList.isEmpty
+                                                ? Visibility(
+                                                    child: IconButton(
+                                                        onPressed: () {
+                                                          controller.clear();
+                                                        },
+                                                        icon: (Icon(
+                                                          Icons.cancel,
+                                                          color:
+                                                              Color(0xffB9C0CA),
+                                                        ))))
+                                                : Icon(
+                                                    Icons.search,
+                                                    color: Color(0xffB9C0CA),
+                                                  ),
+                                            // kjs
+                                            border: OutlineInputBorder(),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black))),
+                                      ),
                                     ),
                                   ),
-                                ],
+                                  Icon(
+                                    Icons.filter_list,
+                                    color: Colors.black,
+                                  ),
+                                ]),
                               ),
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 22.0, horizontal: 16),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
-                                      color: Colors.white),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 24),
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text("Summary Of Claims",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14,
-                                                fontFamily: kfontFamily)),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 24),
-                                          child: PieChart(
-                                            chartType: ChartType.ring,
-                                            dataMap: dataMap,
-                                            chartRadius: 160,
-                                            chartValuesOptions:
-                                                ChartValuesOptions(
-                                                    showChartValues: false),
-                                            legendOptions: LegendOptions(
-                                                legendTextStyle: TextStyle(
-                                                    fontFamily: kfontFamily,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                                showLegendsInRow: true,
-                                                legendPosition:
-                                                    LegendPosition.bottom),
-                                          ),
-                                        ),
-                                      ]),
-                                )),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Container(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  // scrollDirection: Axis.vertical,
-                                  itemCount: claimsList.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.17,
-                                        child: Card(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          // margin: EdgeInsets.zero,
-                                          elevation: 0,
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.24,
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal:
-                                                    MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.030,
-                                                vertical: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.010),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                // Container(
-                                                //     // decoration: BoxDecoration(
-                                                //     //     // color: Colors.green,
-                                                //     //     borderRadius: BorderRadius.circular(100)
-                                                //     //     //more than 50% of width makes circle
-                                                //     //     ),
-                                                //     ),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.65,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.65,
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 10.0),
+                              Container(
+                                  child: foundList.isNotEmpty
+                                      ? Column(
+                                          children: [
+                                            Visibility(
+                                              visible: foundList.length ==
+                                                  claimsList.length,
+                                              child: Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      vertical: 12.0,
+                                                      horizontal: 16),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        color: Colors.white),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 24,
+                                                            vertical: 24),
                                                     child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          claimsList[index],
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: const TextStyle(
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      17,
-                                                                      20,
-                                                                      52,
-                                                                      1),
-                                                              fontFamily:
-                                                                  'Plus Jakarta Sans',
-                                                              fontSize: 14,
-                                                              letterSpacing:
-                                                                  0 /*percentages not used in flutter. defaulting to zero*/,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              height: 2),
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                              "Summary Of Claims",
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontSize: 14,
+                                                                  fontFamily:
+                                                                      kfontFamily)),
+                                                          Container(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical:
+                                                                        24),
+                                                            child: PieChart(
+                                                              chartType:
+                                                                  ChartType
+                                                                      .ring,
+                                                              dataMap: dataMap,
+                                                              chartRadius: 160,
+                                                              chartValuesOptions:
+                                                                  ChartValuesOptions(
+                                                                      showChartValues:
+                                                                          false),
+                                                              legendOptions: LegendOptions(
+                                                                  legendTextStyle: TextStyle(
+                                                                      fontFamily:
+                                                                          kfontFamily,
+                                                                      fontSize:
+                                                                          14,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                  showLegendsInRow:
+                                                                      true,
+                                                                  legendPosition:
+                                                                      LegendPosition
+                                                                          .bottom),
+                                                            ),
+                                                          ),
+                                                        ]),
+                                                  )),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16.0),
+                                              child: ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                // scrollDirection: Axis.vertical,
+                                                itemCount: foundList.length,
+                                                itemBuilder: (context, index) {
+                                                  return Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.17,
+                                                      child: Card(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 22.0),
+                                                        // margin: EdgeInsets.zero,
+                                                        elevation: 0,
+                                                        child: Container(
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.24,
+                                                          margin: EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.030,
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.010),
                                                           child: Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .spaceBetween,
+                                                                    .spaceEvenly,
                                                             children: [
-                                                              Icon(
-                                                                Icons.today,
-                                                                size: 16,
-                                                                color: Color(
-                                                                    0xff8B95A5),
+                                                              // Container(
+                                                              //     // decoration: BoxDecoration(
+                                                              //     //     // color: Colors.green,
+                                                              //     //     borderRadius: BorderRadius.circular(100)
+                                                              //     //     //more than 50% of width makes circle
+                                                              //     //     ),
+                                                              //     ),
+                                                              SizedBox(
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.65,
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.65,
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      horizontal:
+                                                                          10.0),
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceAround,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Text(
+                                                                        foundList[
+                                                                            index],
+                                                                        textAlign:
+                                                                            TextAlign.left,
+                                                                        style: const TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                17,
+                                                                                20,
+                                                                                52,
+                                                                                1),
+                                                                            fontFamily:
+                                                                                'Plus Jakarta Sans',
+                                                                            fontSize:
+                                                                                14,
+                                                                            letterSpacing:
+                                                                                0 /*percentages not used in flutter. defaulting to zero*/,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            height: 2),
+                                                                      ),
+                                                                      Padding(
+                                                                          padding: const EdgeInsets.only(
+                                                                              right:
+                                                                                  22.0),
+                                                                          child:
+                                                                              Wrap(
+                                                                            spacing:
+                                                                                12,
+                                                                            children: <Widget>[
+                                                                              Icon(
+                                                                                Icons.today,
+                                                                                size: 16,
+                                                                                color: Color(0xff8B95A5),
+                                                                              ),
+                                                                              Text(
+                                                                                dateList[index],
+                                                                                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xff8B95A5)),
+                                                                              ),
+                                                                              Icon(
+                                                                                Icons.corporate_fare,
+                                                                                size: 16,
+                                                                                color: Color(0xff8B95A5),
+                                                                              ),
+                                                                              Text(
+                                                                                costCenterList[0],
+                                                                                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xff8B95A5)),
+                                                                              )
+                                                                            ],
+                                                                          )
+
+                                                                          //child:
+                                                                          //  Row(
+                                                                          //   crossAxisAlignment:
+                                                                          //       CrossAxisAlignment
+                                                                          //           .start,
+                                                                          //   mainAxisAlignment:
+                                                                          //       MainAxisAlignment
+                                                                          //           .spaceBetween,
+                                                                          //   children: [
+
+                                                                          //   ],
+                                                                          // ),
+                                                                          )
+                                                                      // FittedBox(
+                                                                      //   child: Padding(
+                                                                      //     padding: const EdgeInsets.all(8.0),
+                                                                      //     child: Text(
+                                                                      //       caselists[index].title,
+                                                                      //       style: TextStyle(
+                                                                      //           fontSize: 15,
+                                                                      //           fontWeight: FontWeight.bold),
+                                                                      //
+                                                                      //       //style: Theme.of(context).textTheme,
+                                                                      //     ),
+                                                                      //   ),
+                                                                      // ),
+                                                                      // const Text(
+                                                                      //   'SAP Success Factors, S4HANA',
+                                                                      //   textAlign: TextAlign.left,
+                                                                      //   style: TextStyle(
+                                                                      //       color: Color.fromRGBO(
+                                                                      //           125, 131, 139, 1),
+                                                                      //       fontFamily: 'Plus Jakarta Sans',
+                                                                      //       fontSize: 12,
+                                                                      //       letterSpacing:
+                                                                      //           0 /*percentages not used in flutter. defaulting to zero*/,
+                                                                      //       fontWeight: FontWeight.normal,
+                                                                      //       height: 1.3),
+                                                                      // ),
+
+                                                                      // Text(
+                                                                      //   claimsList[index],
+                                                                      //   textAlign: TextAlign.left,
+                                                                      //   style: const TextStyle(
+                                                                      //       color: Color.fromRGBO(
+                                                                      //           242, 122, 108, 1),
+                                                                      //       fontFamily: 'Plus Jakarta Sans',
+                                                                      //       fontSize: 11,
+                                                                      //       letterSpacing:
+                                                                      //           0 /*percentages not used in flutter. defaulting to zero*/,
+                                                                      //       fontWeight: FontWeight.normal,
+                                                                      //       height: 1.4),
+                                                                      // )
+                                                                      // RichText(text: TextSpan(
+                                                                      //   ch
+                                                                      // ))
+                                                                    ],
+                                                                  ),
+                                                                ),
                                                               ),
-                                                              Text(
-                                                                dateList[index],
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        12,
-                                                                    color: Color(
-                                                                        0xff8B95A5)),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                //crossAxisAlignment: CrossAxisAlignment.center,
+                                                                children: [
+                                                                  CircleAvatar(
+                                                                    backgroundColor:
+                                                                        const Color(
+                                                                            0xFFF6F6F7),
+                                                                    radius: 18,
+                                                                    child: IconButton(
+                                                                        padding: EdgeInsets.zero,
+                                                                        icon: const Icon(
+                                                                          Icons
+                                                                              .arrow_forward_ios,
+                                                                          color:
+                                                                              Colors.grey,
+                                                                          size:
+                                                                              10,
+                                                                        ),
+                                                                        color: Color(0xFFD9D9D9),
+                                                                        onPressed: () {
+                                                                          Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(builder: (context) => DetailedExpense()));
+                                                                        }),
+                                                                  ),
+                                                                  // IconButton(
+                                                                  //     padding: EdgeInsets.zero,
+                                                                  //     icon: const Icon(
+                                                                  //       Icons.arrow_forward_ios,
+                                                                  //       color: Colors.grey,
+                                                                  //       size: 10,
+                                                                  //     ),
+                                                                  //     color: Color(0xFFF6F6F7;),
+                                                                  //     onPressed: () {
+                                                                  //       Navigator.push(
+                                                                  //           context,
+                                                                  //           MaterialPageRoute(
+                                                                  //               builder: (context) =>
+                                                                  //                   DetailedExpense()));
+                                                                  //       // Navigator.push(
+                                                                  //       //     context,
+                                                                  //       //     MaterialPageRoute(
+                                                                  //       //         builder: (context) =>
+                                                                  //       //         route[index]
+                                                                  //       //       // DetailedCustomercase(
+                                                                  //       //       //     caselists[index])
+                                                                  //       //     ));
+                                                                  //     }),
+                                                                ],
                                                               ),
-                                                              Icon(
-                                                                Icons
-                                                                    .corporate_fare,
-                                                                size: 16,
-                                                                color: Color(
-                                                                    0xff8B95A5),
-                                                              ),
-                                                              Text(
-                                                                costCenterList[
-                                                                    0],
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        12,
-                                                                    color: Color(
-                                                                        0xff8B95A5)),
-                                                              )
+
+                                                              // IconButton(
+                                                              //     onPressed: () {
+                                                              //       Navigator.push(
+                                                              //           context,
+                                                              //           MaterialPageRoute(
+                                                              //               builder: (context) =>
+                                                              //                   route[index]
+                                                              //               // DetailedCustomercase(
+                                                              //               //     caselists[index])
+                                                              //               ));
+                                                              //     },
+                                                              //     icon: Icon(Icons.arrow_forward_ios))
                                                             ],
                                                           ),
-                                                        )
-                                                        // FittedBox(
-                                                        //   child: Padding(
-                                                        //     padding: const EdgeInsets.all(8.0),
-                                                        //     child: Text(
-                                                        //       caselists[index].title,
-                                                        //       style: TextStyle(
-                                                        //           fontSize: 15,
-                                                        //           fontWeight: FontWeight.bold),
-                                                        //
-                                                        //       //style: Theme.of(context).textTheme,
-                                                        //     ),
-                                                        //   ),
-                                                        // ),
-                                                        // const Text(
-                                                        //   'SAP Success Factors, S4HANA',
-                                                        //   textAlign: TextAlign.left,
-                                                        //   style: TextStyle(
-                                                        //       color: Color.fromRGBO(
-                                                        //           125, 131, 139, 1),
-                                                        //       fontFamily: 'Plus Jakarta Sans',
-                                                        //       fontSize: 12,
-                                                        //       letterSpacing:
-                                                        //           0 /*percentages not used in flutter. defaulting to zero*/,
-                                                        //       fontWeight: FontWeight.normal,
-                                                        //       height: 1.3),
-                                                        // ),
-
-                                                        // Text(
-                                                        //   claimsList[index],
-                                                        //   textAlign: TextAlign.left,
-                                                        //   style: const TextStyle(
-                                                        //       color: Color.fromRGBO(
-                                                        //           242, 122, 108, 1),
-                                                        //       fontFamily: 'Plus Jakarta Sans',
-                                                        //       fontSize: 11,
-                                                        //       letterSpacing:
-                                                        //           0 /*percentages not used in flutter. defaulting to zero*/,
-                                                        //       fontWeight: FontWeight.normal,
-                                                        //       height: 1.4),
-                                                        // )
-                                                        // RichText(text: TextSpan(
-                                                        //   ch
-                                                        // ))
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  //crossAxisAlignment: CrossAxisAlignment.center,
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xFFF6F6F7),
-                                                      radius: 18,
-                                                      child: IconButton(
-                                                          padding:
-                                                              EdgeInsets.zero,
-                                                          icon: const Icon(
-                                                            Icons
-                                                                .arrow_forward_ios,
-                                                            color: Colors.grey,
-                                                            size: 10,
-                                                          ),
-                                                          color:
-                                                              Color(0xFFD9D9D9),
-                                                          onPressed: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            DetailedExpense()));
-                                                          }),
-                                                    ),
-                                                    // IconButton(
-                                                    //     padding: EdgeInsets.zero,
-                                                    //     icon: const Icon(
-                                                    //       Icons.arrow_forward_ios,
-                                                    //       color: Colors.grey,
-                                                    //       size: 10,
-                                                    //     ),
-                                                    //     color: Color(0xFFF6F6F7;),
-                                                    //     onPressed: () {
-                                                    //       Navigator.push(
-                                                    //           context,
-                                                    //           MaterialPageRoute(
-                                                    //               builder: (context) =>
-                                                    //                   DetailedExpense()));
-                                                    //       // Navigator.push(
-                                                    //       //     context,
-                                                    //       //     MaterialPageRoute(
-                                                    //       //         builder: (context) =>
-                                                    //       //         route[index]
-                                                    //       //       // DetailedCustomercase(
-                                                    //       //       //     caselists[index])
-                                                    //       //     ));
-                                                    //     }),
-                                                  ],
-                                                ),
-
-                                                // IconButton(
-                                                //     onPressed: () {
-                                                //       Navigator.push(
-                                                //           context,
-                                                //           MaterialPageRoute(
-                                                //               builder: (context) =>
-                                                //                   route[index]
-                                                //               // DetailedCustomercase(
-                                                //               //     caselists[index])
-                                                //               ));
-                                                //     },
-                                                //     icon: Icon(Icons.arrow_forward_ios))
-                                              ],
+                                                        ),
+                                                      ));
+                                                },
+                                              ),
                                             ),
-                                          ),
-                                        ));
-                                  },
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            )
-                          ],
+                                          ],
+                                        )
+                                      : buildNoResult(context)),
+                              SizedBox(
+                                height: 70,
+                              )
+                            ],
+                          ),
                         ))),
               ])),
-              Container(
-                width: double.maxFinite,
-                color: Colors.red,
-                height: 10,
-              )
+              // Container(
+              //   margin: EdgeInsets.zero,
+              //   alignment: Alignment.bottomCenter,
+              //   width: double.maxFinite,
+              //   color: Colors.red,
+              //   height: 10,
+              // )
             ],
           ),
         ));
   }
+}
+
+buildNoResult(context) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 108.0),
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "assets/images/expenselanding.png",
+            scale: 2.5,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            "Oops!",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                fontFamily: "Plus Jakarta Sans"),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "No results for “Insurance” in Expenses.\nMaybe you forgot to add this claim.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color(0xff868686),
+                fontSize: 12,
+                fontFamily: "Plus Jakarta Sans"),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 28.0),
+            child: SizedBox(
+              width: 211,
+              height: 64,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      elevation: 20,
+                      backgroundColor: const Color(0xffee4961)),
+                  onPressed: () {
+                    // Navigator.of(context)
+                    //   ..pop()
+                    //   ..pop();
+                    // int count = 0;
+
+                    // Navigator.popUntil(context, (route) {
+                    //   return count++ == 2;
+                    // });
+
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => const CreateNewClaim()));
+                  },
+                  child: const Text(
+                    " +  Create New Claim",
+                    style: TextStyle(fontSize: 14),
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 18.0),
+            child: TextButton(
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => ExpenseLanding()));
+                },
+                child: const Text(
+                  "Or, Go back to Expenses",
+                  style: TextStyle(fontSize: 14, color: Colors.black),
+                )),
+          )
+        ],
+      ),
+    ),
+  );
 }
 
 // import 'package:expense/pages/detailedexpense.dart';
