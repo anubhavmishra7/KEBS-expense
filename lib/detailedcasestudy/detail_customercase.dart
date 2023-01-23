@@ -87,8 +87,7 @@ class _DetailedCustomercaseState extends State<DetailedCustomercase> {
                 });
                 _bookmarksList();
               },
-              icon: (
-                _bookmarked
+              icon: (_bookmarked
                   ? const Icon(
                       Icons.bookmark_border,
                       color: Colors.black,
@@ -179,17 +178,56 @@ class _DetailedCustomercaseState extends State<DetailedCustomercase> {
       floatingActionButton: Align(
         alignment: Alignment.bottomRight,
         child: FloatingActionButton(
-          backgroundColor: Colors.redAccent,
+          // backgroundColor: Colors.redAccent,
           onPressed: () {
-            PopupMenuButton<Text>(
-                itemBuilder: (context) => <PopupMenuEntry<Text>>[
-                      const PopupMenuItem<Text>(
-                        child: Text('W'),
+            // PopupMenuButton<Text>(
+            //     itemBuilder: (context) => <PopupMenuEntry<Text>>[
+            //           const PopupMenuItem<Text>(
+            //             child: Text('W'),
+            //           ),
+            //         ]);
+            PopupMenuButton<int>(
+                itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 1,
+                        child: Text(
+                          "Flutter Open",
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w700),
+                        ),
                       ),
-                    ]);
-
-            // PopupMenuButton(
+                      PopupMenuItem(
+                        value: 2,
+                        child: Text(
+                          "Flutter Tutorial",
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                icon: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: ShapeDecoration(
+                      color: Colors.blue,
+                      shape: StadiumBorder(
+                        side: BorderSide(color: Colors.white, width: 2),
+                      )),
+                  //child: Icon(Icons.menu, color: Colors.white), <-- You can give your icon here
+                ));
+            // PopupMenuButton<int>(
+            //   offset: Offset(3, 4),
             //   onSelected: (value) {},
+            //   icon: Container(
+            //     height: double.infinity,
+            //     width: double.infinity,
+            //     decoration: ShapeDecoration(
+            //         color: Colors.red,
+            //         shape: StadiumBorder(
+            //           side: BorderSide(color: Colors.white, width: 2),
+            //         )),
+            //     //child: Icon(Icons.menu, color: Colors.white), <-- You can give your icon here
+            //   ),
             //   itemBuilder: (context) {
             //     return const [
             //       PopupMenuItem(

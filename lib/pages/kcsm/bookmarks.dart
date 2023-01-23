@@ -28,7 +28,7 @@ class _BookmarksState extends State<Bookmarks> {
       //   child: FloatingActionButton(
       //       onPressed: () {}, child: Image.asset("assets/images/bottom2.png")),
       // ),
-      backgroundColor: Color(0xFFEE4961),
+      backgroundColor: const Color(0xFFEE4961),
       //appBar: AppBar(title: Text("hehe")),
       body: CustomScrollView(
         slivers: <Widget>[
@@ -121,7 +121,7 @@ Center _buildContent(bookmarklet) {
                 children: [
                   Text(
                     "     ${bookmarklet.length} Bookmarked",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
               ),
@@ -129,7 +129,7 @@ Center _buildContent(bookmarklet) {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.search),
+                    icon: const Icon(Icons.search),
                   ),
                   IconButton(
                       onPressed: () {
@@ -386,7 +386,7 @@ Center _buildContent(bookmarklet) {
                         //       );
                         //     }));
                       },
-                      icon: Icon(Icons.filter_list))
+                      icon: const Icon(Icons.filter_list))
                 ],
               )
             ],
@@ -429,7 +429,7 @@ Center _buildContent(bookmarklet) {
                                   // ),
                                   child: CircleAvatar(
                                     radius: 26,
-                                    backgroundColor: Color(0xFFF6F6F7),
+                                    backgroundColor: const Color(0xFFF6F6F7),
                                     child: Padding(
                                       padding: const EdgeInsets.all(
                                           8), // Border radius
@@ -558,7 +558,7 @@ Center _buildContent(bookmarklet) {
                                     child: Container(
                                         width: 24,
                                         height: 24,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
                                                   'assets/images/bookmark.png'),
@@ -575,7 +575,7 @@ Center _buildContent(bookmarklet) {
                                           color: Colors.grey,
                                           size: 10,
                                         ),
-                                        color: Color(0xFFD9D9D9),
+                                        color: const Color(0xFFD9D9D9),
                                         onPressed: () {
                                           // Navigator.push(
                                           //     context,

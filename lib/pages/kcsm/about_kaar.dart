@@ -7,10 +7,10 @@ class AboutKaar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF6F6F7),
+        backgroundColor: const Color(0xFFF6F6F7),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Cutomer Case Study",
             style: TextStyle(fontSize: 15),
           ),
@@ -47,10 +47,10 @@ class AboutKaar extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ListTile(
-                                  title: Text("About Kaar",
+                                  title: const Text("About Kaar",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold)),
-                                  trailing: Wrap(spacing: 15, children: [
+                                  trailing: Wrap(spacing: 15, children: const [
                                     // Container(
                                     //   padding: EdgeInsets.zero,
                                     //   color: Colors.white,
@@ -187,7 +187,7 @@ class AboutKaar extends StatelessWidget {
                                       horizontal: 30, vertical: 10),
                                   alignment: Alignment.topLeft,
                                   child: Column(
-                                    children: <Widget>[
+                                    children: const <Widget>[
                                       Text("Management Team",
                                           style: TextStyle(
                                               color: Colors.redAccent,
@@ -198,7 +198,7 @@ class AboutKaar extends StatelessWidget {
                                 ),
                                 ListView(
                                   padding: EdgeInsets.zero,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   itemExtent: 80,
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
@@ -260,7 +260,7 @@ class AboutKaar extends StatelessWidget {
                                 //     ],
                                 //   ),
                                 ,
-                                SizedBox(
+                                const SizedBox(
                                   height: 100,
                                 )
                               ],
@@ -298,8 +298,8 @@ Center _buildContents1() {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "     About Kaar",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     )
@@ -533,8 +533,8 @@ Center _buildContents1() {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             alignment: Alignment.topLeft,
             child: Column(
-              children: [
-                const Text("Management Team",
+              children: const [
+                Text("Management Team",
                     style: TextStyle(
                         color: Colors.redAccent,
                         fontWeight: FontWeight.bold,
@@ -543,7 +543,7 @@ Center _buildContents1() {
             ),
           ),
           ListView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemExtent: 80,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

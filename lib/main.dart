@@ -1,8 +1,7 @@
 import 'package:expense/models/bookmarks.dart';
-import 'package:expense/pages/createnewclaim.dart';
-import 'package:expense/pages/dashboard.dart';
-import 'package:expense/pages/expenselanding.dart';
-import 'package:expense/pages/loginpage.dart';
+import 'package:expense/extra/dashboard.dart';
+import 'package:expense/common/loginpage.dart';
+import 'package:expense/pages/expense/expenselanding.dart';
 import 'package:expense/screens/splash_screen.dart';
 import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';

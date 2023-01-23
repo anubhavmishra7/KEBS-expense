@@ -1,5 +1,5 @@
-import 'package:expense/pages/aad_oauth.dart';
-import 'package:expense/pages/loginpage.dart';
+import 'package:expense/common/aad_oauth.dart';
+import 'package:expense/common/loginpage.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_walkthrough_screen/flutter_walkthrough_screen.dart';
 import 'package:expense/utilities/style.dart';
@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           //   fontWeight: FontWeight.bold,
           // ),
           ),
-      descPadding: EdgeInsets.only(top: 50),
+      descPadding: const EdgeInsets.only(top: 50),
 
       descText: Column(
         children: [
@@ -56,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           //   fontWeight: FontWeight.bold,
           // ),
           ),
-      descPadding: EdgeInsets.only(top: 10),
+      descPadding: const EdgeInsets.only(top: 10),
       descText: Column(
         children: [
           Text("Approval & Notifications", style: kTitleStyle),
@@ -95,7 +95,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               style: TextStyle(color: Colors.grey, fontSize: 13)),
         ],
       ),
-      descPadding: EdgeInsets.only(top: 40),
+      descPadding: const EdgeInsets.only(top: 40),
     ),
     // OnbordingData(
     //   //image: _imageFile ?? Image.asset('assets/tom.jpg') as ImageProvider,
@@ -273,7 +273,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           end: Alignment.bottomRight,
           colors: [Colors.white, Colors.white]),
       pageRoute: MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => const LoginPage(),
       ),
       nextButton: const Text(
         'Continue',

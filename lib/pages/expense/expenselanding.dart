@@ -1,4 +1,4 @@
-import 'package:expense/pages/detailedexpense.dart';
+import 'package:expense/pages/expense/detailedexpense.dart';
 import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -46,7 +46,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
   @override
   void initState() {
     foundList = claimsList;
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -70,21 +70,17 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-  
-      controller.dispose();
-    
-    
+    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFF6F6F7),
+        backgroundColor: const Color(0xFFF6F6F7),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Expenses",
             style: TextStyle(fontSize: 15),
           ),
@@ -92,7 +88,6 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
           backgroundColor: Colors.transparent,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        
         floatingActionButton: Visibility(
           visible: foundList.length == claimsList.length,
           child: Padding(
@@ -101,9 +96,9 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
               height: MediaQuery.of(context).size.height * 0.09,
               width: MediaQuery.of(context).size.width * 0.35,
               child: FloatingActionButton(
-                backgroundColor: Color(0xffee4961),
-                shape: StadiumBorder(),
-                child: Text("+ Create"),
+                backgroundColor: const Color(0xffee4961),
+                shape: const StadiumBorder(),
+                child: const Text("+ Create"),
                 onPressed: () {},
               ),
             ),
@@ -137,8 +132,8 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                             children: [
                               ListTile(
                                 title: Text("${foundList.length} expenses",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold)),
                                 trailing: Wrap(spacing: 15, children: [
                                   Container(
                                     padding: EdgeInsets.zero,
@@ -146,38 +141,39 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.5,
                                     height: 45,
-                                    child: Center(
-                                      child: TextField(
-                                        controller: controller,
-                                        onChanged: (value) =>
-                                            foundelement(value),
-                                        decoration: InputDecoration(
-                                            suffixIcon: foundList.isEmpty
-                                                ? Visibility(
-                                                    child: IconButton(
-                                                        onPressed: () {
-                                                          controller.clear();
-                                                        },
-                                                        icon: (Icon(
-                                                          Icons.cancel,
-                                                          color:
-                                                              Color(0xffB9C0CA),
-                                                        ))))
-                                                : Icon(
-                                                    Icons.search,
-                                                    color: Color(0xffB9C0CA),
-                                                  ),
-                                            // kjs
-                                            border: OutlineInputBorder(),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.black))),
-                                      ),
+                                    child: TextField(
+                                      controller: controller,
+                                      onChanged: (value) => foundelement(value),
+                                      decoration: InputDecoration(
+                                          suffixIcon: foundList.isEmpty
+                                              ? Visibility(
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        controller.clear();
+                                                      },
+                                                      icon: (const Icon(
+                                                        Icons.cancel,
+                                                        color:
+                                                            Color(0xffB9C0CA),
+                                                      ))))
+                                              : const Icon(
+                                                  Icons.search,
+                                                  color: Color(0xffB9C0CA),
+                                                ),
+                                          // kjs
+                                          border: const OutlineInputBorder(),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: Colors.black))),
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.filter_list,
-                                    color: Colors.black,
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 8.0),
+                                    child: Icon(
+                                      Icons.filter_list,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ]),
                               ),
@@ -194,16 +190,19 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                       vertical: 12.0,
                                                       horizontal: 16),
                                                   child: Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    10)),
-                                                        color: Colors.white),
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 24,
-                                                            vertical: 24),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            10)),
+                                                            color:
+                                                                Colors.white),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 24,
+                                                        vertical: 24),
                                                     child: Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -222,8 +221,9 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                                   fontFamily:
                                                                       kfontFamily)),
                                                           Container(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
                                                                     vertical:
                                                                         24),
                                                             child: PieChart(
@@ -233,7 +233,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                               dataMap: dataMap,
                                                               chartRadius: 160,
                                                               chartValuesOptions:
-                                                                  ChartValuesOptions(
+                                                                  const ChartValuesOptions(
                                                                       showChartValues:
                                                                           false),
                                                               legendOptions: LegendOptions(
@@ -263,7 +263,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,
                                                 physics:
-                                                    NeverScrollableScrollPhysics(),
+                                                    const NeverScrollableScrollPhysics(),
                                                 // scrollDirection: Axis.vertical,
                                                 itemCount: foundList.length,
                                                 itemBuilder: (context, index) {
@@ -367,23 +367,23 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                                             spacing:
                                                                                 12,
                                                                             children: <Widget>[
-                                                                              Icon(
+                                                                              const Icon(
                                                                                 Icons.today,
                                                                                 size: 16,
                                                                                 color: Color(0xff8B95A5),
                                                                               ),
                                                                               Text(
                                                                                 dateList[index],
-                                                                                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xff8B95A5)),
+                                                                                style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xff8B95A5)),
                                                                               ),
-                                                                              Icon(
+                                                                              const Icon(
                                                                                 Icons.corporate_fare,
                                                                                 size: 16,
                                                                                 color: Color(0xff8B95A5),
                                                                               ),
                                                                               Text(
                                                                                 costCenterList[0],
-                                                                                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xff8B95A5)),
+                                                                                style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xff8B95A5)),
                                                                               )
                                                                             ],
                                                                           )
@@ -469,11 +469,11 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                                           size:
                                                                               10,
                                                                         ),
-                                                                        color: Color(0xFFD9D9D9),
+                                                                        color: const Color(0xFFD9D9D9),
                                                                         onPressed: () {
                                                                           Navigator.push(
                                                                               context,
-                                                                              MaterialPageRoute(builder: (context) => DetailedExpense()));
+                                                                              MaterialPageRoute(builder: (context) => const DetailedExpense()));
                                                                         }),
                                                                   ),
                                                                   // IconButton(
@@ -524,7 +524,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                           ],
                                         )
                                       : buildNoResult(context)),
-                              SizedBox(
+                              const SizedBox(
                                 height: 70,
                               )
                             ],

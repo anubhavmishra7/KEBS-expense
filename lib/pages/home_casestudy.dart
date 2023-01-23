@@ -3,10 +3,10 @@
 import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:expense/kcsm/about_kaar.dart';
-import 'package:expense/kcsm/bookmarks.dart';
-import 'package:expense/pages/casestudy.dart';
-import 'package:expense/kcsm/statistics.dart';
+import 'package:expense/pages/kcsm/about_kaar.dart';
+import 'package:expense/pages/kcsm/bookmarks.dart';
+import 'package:expense/pages/kcsm/casestudy.dart';
+import 'package:expense/pages/kcsm/statistics.dart';
 
 class HomeCasestudy extends StatefulWidget {
   const HomeCasestudy({super.key});
@@ -79,43 +79,46 @@ class _HomeCasestudyState extends State<HomeCasestudy> {
             onPressed: () {},
             child: Flexible(
               flex: 1,
-              child: GNav(
-                  padding: EdgeInsets.symmetric(vertical: 13, horizontal: 13),
-                  // padding:
-                  //     const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  color: Colors.white54,
-                  duration: const Duration(microseconds: 19000),
-                  gap: 10,
+              child: Container(
+                padding: EdgeInsets.zero,
+                child: GNav(
+                    padding: EdgeInsets.symmetric(vertical: 13, horizontal: 13),
+                    // padding:
+                    //     const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                    color: Colors.white54,
+                    duration: const Duration(microseconds: 19000),
+                    gap: 10,
 
-                  //tabActiveBorder: Border.all(width: 2),
-                  selectedIndex: currentIndex,
-                  onTabChange: onTap,
+                    //tabActiveBorder: Border.all(width: 2),
+                    selectedIndex: currentIndex,
+                    onTabChange: onTap,
 
-                  // tabBorder: Border.all(color: Colors.redAccent),
-                  tabBackgroundColor: Colors.black,
-                  activeColor: Colors.white,
-                  tabs: [
-                    const GButton(
-                      margin: EdgeInsets.only(left: 10),
-                      icon: Icons.home,
-                      text: 'Home',
-                    ),
-                    const GButton(
-                      margin: EdgeInsets.only(top: 10, bottom: 10),
-                      icon: Icons.bookmark,
-                      text: 'Bookmarks',
-                    ),
-                    const GButton(
-                      margin: EdgeInsets.only(top: 10, bottom: 10),
-                      icon: Icons.bar_chart,
-                      text: 'Statistics',
-                    ),
-                    const GButton(
-                      margin: EdgeInsets.only(right: 10),
-                      icon: Icons.circle_sharp,
-                      text: 'About Kaar',
-                    )
-                  ]),
+                    // tabBorder: Border.all(color: Colors.redAccent),
+                    tabBackgroundColor: Colors.black,
+                    activeColor: Colors.white,
+                    tabs: [
+                      const GButton(
+                        margin: EdgeInsets.only(left: 10),
+                        icon: Icons.home,
+                        text: 'Home',
+                      ),
+                      const GButton(
+                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        icon: Icons.bookmark,
+                        text: 'Bookmarks',
+                      ),
+                      const GButton(
+                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        icon: Icons.bar_chart,
+                        text: 'Statistics',
+                      ),
+                      const GButton(
+                        margin: EdgeInsets.only(right: 10),
+                        icon: Icons.circle_sharp,
+                        text: 'About Kaar',
+                      )
+                    ]),
+              ),
             ),
           ),
         ),

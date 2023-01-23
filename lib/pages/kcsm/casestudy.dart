@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:expense/models/bookmarks.dart';
+import 'package:expense/models/caselistmodel.dart';
 import 'package:expense/models/customer_caselist.dart';
+import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
 import 'package:expense/data/casestudy_list.dart';
 import 'package:expense/detailedcasestudy/detailedcase2.dart';
@@ -199,32 +202,52 @@ class _CustomerCaseStudyState extends State<CustomerCaseStudy> {
   //final myProducts = List<String>.generate(14, (i) => 'Product $i');
 
   Map? data;
-  List? userData;
+  List<CustomerCaselist> userData = [];
 
   @override
   void initState() {
     getData();
-    // TODO: implement initState
     super.initState();
   }
 
-  Future getData() async {
+  Future<List<CustomerCaselist>> getData() async {
     const url =
         "https://kaarqual.kebs.app/api/intg/6dc4242b-2336-4c03-a6f3-48a8d261ff86/publicAPI/getCustomerListPublicV1";
     final uri = Uri.parse(url);
-    final response = await http.get(uri);
-    data = jsonDecode(response.body);
-    setState(() {
-      userData = data!["data"];
-      // if (['country'] == null) {
-      //   return null;
-      // }
-      userData!.removeWhere((m) => m['country'] == null);
-    });
+    final response =
+        // await http.get(uri,headers: {'Content-Type': 'application/json'});
+        await http.get(uri);
+
+    // final encodeFirst = jsonEncode(response.body);
+
+    var jsonData = jsonDecode(response.body);
+    var jsonArray = jsonData['data'];
+
+    for (var jsonCases in jsonArray) {
+      CustomerCaselist cases = CustomerCaselist(
+          name: jsonCases['customer_name'], country: jsonCases['country']);
+      userData.add(cases);
+    }
+    return userData;
   }
 
+  // Future getData() async {
+  //   const url =
+  //       "https://kaarqual.kebs.app/api/intg/6dc4242b-2336-4c03-a6f3-48a8d261ff86/publicAPI/getCustomerListPublicV1";
+  //   final uri = Uri.parse(url);
+  //   final response = await http.get(uri);
+  //   data = jsonDecode(response.body);
+  //   setState(() {
+  //     userData = data!["data"];
+  //     // if (['country'] == null) {
+  //     //   return null;
+  //     // }
+  //     userData!.removeWhere((m) => m['country'] == null);
+  //   });
+  // }
+
   Center _buildContent(context) {
-    RangeValues values = RangeValues(0, 10);
+    RangeValues values = const RangeValues(0, 10);
     RangeLabels labels =
         RangeLabels(values.start.toString(), values.end.toString());
 
@@ -245,8 +268,8 @@ class _CustomerCaseStudyState extends State<CustomerCaseStudy> {
                       Row(
                         children: [
                           Text(
-                            "     ${userData?.length} Case Studies",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            "     ${userData.length} Case Studies",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
@@ -562,234 +585,297 @@ class _CustomerCaseStudyState extends State<CustomerCaseStudy> {
                 ),
                 Flexible(
                     flex: 1,
-                    child: userData?.length != null
-                        ? ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: userData == null ? 0 : userData!.length,
-                            itemBuilder: ((context, index) {
-                              return GestureDetector(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    margin: EdgeInsets.zero,
-                                    elevation: 0,
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.14,
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.030,
-                                          vertical: MediaQuery.of(context)
+                    child: FutureBuilder<List<CustomerCaselist>>(
+                      future: getData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text("${snapshot.error}"),
+                          );
+                        } else if (snapshot.hasData) {
+                          List<CustomerCaselist> caseList = snapshot.data!;
+                          return RefreshIndicator(
+                            onRefresh: getData,
+                            child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                itemCount: caseList.length,
+                                itemBuilder: ((context, index) {
+                                  CustomerCaselist cases = caseList[index];
+                                  return GestureDetector(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        margin: EdgeInsets.zero,
+                                        elevation: 0,
+                                        child: Container(
+                                          height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              0.005),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              decoration: BoxDecoration(
-                                                  // color: Colors.green,
-                                                  borderRadius:
-                                                      BorderRadius.circular(100)
-                                                  //more than 50% of width makes circle
+                                              0.14,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.030,
+                                              vertical: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.005),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                  decoration: BoxDecoration(
+                                                      // color: Colors.green,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100)
+                                                      //more than 50% of width makes circle
+                                                      ),
+                                                  // decoration: BoxDecoration(
+                                                  //   image: DecorationImage(
+                                                  //     image: AssetImage("assets/images/greencircle.png"),
+                                                  //     fit: BoxFit.fill,
+                                                  //   ),
+                                                  // ),
+                                                  child: CircleAvatar(
+                                                    radius: 26,
+                                                    backgroundColor:
+                                                        const Color(0xFFF6F6F7),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets
+                                                              .all(
+                                                          8), // Border radius
+                                                      child: ClipOval(
+                                                          child: Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                image: DecorationImage(
+                                                                    image: AssetImage(
+                                                                        "assets/images/Image1.png"),
+                                                                    fit: BoxFit
+                                                                        .fitWidth),
+                                                              ))),
+                                                    ),
+                                                  )
+
+                                                  //           Container(
+                                                  //               width: 50,
+                                                  //               height: 50,
+                                                  //
+                                                  //               decoration: BoxDecoration(
+                                                  //           image : DecorationImage(
+                                                  //           image: AssetImage(caselists[index].imgUrl),
+                                                  //       fit: BoxFit.fitWidth
+                                                  //   ),
+                                                  // )
+                                                  //
+                                                  //           )
+                                                  // Image.asset(
+                                                  //   caselists[index].imgUrl,
+                                                  //   width: MediaQuery.of(context).size.width *
+                                                  //       0.25,
+                                                  //     height: 50,
+                                                  //     fit:BoxFit.fill
+                                                  // ),
                                                   ),
-                                              // decoration: BoxDecoration(
-                                              //   image: DecorationImage(
-                                              //     image: AssetImage("assets/images/greencircle.png"),
-                                              //     fit: BoxFit.fill,
-                                              //   ),
-                                              // ),
-                                              child: CircleAvatar(
-                                                radius: 26,
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.65,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        cases.name,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    17,
+                                                                    20,
+                                                                    52,
+                                                                    1),
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            fontSize: 14,
+                                                            letterSpacing:
+                                                                0 /*percentages not used in flutter. defaulting to zero*/,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            height:
+                                                                1.7142857142857142),
+                                                      ),
+                                                      // FittedBox(
+                                                      //   child: Padding(
+                                                      //     padding: const EdgeInsets.all(8.0),
+                                                      //     child: Text(
+                                                      //       caselists[index].title,
+                                                      //       style: TextStyle(
+                                                      //           fontSize: 15,
+                                                      //           fontWeight: FontWeight.bold),
+                                                      //
+                                                      //       //style: Theme.of(context).textTheme,
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      const Text(
+                                                        'SAP Success Factors, S4HANA',
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: TextStyle(
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    125,
+                                                                    131,
+                                                                    139,
+                                                                    1),
+                                                            fontFamily:
+                                                                'Plus Jakarta Sans',
+                                                            fontSize: 12,
+                                                            letterSpacing:
+                                                                0 /*percentages not used in flutter. defaulting to zero*/,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            height:
+                                                                1.3333333333333333),
+                                                      ),
+                                                      // FittedBox(
+                                                      //   child: Padding(
+                                                      //     padding: const EdgeInsets.all(8.0),
+                                                      //     child: Text(
+                                                      //       'SAP Success Factors, S4HANA',
+                                                      //       style: TextStyle(
+                                                      //           fontSize: 15,
+                                                      //           fontWeight: FontWeight.bold),
+                                                      //
+                                                      //       //style: Theme.of(context).textTheme,
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
+                                                      cases.country != null
+                                                          ? Text(
+                                                              cases.country!,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: const TextStyle(
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          242,
+                                                                          122,
+                                                                          108,
+                                                                          1),
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  fontSize: 11,
+                                                                  letterSpacing:
+                                                                      0 /*percentages not used in flutter. defaulting to zero*/,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  height:
+                                                                      1.4545454545454546),
+                                                            )
+                                                          : const Text(
+                                                              "Not Assigned",
+                                                              style: TextStyle(
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          125,
+                                                                          131,
+                                                                          139,
+                                                                          1),
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  fontSize: 12,
+                                                                  letterSpacing:
+                                                                      0 /*percentages not used in flutter. defaulting to zero*/,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  height:
+                                                                      1.3333333333333333),
+                                                            )
+                                                      // RichText(text: TextSpan(
+                                                      //   ch
+                                                      // ))
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              CircleAvatar(
                                                 backgroundColor:
                                                     const Color(0xFFF6F6F7),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      8), // Border radius
-                                                  child: ClipOval(
-                                                      child: Container(
-                                                          width: 50,
-                                                          height: 50,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            image: DecorationImage(
-                                                                image: AssetImage(
-                                                                    "assets/images/Image1.png"),
-                                                                fit: BoxFit
-                                                                    .fitWidth),
-                                                          ))),
-                                                ),
-                                              )
-
-                                              //           Container(
-                                              //               width: 50,
-                                              //               height: 50,
-                                              //
-                                              //               decoration: BoxDecoration(
-                                              //           image : DecorationImage(
-                                              //           image: AssetImage(caselists[index].imgUrl),
-                                              //       fit: BoxFit.fitWidth
-                                              //   ),
-                                              // )
-                                              //
-                                              //           )
-                                              // Image.asset(
-                                              //   caselists[index].imgUrl,
-                                              //   width: MediaQuery.of(context).size.width *
-                                              //       0.25,
-                                              //     height: 50,
-                                              //     fit:BoxFit.fill
-                                              // ),
+                                                radius: 18,
+                                                child: IconButton(
+                                                    padding: EdgeInsets.zero,
+                                                    icon: const Icon(
+                                                      Icons.arrow_forward_ios,
+                                                      color: Colors.grey,
+                                                      size: 10,
+                                                    ),
+                                                    color:
+                                                        const Color(0xFFD9D9D9),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  route[
+                                                                      index]));
+                                                      // DetailedCustomercase(
+                                                      //     caselists[
+                                                      //         index])));
+                                                    }),
                                               ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.65,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    userData![index]
-                                                        ["customer_name"],
-                                                    textAlign: TextAlign.left,
-                                                    style: const TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            17, 20, 52, 1),
-                                                        fontFamily:
-                                                            'Plus Jakarta Sans',
-                                                        fontSize: 14,
-                                                        letterSpacing:
-                                                            0 /*percentages not used in flutter. defaulting to zero*/,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        height:
-                                                            1.7142857142857142),
-                                                  ),
-                                                  // FittedBox(
-                                                  //   child: Padding(
-                                                  //     padding: const EdgeInsets.all(8.0),
-                                                  //     child: Text(
-                                                  //       caselists[index].title,
-                                                  //       style: TextStyle(
-                                                  //           fontSize: 15,
-                                                  //           fontWeight: FontWeight.bold),
-                                                  //
-                                                  //       //style: Theme.of(context).textTheme,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  const Text(
-                                                    'SAP Success Factors, S4HANA',
-                                                    textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            125, 131, 139, 1),
-                                                        fontFamily:
-                                                            'Plus Jakarta Sans',
-                                                        fontSize: 12,
-                                                        letterSpacing:
-                                                            0 /*percentages not used in flutter. defaulting to zero*/,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        height:
-                                                            1.3333333333333333),
-                                                  ),
-                                                  // FittedBox(
-                                                  //   child: Padding(
-                                                  //     padding: const EdgeInsets.all(8.0),
-                                                  //     child: Text(
-                                                  //       'SAP Success Factors, S4HANA',
-                                                  //       style: TextStyle(
-                                                  //           fontSize: 15,
-                                                  //           fontWeight: FontWeight.bold),
-                                                  //
-                                                  //       //style: Theme.of(context).textTheme,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  Text(
-                                                    userData![index + 5]
-                                                        ['country'],
-                                                    textAlign: TextAlign.left,
-                                                    style: const TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            242, 122, 108, 1),
-                                                        fontFamily:
-                                                            'Plus Jakarta Sans',
-                                                        fontSize: 11,
-                                                        letterSpacing:
-                                                            0 /*percentages not used in flutter. defaulting to zero*/,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        height:
-                                                            1.4545454545454546),
-                                                  )
-                                                  // RichText(text: TextSpan(
-                                                  //   ch
-                                                  // ))
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          CircleAvatar(
-                                            backgroundColor:
-                                                const Color(0xFFF6F6F7),
-                                            radius: 18,
-                                            child: IconButton(
-                                                padding: EdgeInsets.zero,
-                                                icon: const Icon(
-                                                  Icons.arrow_forward_ios,
-                                                  color: Colors.grey,
-                                                  size: 10,
-                                                ),
-                                                color: const Color(0xFFD9D9D9),
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              route[index]));
-                                                  // DetailedCustomercase(
-                                                  //     caselists[
-                                                  //         index])));
-                                                }),
-                                          ),
 
-                                          // IconButton(
-                                          //     onPressed: () {
-                                          //       Navigator.push(
-                                          //           context,
-                                          //           MaterialPageRoute(
-                                          //               builder: (context) =>
-                                          //                   route[index]
-                                          //               // DetailedCustomercase(
-                                          //               //     caselists[index])
-                                          //               ));
-                                          //     },
-                                          //     icon: Icon(Icons.arrow_forward_ios))
-                                        ],
+                                              // IconButton(
+                                              //     onPressed: () {
+                                              //       Navigator.push(
+                                              //           context,
+                                              //           MaterialPageRoute(
+                                              //               builder: (context) =>
+                                              //                   route[index]
+                                              //               // DetailedCustomercase(
+                                              //               //     caselists[index])
+                                              //               ));
+                                              //     },
+                                              //     icon: Icon(Icons.arrow_forward_ios))
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              );
-                            }))
-                        : Center(child: CircularProgressIndicator())
+                                  );
+                                })),
+                          );
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(color: kprimary),
+                          );
+                        }
+                      },
+                    )
 
                     // ListView(children: [
                     //   Padding(

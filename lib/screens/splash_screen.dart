@@ -2,7 +2,7 @@
 //import 'dart:js';
 //import 'package:path/path.dart as path';
 
-import 'package:expense/pages/loginpage.dart';
+import 'package:expense/common/loginpage.dart';
 //import 'package:expense/screens/onboard.dart';
 import 'package:expense/screens/onboarding_screen.dart';
 import 'package:expense/utilities/style.dart';

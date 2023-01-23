@@ -12,5 +12,6 @@ var kAppbarTextStyle = const TextStyle(
     fontWeight: FontWeight.w600);
 var kColor = const Color(0xFFF6F6F7);
 var kprimary = const Color(0xffee4961);
-var kTextStyle = TextStyle(fontFamily: "Plus Jakarta Sans");
+var kTextStyle = const TextStyle(fontFamily: "Plus Jakarta Sans");
 var kfontFamily = 'Plus Jakarta Sans';
+var kiconColor = const Color(0xFF45546E);

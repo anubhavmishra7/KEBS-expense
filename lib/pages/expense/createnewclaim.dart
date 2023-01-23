@@ -1,5 +1,5 @@
 import 'package:camera/camera.dart';
-import 'package:expense/pages/new_claim_created.dart';
+import 'package:expense/pages/expense/new_claim_created.dart';
 import 'package:expense/screens/camera_image.dart';
 import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class CreateNewClaim extends StatefulWidget {
 }
 
 class _CreateNewClaimState extends State<CreateNewClaim> {
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   final costCenterList = [
     "KEBS India",
@@ -153,11 +153,11 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                       child: Column(
                                         children: <Widget>[
                                           Container(
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(8))),
-                                            padding: EdgeInsets.all(24),
+                                            padding: const EdgeInsets.all(24),
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
@@ -186,7 +186,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                       // },
                                                       decoration:
                                                           InputDecoration(
-                                                              enabledBorder: OutlineInputBorder(
+                                                              enabledBorder: const OutlineInputBorder(
                                                                   borderSide: BorderSide(
                                                                       color: Colors
                                                                           .black)),
@@ -196,7 +196,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           .circular(
                                                                               8),
                                                                   borderSide:
-                                                                      BorderSide(
+                                                                      const BorderSide(
                                                                           color: Colors
                                                                               .black)),
                                                               border:
@@ -260,7 +260,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                   separatorBuilder:
                                                                       (context,
                                                                           index) {
-                                                                    return Divider(
+                                                                    return const Divider(
                                                                       thickness:
                                                                           1,
                                                                     );
@@ -295,7 +295,8 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                       },
                                                       decoration:
                                                           InputDecoration(
-                                                              suffixIcon: Icon(
+                                                              suffixIcon:
+                                                                  const Icon(
                                                                 Icons.search,
                                                                 color: Colors
                                                                     .black,
@@ -307,7 +308,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                   "Select One",
                                                               labelStyle:
                                                                   TextStyle(
-                                                                color: Color(
+                                                                color: const Color(
                                                                     0xff868686),
                                                                 fontFamily:
                                                                     kfontFamily,
@@ -340,13 +341,14 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 18.0),
                                             child: Container(
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius:
                                                         BorderRadius.all(
                                                             Radius.circular(
                                                                 8))),
-                                                padding: EdgeInsets.all(24),
+                                                padding:
+                                                    const EdgeInsets.all(24),
                                                 child: Column(
                                                   children: [
                                                     Column(
@@ -377,7 +379,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                               style: TextStyle(
                                                                   fontFamily:
                                                                       kfontFamily,
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xff868686)),
                                                             ),
                                                             items: claimTypeList
@@ -483,7 +485,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                     // width: MediaQuery.of(context).size.width * 0.3,
                                                                                     //height: MediaQuery.of(context).size.height * 0.5,
                                                                                     child: Container(
-                                                                                      padding: EdgeInsets.symmetric(horizontal: 24),
+                                                                                      padding: const EdgeInsets.symmetric(horizontal: 24),
                                                                                       child: ListView.separated(
                                                                                           shrinkWrap: true,
                                                                                           itemBuilder: (context, index) {
@@ -498,7 +500,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                             );
                                                                                           },
                                                                                           separatorBuilder: (context, index) {
-                                                                                            return Divider(
+                                                                                            return const Divider(
                                                                                               thickness: 1,
                                                                                             );
                                                                                           },
@@ -510,8 +512,8 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                       readOnly:
                                                                           true,
                                                                       decoration: InputDecoration(
-                                                                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))),
-                                                                          suffixIcon: Icon(
+                                                                          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))),
+                                                                          suffixIcon: const Icon(
                                                                             Icons.arrow_drop_down,
                                                                             color:
                                                                                 Colors.black,
@@ -520,8 +522,8 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           hintText: currency,
                                                                           hintStyle: TextStyle(color: Colors.black, fontFamily: kfontFamily, fontSize: 14),
                                                                           labelText: currency,
-                                                                          labelStyle: TextStyle(color: Color(0xff868686), fontFamily: kfontFamily, fontSize: 14),
-                                                                          border: OutlineInputBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)))),
+                                                                          labelStyle: TextStyle(color: const Color(0xff868686), fontFamily: kfontFamily, fontSize: 14),
+                                                                          border: const OutlineInputBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)))),
                                                                     ),
                                                                   ),
                                                                   // Container(
@@ -551,13 +553,13 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           TextInputType
                                                                               .number,
                                                                       decoration: InputDecoration(
-                                                                          focusedBorder: OutlineInputBorder(
+                                                                          focusedBorder: const OutlineInputBorder(
                                                                               borderSide: BorderSide(color: Colors.black),
                                                                               borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
-                                                                          border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
+                                                                          border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
                                                                           hintText: "",
                                                                           labelText: "Enter Amount Here",
-                                                                          labelStyle: TextStyle(color: Color(0xff868686), fontFamily: kfontFamily),
+                                                                          labelStyle: TextStyle(color: const Color(0xff868686), fontFamily: kfontFamily),
                                                                           floatingLabelBehavior: FloatingLabelBehavior.never),
                                                                     ),
                                                                   ),
@@ -675,7 +677,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                             data: ThemeData().copyWith(
 
                                                                                 // backgroundColor: Colors.white,
-                                                                                colorScheme: ColorScheme.dark(onPrimary: Colors.black, onSurface: Colors.black, surface: Colors.white)),
+                                                                                colorScheme: const ColorScheme.dark(onPrimary: Colors.black, onSurface: Colors.black, surface: Colors.white)),
                                                                           );
                                                                         },
                                                                         context: context,
@@ -693,7 +695,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                     });
                                                                   },
                                                                   decoration: InputDecoration(
-                                                                      focusedBorder: OutlineInputBorder(
+                                                                      focusedBorder: const OutlineInputBorder(
                                                                           borderSide: BorderSide(
                                                                               color: Colors
                                                                                   .black),
@@ -709,7 +711,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           borderRadius: BorderRadius.circular(10)),
                                                                       hintText: "",
                                                                       labelText: "DD MM YYYY",
-                                                                      labelStyle: TextStyle(fontFamily: kfontFamily, color: Color(0xff868686)),
+                                                                      labelStyle: TextStyle(fontFamily: kfontFamily, color: const Color(0xff868686)),
                                                                       floatingLabelBehavior: FloatingLabelBehavior.never),
                                                                 ),
                                                               ),
@@ -752,8 +754,8 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                 height: MediaQuery.of(context).size.height * 0.25,
                                                                                 child: Center(
                                                                                   child: Container(
-                                                                                    decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(10))),
-                                                                                    padding: EdgeInsets.only(top: 45),
+                                                                                    decoration: const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(10))),
+                                                                                    padding: const EdgeInsets.only(top: 45),
                                                                                     child: Row(
                                                                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                                                       children: [
@@ -764,13 +766,13 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                               backgroundColor: kColor,
                                                                                               // Theme.of(context)
                                                                                               //     .backgroundColor,
-                                                                                              child: ClipOval(
+                                                                                              child: const ClipOval(
                                                                                                   child: Icon(
                                                                                                 Icons.add_a_photo,
                                                                                                 color: Colors.black,
                                                                                               )),
                                                                                             ),
-                                                                                            Text("Take photo")
+                                                                                            const Text("Take photo")
                                                                                           ],
                                                                                         ),
                                                                                         Column(
@@ -788,11 +790,11 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                                   final firstCamera = cameras.first;
                                                                                                   Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
                                                                                                 },
-                                                                                                icon: Icon(Icons.folder),
+                                                                                                icon: const Icon(Icons.folder),
                                                                                                 color: Colors.black,
                                                                                               )),
                                                                                             ),
-                                                                                            Text("Photo Library")
+                                                                                            const Text("Photo Library")
                                                                                           ],
                                                                                         ),
                                                                                         Column(
@@ -802,13 +804,13 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                               backgroundColor: kColor,
                                                                                               // Theme.of(context)
                                                                                               //     .backgroundColor,
-                                                                                              child: ClipOval(
+                                                                                              child: const ClipOval(
                                                                                                   child: Icon(
                                                                                                 Icons.add_photo_alternate,
                                                                                                 color: Colors.black,
                                                                                               )),
                                                                                             ),
-                                                                                            Text("Choose File")
+                                                                                            const Text("Choose File")
                                                                                           ],
                                                                                         ),
                                                                                       ],
@@ -836,14 +838,14 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                 },
                                                                 decoration:
                                                                     InputDecoration(
-                                                                        focusedBorder: OutlineInputBorder(
+                                                                        focusedBorder: const OutlineInputBorder(
                                                                             borderSide: BorderSide(
                                                                                 color: Colors
                                                                                     .black),
                                                                             borderRadius: BorderRadius.all(Radius.circular(
                                                                                 8))),
                                                                         prefixIcon:
-                                                                            Icon(
+                                                                            const Icon(
                                                                           Icons
                                                                               .attachment,
                                                                           color:
@@ -862,7 +864,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                         labelStyle:
                                                                             TextStyle(
                                                                           color:
-                                                                              Color(0xff868686),
+                                                                              const Color(0xff868686),
                                                                           fontFamily:
                                                                               kfontFamily,
                                                                         ),
@@ -914,14 +916,14 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                           onPressed: () {
                                             removeDynamic();
                                           },
-                                          child: Text("Remove")),
+                                          child: const Text("Remove")),
                                     )
                                   ],
                                 ),
                               ),
                               ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: listDynamic.length,
                                   itemBuilder: (_, index) =>
@@ -986,7 +988,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                   TextAlign
                                                                       .center,
                                                               style: TextStyle(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xff868686),
                                                                   fontSize: 14,
                                                                   fontFamily:
@@ -1116,10 +1118,10 @@ class _DynamicWidgetState extends State<DynamicWidget> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16),
         child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(8))),
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               children: [
                 Column(
@@ -1141,7 +1143,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                         hint: Text(
                           "Select One",
                           style: TextStyle(
-                            color: Color(0xff868686),
+                            color: const Color(0xff868686),
                             fontFamily: kfontFamily,
                           ),
                         ),
@@ -1172,7 +1174,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                             decoration: InputDecoration(
                               hintText: "Enter Here",
                               hintStyle: TextStyle(
-                                color: Color(0xff868686),
+                                color: const Color(0xff868686),
                                 fontFamily: kfontFamily,
                               ),
                               border: OutlineInputBorder(
@@ -1197,7 +1199,8 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                               fontFamily: kfontFamily,
                             ),
                           ),
-                          Row(
+                          Wrap(
+                            spacing: 0,
                             children: [
                               Container(
                                 width: 99,
@@ -1209,15 +1212,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                         context: context,
                                         builder: (context) => Dialog(
                                               child: Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                8))),
+                                                // decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
                                                 // width: MediaQuery.of(context).size.width * 0.3,
                                                 //height: MediaQuery.of(context).size.height * 0.5,
                                                 child: Container(
-                                                  padding: EdgeInsets.symmetric(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
                                                       horizontal: 24),
                                                   child: ListView.separated(
                                                       shrinkWrap: true,
@@ -1240,7 +1240,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                                       },
                                                       separatorBuilder:
                                                           (context, index) {
-                                                        return Divider(
+                                                        return const Divider(
                                                           thickness: 1,
                                                         );
                                                       },
@@ -1253,23 +1253,32 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                   },
                                   readOnly: true,
                                   decoration: InputDecoration(
-                                      suffixIcon: Icon(
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(8),
+                                              bottomLeft: Radius.circular(8))),
+                                      suffixIcon: const Icon(
                                         Icons.arrow_drop_down,
+                                        color: Colors.black,
                                       ),
                                       floatingLabelBehavior:
                                           FloatingLabelBehavior.never,
                                       hintText: currency1,
                                       hintStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        fontFamily: kfontFamily,
-                                      ),
+                                          color: Colors.black,
+                                          fontFamily: kfontFamily,
+                                          fontSize: 14),
                                       labelText: currency1,
                                       labelStyle: TextStyle(
-                                          color: Color(0xff868686),
+                                          color: const Color(0xff868686),
                                           fontFamily: kfontFamily,
-                                          fontSize: 15),
-                                      border: OutlineInputBorder()),
+                                          fontSize: 14),
+                                      border: const OutlineInputBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(8),
+                                              bottomLeft: Radius.circular(8)))),
                                 ),
                               ),
                               // Container(
@@ -1292,8 +1301,14 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                 width: MediaQuery.of(context).size.width * 0.54,
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(
+                                  decoration: InputDecoration(
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(8),
+                                              bottomRight: Radius.circular(8))),
+                                      border: const OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color: Colors.black,
                                               style: BorderStyle.solid),
@@ -1302,8 +1317,9 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                               bottomRight: Radius.circular(8))),
                                       hintText: "",
                                       labelText: "Enter Amount Here",
-                                      labelStyle: const TextStyle(
-                                          color: Color(0xff868686)),
+                                      labelStyle: TextStyle(
+                                          color: const Color(0xff868686),
+                                          fontFamily: kfontFamily),
                                       floatingLabelBehavior:
                                           FloatingLabelBehavior.never),
                                 ),
@@ -1407,7 +1423,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                         data: ThemeData().copyWith(
 
                                             // backgroundColor: Colors.white,
-                                            colorScheme: ColorScheme.dark(
+                                            colorScheme: const ColorScheme.dark(
                                                 onPrimary: Colors.black,
                                                 onSurface: Colors.black,
                                                 surface: Colors.white)),
@@ -1436,7 +1452,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                   hintText: "",
                                   labelText: "DD MM YYYY",
                                   labelStyle: TextStyle(
-                                    color: Color(0xff868686),
+                                    color: const Color(0xff868686),
                                     fontFamily: kfontFamily,
                                   ),
                                   floatingLabelBehavior:
@@ -1470,13 +1486,14 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                                 0.25,
                                         child: Center(
                                           child: Container(
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 borderRadius: BorderRadius.only(
                                                     topLeft:
                                                         Radius.circular(30),
                                                     topRight:
                                                         Radius.circular(10))),
-                                            padding: EdgeInsets.only(top: 45),
+                                            padding:
+                                                const EdgeInsets.only(top: 45),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceEvenly,
@@ -1488,13 +1505,13 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                                       backgroundColor: kColor,
                                                       // Theme.of(context)
                                                       //     .backgroundColor,
-                                                      child: ClipOval(
+                                                      child: const ClipOval(
                                                           child: Icon(
                                                         Icons.add_a_photo,
                                                         color: Colors.black,
                                                       )),
                                                     ),
-                                                    Text("Take photo")
+                                                    const Text("Take photo")
                                                   ],
                                                 ),
                                                 Column(
@@ -1521,12 +1538,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                                                           camera:
                                                                               firstCamera)));
                                                         },
-                                                        icon:
-                                                            Icon(Icons.folder),
+                                                        icon: const Icon(
+                                                            Icons.folder),
                                                         color: Colors.black,
                                                       )),
                                                     ),
-                                                    Text("Photo Library")
+                                                    const Text("Photo Library")
                                                   ],
                                                 ),
                                                 Column(
@@ -1536,14 +1553,14 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                                       backgroundColor: kColor,
                                                       // Theme.of(context)
                                                       //     .backgroundColor,
-                                                      child: ClipOval(
+                                                      child: const ClipOval(
                                                           child: Icon(
                                                         Icons
                                                             .add_photo_alternate,
                                                         color: Colors.black,
                                                       )),
                                                     ),
-                                                    Text("Choose File")
+                                                    const Text("Choose File")
                                                   ],
                                                 ),
                                               ],
@@ -1566,7 +1583,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                               //                 camera: firstCamera)));
                             },
                             decoration: InputDecoration(
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.attachment,
                                   color: Color(0xff868686),
                                 ),
@@ -1577,7 +1594,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                     borderRadius: BorderRadius.circular(10)),
                                 labelText: "Tap To Add Attachment",
                                 labelStyle: TextStyle(
-                                  color: Color(0xff868686),
+                                  color: const Color(0xff868686),
                                   fontFamily: kfontFamily,
                                 ),
                                 floatingLabelBehavior:

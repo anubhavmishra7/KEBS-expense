@@ -113,7 +113,7 @@ class OnbordingData extends StatelessWidget {
                           //     MediaQuery.of(context).size.height * 0.3,
                           image: image2,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Image(
                           //width: 130,
                           // fit: fit ?? BoxFit.cover,

@@ -58,7 +58,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
+                                const Text(
                                   "Download Attachment(s)",
                                   style: TextStyle(
                                       fontSize: 15,
@@ -68,7 +68,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.6,
                                   color: kColor,
-                                  child: ListTile(
+                                  child: const ListTile(
                                     leading: Icon(Icons.picture_as_pdf),
                                     title: Text("IMG 7635.jpg"),
                                     trailing:
@@ -79,7 +79,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.6,
                                   color: kColor,
-                                  child: ListTile(
+                                  child: const ListTile(
                                     leading: Icon(Icons.picture_as_pdf),
                                     title: Text("IMG 7635.jpg"),
                                     trailing:
@@ -95,20 +95,20 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: kprimary),
-                                      child: Text("Download All")),
+                                      child: const Text("Download All")),
                                 )
                               ],
                             ),
                           ),
                         ));
               },
-              icon: Icon(Icons.cloud_download_outlined),
+              icon: const Icon(Icons.cloud_download_outlined),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             )
           ],
-          title: Text(
+          title: const Text(
             "Trip expenses - Dinner 18 feb",
             style: TextStyle(fontSize: 14),
           ),
@@ -117,7 +117,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
       body: Container(
         child: Stack(fit: StackFit.expand, children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.center,
@@ -128,7 +128,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
             alignment: Alignment.topRight,
             child: Image.asset(
               "assets/images/landing3.png",
-              opacity: AlwaysStoppedAnimation(0.5),
+              opacity: const AlwaysStoppedAnimation(0.5),
             ),
           ),
           Positioned(
@@ -140,10 +140,10 @@ class _DetailedExpenseState extends State<DetailedExpense> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 20,
                   ),
                   width: MediaQuery.of(context).size.width * 0.92,
@@ -157,7 +157,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text(
                                 "Amount Requested",
                                 style: TextStyle(color: Color(0xff868686)),
@@ -174,7 +174,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text(
                                 "Amount Claimed",
                                 style: TextStyle(color: Color(0xff868686)),
@@ -190,7 +190,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                           )
                         ],
                       ),
-                      Text(
+                      const Text(
                         '---------------------------------------------------------------------------------------------',
                         style: TextStyle(color: Colors.grey),
                       ),
@@ -204,7 +204,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Cost Center",
                                       style:
@@ -221,13 +221,13 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Column(
                                   // mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Created By",
                                       style:
@@ -243,12 +243,12 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Exp-Code",
                                       style:
@@ -273,7 +273,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Department",
                                     style: TextStyle(color: Color(0xff868686)),
@@ -288,12 +288,12 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Days Elapsed",
                                     style: TextStyle(color: Color(0xff868686)),
@@ -308,12 +308,12 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Amount Claimed",
                                     style: TextStyle(color: Color(0xff868686)),
@@ -359,18 +359,18 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                               children: items.map((ExpansionItem item) {
                                 return ExpansionPanel(
                                   canTapOnHeader: true,
-                                  backgroundColor: Color(0xFFF6F6F6),
+                                  backgroundColor: const Color(0xFFF6F6F6),
                                   headerBuilder: (context, bool isExpanded) {
                                     return Container(
                                         alignment: Alignment.centerLeft,
                                         child: Row(
                                           children: [
-                                            Icon(Icons.check_circle_sharp),
-                                            SizedBox(
+                                            const Icon(Icons.check_circle_sharp),
+                                            const SizedBox(
                                               width: 10,
                                             ),
                                             Text(item.header,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 20,
                                                     color: Color(0xff45546E))),
@@ -380,7 +380,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                   isExpanded: item.isExpanded,
                                   body: Container(
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
+                                          const EdgeInsets.symmetric(horizontal: 20),
                                       alignment: Alignment.centerLeft,
                                       clipBehavior: Clip.none,
                                       width: MediaQuery.of(context).size.width *
@@ -391,7 +391,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                       color: Colors.white,
                                       child: Text(
                                         item.body,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w600),
                                       )),
                                 );

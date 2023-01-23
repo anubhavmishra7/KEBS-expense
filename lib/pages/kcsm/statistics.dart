@@ -15,10 +15,10 @@ class Statistics extends StatelessWidget {
       "Chemical Industries (15)": 15,
     };
     return Scaffold(
-        backgroundColor: Color(0xFFF6F6F7),
+        backgroundColor: const Color(0xFFF6F6F7),
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Cutomer Case Study",
             style: TextStyle(fontSize: 15),
           ),
@@ -54,10 +54,10 @@ class Statistics extends StatelessWidget {
                               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ListTile(
-                                  title: Text("Statistics",
+                                  title: const Text("Statistics",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold)),
-                                  trailing: Wrap(spacing: 15, children: [
+                                  trailing: Wrap(spacing: 15, children: const [
                                     // Container(
                                     //   padding: EdgeInsets.zero,
                                     //   color: Colors.white,
@@ -79,7 +79,7 @@ class Statistics extends StatelessWidget {
                                         color: Colors.white,
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    padding: EdgeInsets.all(24.0),
+                                    padding: const EdgeInsets.all(24.0),
                                     width: double.maxFinite,
                                     child: Row(
                                       mainAxisAlignment:
@@ -88,7 +88,7 @@ class Statistics extends StatelessWidget {
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: [
+                                          children: const [
                                             Text(
                                               'Total Projects',
                                               textAlign: TextAlign.left,
@@ -153,7 +153,7 @@ class Statistics extends StatelessWidget {
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: [
+                                          children: const [
                                             Text(
                                               'S4HANA Projects',
                                               textAlign: TextAlign.left,
@@ -374,8 +374,8 @@ class Statistics extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 16.0),
                                   child: Container(
-                                    padding: EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: const BoxDecoration(
                                       color: Colors.white,
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
@@ -387,7 +387,7 @@ class Statistics extends StatelessWidget {
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
-                                            children: [
+                                            children: const [
                                               Text(
                                                 "Industry Wise Projects",
                                                 style: TextStyle(
@@ -403,7 +403,7 @@ class Statistics extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         PieChart(
@@ -411,7 +411,7 @@ class Statistics extends StatelessWidget {
                                           dataMap: dataMap,
                                           chartRadius: 160,
                                           chartValuesOptions:
-                                              ChartValuesOptions(
+                                              const ChartValuesOptions(
                                                   showChartValues: false),
                                           legendOptions: LegendOptions(
                                               legendTextStyle: TextStyle(
@@ -427,7 +427,7 @@ class Statistics extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 100,
                                 )
                               ]),

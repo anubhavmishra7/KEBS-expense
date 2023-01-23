@@ -1,8 +1,8 @@
-import 'package:expense/pages/createnewclaim.dart';
+import 'package:expense/pages/expense/createnewclaim.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
-import '../utilities/style.dart';
+import '../../utilities/style.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key});
@@ -83,7 +83,7 @@ class _NewExpenseState extends State<NewExpense> {
                                           "assets/images/expense.png",
                                           scale: 2.2,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         RichText(
@@ -91,7 +91,7 @@ class _NewExpenseState extends State<NewExpense> {
                                             strutStyle:
                                                 const StrutStyle(height: 1),
                                             text: TextSpan(
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.grey,
                                                     fontSize: 12),
                                                 children: <InlineSpan>[
@@ -104,7 +104,7 @@ class _NewExpenseState extends State<NewExpense> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                           color: Colors.black)),
-                                                  TextSpan(
+                                                  const TextSpan(
                                                       text:
                                                           "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
                                                 ])),
@@ -132,7 +132,7 @@ class _NewExpenseState extends State<NewExpense> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               )
                             ],

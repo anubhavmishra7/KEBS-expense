@@ -23,7 +23,6 @@ class _CameraImagesState extends State<CameraImages> {
   // }
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = CameraController(widget.camera, ResolutionPreset.high);
 
@@ -45,7 +44,7 @@ class _CameraImagesState extends State<CameraImages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff111434),
+      backgroundColor: const Color(0xff111434),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -76,18 +75,18 @@ class _CameraImagesState extends State<CameraImages> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(15))),
                   height: MediaQuery.of(context).size.height * 0.07,
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: ElevatedButton(
-                    child: Text("Ok"),
+                    child: const Text("Ok"),
                     style: ElevatedButton.styleFrom(backgroundColor: kprimary),
                     // shape: RoundedRectangleBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -114,8 +113,8 @@ class _CameraImagesState extends State<CameraImages> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Color(0xff111434),
-        title: Text("Preview"),
+        backgroundColor: const Color(0xff111434),
+        title: const Text("Preview"),
       ),
       // floatingActionButton: Align(
       //   alignment: Alignment.bottomCenter,
@@ -156,22 +155,22 @@ class DisplayPicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff111434),
+      backgroundColor: const Color(0xff111434),
       floatingActionButton: Align(
         alignment: Alignment.bottomCenter,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               width: MediaQuery.of(context).size.width * 0.5,
               child: FloatingActionButton(
                 backgroundColor: kprimary,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("Re-Upload"),
-                shape: StadiumBorder(),
+                child: const Text("Re-Upload"),
+                shape: const StadiumBorder(),
               ),
             ),
             ElevatedButton(

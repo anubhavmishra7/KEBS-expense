@@ -1,7 +1,8 @@
-import 'package:expense/pages/createnewclaim.dart';
-import 'package:expense/pages/expenseLanding.dart';
-import 'package:expense/pages/new_expense.dart';
+import 'package:expense/pages/expense/createnewclaim.dart';
+import 'package:expense/pages/expense/expenseLanding.dart';
+import 'package:expense/pages/expense/new_expense.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class NewClaimCreated extends StatelessWidget {
   const NewClaimCreated({super.key});
