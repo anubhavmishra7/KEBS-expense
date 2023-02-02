@@ -1,4 +1,3 @@
-// import 'package:flutter/cupertino.dart';
 
 class CustomerCaselist {
   final String name;
@@ -12,6 +11,8 @@ class CustomerCaselist {
     final country = data['country'] as String?;
     return CustomerCaselist(name: name, country: country );
   }
+  
+  
 
   // Map<String, dynamic> toJson() {
   //   return {

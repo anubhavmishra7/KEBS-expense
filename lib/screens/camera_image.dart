@@ -17,10 +17,6 @@ class _CameraImagesState extends State<CameraImages> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
-  // @override
-  // void initState(){
-
-  // }
   @override
   void initState() {
     super.initState();
@@ -86,7 +82,6 @@ class _CameraImagesState extends State<CameraImages> {
                   height: MediaQuery.of(context).size.height * 0.07,
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: ElevatedButton(
-                    child: const Text("Ok"),
                     style: ElevatedButton.styleFrom(backgroundColor: kprimary),
                     // shape: RoundedRectangleBorder(
                     //     borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -105,6 +100,7 @@ class _CameraImagesState extends State<CameraImages> {
                         print(e);
                       }
                     },
+                    child: const Text("Ok"),
                   ),
                 ),
               ),
@@ -169,8 +165,8 @@ class DisplayPicture extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text("Re-Upload"),
                 shape: const StadiumBorder(),
+                child: const Text("Re-Upload"),
               ),
             ),
             ElevatedButton(

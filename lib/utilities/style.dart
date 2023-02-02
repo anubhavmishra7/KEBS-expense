@@ -15,3 +15,14 @@ var kprimary = const Color(0xffee4961);
 var kTextStyle = const TextStyle(fontFamily: "Plus Jakarta Sans");
 var kfontFamily = 'Plus Jakarta Sans';
 var kiconColor = const Color(0xFF45546E);
+var kkebsStyle = const TextStyle(
+    color: Colors.white,
+    fontFamily: 'Ariel',
+    fontWeight: FontWeight.bold,
+    fontSize: 20);
+
+var kexpensetext = TextStyle(
+    fontWeight: FontWeight.w800,
+    color: Color(0xff45546E),
+    fontSize: 16,
+    fontFamily: 'Plus Jakarta Sans');

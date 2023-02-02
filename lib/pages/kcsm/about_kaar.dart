@@ -26,11 +26,17 @@ class AboutKaar extends StatelessWidget {
                   child: Stack(children: [
                 Container(
                   alignment: Alignment.topRight,
-                  child: Image.asset("assets/images/landing2.png"),
+                  child: Image.asset(
+                    "assets/images/landing2.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Container(
                   alignment: Alignment.topRight,
-                  child: Image.asset("assets/images/landing3.png"),
+                  child: Image.asset(
+                    "assets/images/landing3.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 90.0),

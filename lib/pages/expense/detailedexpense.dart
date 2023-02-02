@@ -9,6 +9,7 @@ class DetailedExpense extends StatefulWidget {
 }
 
 class _DetailedExpenseState extends State<DetailedExpense> {
+  List<String> growableList = List<String>.generate(4, ((index) => "-"));
   // List<String> _header = ["Submission", "Approval", "Verification", "Closed"];
   // List<String> _expanded = ["Submission", "Approval", "Verification", "Closed"];
 
@@ -31,6 +32,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
       body: "Payment Done By\nSubrahmaniyan T\nPayment Mode\nCheque",
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +94,10 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                   child: ElevatedButton(
                                       onPressed: () {
                                         Navigator.pop(context);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content:
+                                                    Text("Files Downloaded")));
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: kprimary),
@@ -114,101 +120,122 @@ class _DetailedExpenseState extends State<DetailedExpense> {
           ),
           elevation: 0,
           backgroundColor: Colors.transparent),
-      body: Container(
-        child: Stack(fit: StackFit.expand, children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.center,
-                  colors: [Color(0xff111434), Color(0xFFF6F6F6)]),
-            ),
+      body: Stack(fit: StackFit.expand, children: [
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.center,
+                colors: [Color(0xff111434), Color(0xFFF6F6F6)]),
           ),
-          Container(
-            alignment: Alignment.topRight,
-            child: Image.asset(
-              "assets/images/landing3.png",
-              opacity: const AlwaysStoppedAnimation(0.5),
-            ),
+        ),
+        Container(
+          alignment: Alignment.topRight,
+          child: Image.asset(
+            "assets/images/landing3.png",
+            opacity: const AlwaysStoppedAnimation(0.5),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.12,
-            left: MediaQuery.of(context).size.width * 0.02,
-            right: MediaQuery.of(context).size.width * 0.02,
-            child: Row(
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.92,
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Wrap(
-                        spacing: 70,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Amount Requested",
-                                style: TextStyle(color: Color(0xff868686)),
+        ),
+        SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 88.0),
+            child: Container(
+              child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.92,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        "Amount Requested",
+                                        style:
+                                            TextStyle(color: Color(0xff868686)),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        " INR 4,500",
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff45546E),
+                                            fontSize: 16,
+                                            fontFamily: 'Plus Jakarta Sans'),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox()
+                                ],
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                " INR 4,500",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Amount Claimed",
-                                style: TextStyle(color: Color(0xff868686)),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "INR 0.00",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      const Text(
-                        '---------------------------------------------------------------------------------------------',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      Wrap(
-                        //crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 80,
-                        children: <Widget>[
-                          Container(
-                            child: Column(
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "Amount Claimed",
+                                  style: TextStyle(color: Color(0xff868686)),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "INR 0.00",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xff45546E),
+                                      fontSize: 16,
+                                      fontFamily: 'Plus Jakarta Sans'),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              '-----------------------------------------------------------------------------------------',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        Wrap(
+                          //crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: 80,
+                          children: <Widget>[
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       "Cost Center",
-                                      style:
-                                          TextStyle(color: Color(0xff868686)),
+                                      style: TextStyle(
+                                          color: Color(0xff868686),
+                                          fontSize: 14),
                                     ),
                                     SizedBox(
                                       height: 5,
@@ -217,7 +244,10 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                       "CKTXXXKBS",
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff45546E),
+                                          fontSize: 16,
+                                          fontFamily: 'Plus Jakarta Sans'),
                                     )
                                   ],
                                 ),
@@ -239,7 +269,10 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                     Text(
                                       "Aswini B",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff45546E),
+                                          fontSize: 16,
+                                          fontFamily: 'Plus Jakarta Sans'),
                                     )
                                   ],
                                 ),
@@ -261,159 +294,571 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                                       "INR 4,500",
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff45546E),
+                                          fontSize: 16,
+                                          fontFamily: 'Plus Jakarta Sans'),
                                     )
                                   ],
                                 ),
                               ],
                             ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Department",
-                                    style: TextStyle(color: Color(0xff868686)),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Product Development",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Days Elapsed",
-                                    style: TextStyle(color: Color(0xff868686)),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "2 Days",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Amount Claimed",
-                                    style: TextStyle(color: Color(0xff868686)),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "INR 0.00",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      )
-                    ],
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Department",
+                                      style:
+                                          TextStyle(color: Color(0xff868686)),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Product Development",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff45546E),
+                                          fontSize: 16,
+                                          fontFamily: 'Plus Jakarta Sans'),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Days Elapsed",
+                                      style:
+                                          TextStyle(color: Color(0xff868686)),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "2 Days",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Color(0xff45546E),
+                                          fontSize: 16,
+                                          fontFamily: 'Plus Jakarta Sans'),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Approvers",
+                                      style:
+                                          TextStyle(color: Color(0xff868686)),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Wrap(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(360),
+                                          child: CircleAvatar(
+                                            radius: 12,
+                                            child: Image.asset(
+                                                "assets/images/management1.png"),
+                                          ),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(360),
+                                          child: CircleAvatar(
+                                            radius: 12,
+                                            child: Image.asset(
+                                                "assets/images/management2.png"),
+                                          ),
+                                        ),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(360),
+                                          child: CircleAvatar(
+                                            radius: 12,
+                                            child: Image.asset(
+                                                "assets/images/management3.png"),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  SingleChildScrollView(
+                    // physics: ScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: Container(
+                        padding: EdgeInsets.all(15),
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.9,
+                                      child: ExpansionPanelList(
+                                          dividerColor: Colors.transparent,
+                                          elevation: 0,
+                                          expansionCallback:
+                                              (int index, bool isExpanded) {
+                                            setState(() {
+                                              items[index].isExpanded =
+                                                  !items[index].isExpanded;
+                                            });
+                                          },
+                                          children:
+                                              items.map((ExpansionItem item) {
+                                            return ExpansionPanel(
+                                              canTapOnHeader: true,
+                                              backgroundColor:
+                                                  const Color(0xFFF6F6F6),
+                                              headerBuilder:
+                                                  (context, bool isExpanded) {
+                                                return Container(
+                                                    //color: Colors.yellow,
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Wrap(
+                                                      spacing: 0,
+                                                      children: [
+                                                        const Icon(
+                                                          Icons
+                                                              .check_circle_sharp,
+                                                          size: 23,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(item.header,
+                                                            style: const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 16,
+                                                                color: Color(
+                                                                    0xff45546E))),
+                                                      ],
+                                                    ));
+                                              },
+                                              isExpanded: item.isExpanded,
+                                              body: Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 20),
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  clipBehavior: Clip.none,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.8,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.1,
+                                                  color: Colors.white,
+                                                  child: Text(
+                                                    item.body,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  )),
+                                            );
+                                          }).toList()))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
-          Positioned(
-              top: 450,
-              left: 25,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                          alignment: Alignment.topLeft,
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          child: ExpansionPanelList(
-                              elevation: 0,
-                              expansionCallback: (int index, bool isExpanded) {
-                                setState(() {
-                                  items[index].isExpanded =
-                                      !items[index].isExpanded;
-                                });
-                              },
-                              children: items.map((ExpansionItem item) {
-                                return ExpansionPanel(
-                                  canTapOnHeader: true,
-                                  backgroundColor: const Color(0xFFF6F6F6),
-                                  headerBuilder: (context, bool isExpanded) {
-                                    return Container(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            const Icon(Icons.check_circle_sharp),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(item.header,
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 20,
-                                                    color: Color(0xff45546E))),
-                                          ],
-                                        ));
-                                  },
-                                  isExpanded: item.isExpanded,
-                                  body: Container(
-                                      padding:
-                                          const EdgeInsets.symmetric(horizontal: 20),
-                                      alignment: Alignment.centerLeft,
-                                      clipBehavior: Clip.none,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.1,
-                                      color: Colors.white,
-                                      child: Text(
-                                        item.body,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600),
-                                      )),
-                                );
-                              }).toList()))
-                    ],
-                  ),
-                ],
-              ))
-        ]),
-      ),
+        ),
+        // Positioned(
+        //   top: MediaQuery.of(context).size.height * 0.12,
+        //   left: MediaQuery.of(context).size.width * 0.02,
+        //   right: MediaQuery.of(context).size.width * 0.02,
+        //   child:
+        //   Column(
+        //     // crossAxisAlignment: CrossAxisAlignment.center,
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Container(
+        //         decoration: const BoxDecoration(
+        //             color: Colors.white,
+        //             borderRadius: BorderRadius.all(Radius.circular(10))),
+        //         padding: const EdgeInsets.symmetric(
+        //           vertical: 20,
+        //         ),
+        //         width: MediaQuery.of(context).size.width * 0.92,
+        //         height: MediaQuery.of(context).size.height * 0.4,
+        //         child: Column(
+        //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //           crossAxisAlignment: CrossAxisAlignment.center,
+        //           children: [
+        //             Wrap(
+        //               spacing: 70,
+        //               children: [
+        //                 Column(
+        //                   crossAxisAlignment: CrossAxisAlignment.start,
+        //                   children: const [
+        //                     Text(
+        //                       "Amount Requested",
+        //                       style: TextStyle(color: Color(0xff868686)),
+        //                     ),
+        //                     SizedBox(
+        //                       height: 5,
+        //                     ),
+        //                     Text(
+        //                       " INR 4,500",
+        //                       textAlign: TextAlign.start,
+        //                       style: TextStyle(
+        //                           fontWeight: FontWeight.w600,
+        //                           color: Color(0xff45546E),
+        //                           fontSize: 16,
+        //                           fontFamily: 'Plus Jakarta Sans'),
+        //                     )
+        //                   ],
+        //                 ),
+        //                 Column(
+        //                   crossAxisAlignment: CrossAxisAlignment.start,
+        //                   children: const [
+        //                     Text(
+        //                       "Amount Claimed",
+        //                       style: TextStyle(color: Color(0xff868686)),
+        //                     ),
+        //                     SizedBox(
+        //                       height: 5,
+        //                     ),
+        //                     Text(
+        //                       "INR 0.00",
+        //                       style: TextStyle(
+        //                           fontWeight: FontWeight.w600,
+        //                           color: Color(0xff45546E),
+        //                           fontSize: 16,
+        //                           fontFamily: 'Plus Jakarta Sans'),
+        //                     )
+        //                   ],
+        //                 )
+        //               ],
+        //             ),
+        //             Row(
+        //               children: [
+        //                 Text(
+        //                   '-----------------------------------------------------------------------------------------',
+        //                   style: TextStyle(color: Colors.grey),
+        //                 ),
+        //               ],
+        //             ),
+        //             Wrap(
+        //               //crossAxisAlignment: CrossAxisAlignment.start,
+        //               spacing: 80,
+        //               children: <Widget>[
+        //                 Column(
+        //                   crossAxisAlignment: CrossAxisAlignment.start,
+        //                   children: [
+        //                     Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         Text(
+        //                           "Cost Center",
+        //                           style: TextStyle(
+        //                               color: Color(0xff868686), fontSize: 14),
+        //                         ),
+        //                         SizedBox(
+        //                           height: 5,
+        //                         ),
+        //                         Text(
+        //                           "CKTXXXKBS",
+        //                           textAlign: TextAlign.start,
+        //                           style: TextStyle(
+        //                               fontWeight: FontWeight.w600,
+        //                               color: Color(0xff45546E),
+        //                               fontSize: 16,
+        //                               fontFamily: 'Plus Jakarta Sans'),
+        //                         )
+        //                       ],
+        //                     ),
+        //                     const SizedBox(
+        //                       height: 10,
+        //                     ),
+        //                     Column(
+        //                       // mainAxisAlignment: MainAxisAlignment.start,
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: const [
+        //                         Text(
+        //                           "Created By",
+        //                           style: TextStyle(color: Color(0xff868686)),
+        //                         ),
+        //                         SizedBox(
+        //                           height: 5,
+        //                         ),
+        //                         Text(
+        //                           "Aswini B",
+        //                           style: TextStyle(
+        //                               fontWeight: FontWeight.w600,
+        //                               color: Color(0xff45546E),
+        //                               fontSize: 16,
+        //                               fontFamily: 'Plus Jakarta Sans'),
+        //                         )
+        //                       ],
+        //                     ),
+        //                     const SizedBox(
+        //                       height: 10,
+        //                     ),
+        //                     Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: const [
+        //                         Text(
+        //                           "Exp-Code",
+        //                           style: TextStyle(color: Color(0xff868686)),
+        //                         ),
+        //                         SizedBox(
+        //                           height: 5,
+        //                         ),
+        //                         Text(
+        //                           "INR 4,500",
+        //                           textAlign: TextAlign.start,
+        //                           style: TextStyle(
+        //                               fontWeight: FontWeight.w600,
+        //                               color: Color(0xff45546E),
+        //                               fontSize: 16,
+        //                               fontFamily: 'Plus Jakarta Sans'),
+        //                         )
+        //                       ],
+        //                     ),
+        //                   ],
+        //                 ),
+        //                 Column(
+        //                   crossAxisAlignment: CrossAxisAlignment.start,
+        //                   children: [
+        //                     Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: const [
+        //                         Text(
+        //                           "Department",
+        //                           style: TextStyle(color: Color(0xff868686)),
+        //                         ),
+        //                         SizedBox(
+        //                           height: 5,
+        //                         ),
+        //                         Text(
+        //                           "Product Development",
+        //                           style: TextStyle(
+        //                               fontWeight: FontWeight.w600,
+        //                               color: Color(0xff45546E),
+        //                               fontSize: 16,
+        //                               fontFamily: 'Plus Jakarta Sans'),
+        //                         )
+        //                       ],
+        //                     ),
+        //                     const SizedBox(
+        //                       height: 10,
+        //                     ),
+        //                     Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: const [
+        //                         Text(
+        //                           "Days Elapsed",
+        //                           style: TextStyle(color: Color(0xff868686)),
+        //                         ),
+        //                         SizedBox(
+        //                           height: 5,
+        //                         ),
+        //                         Text(
+        //                           "2 Days",
+        //                           style: TextStyle(
+        //                               fontWeight: FontWeight.w600,
+        //                               color: Color(0xff45546E),
+        //                               fontSize: 16,
+        //                               fontFamily: 'Plus Jakarta Sans'),
+        //                         )
+        //                       ],
+        //                     ),
+        //                     const SizedBox(
+        //                       height: 10,
+        //                     ),
+        //                     Column(
+        //                       crossAxisAlignment: CrossAxisAlignment.start,
+        //                       children: [
+        //                         const Text(
+        //                           "Approvers",
+        //                           style: TextStyle(color: Color(0xff868686)),
+        //                         ),
+        //                         const SizedBox(
+        //                           height: 5,
+        //                         ),
+        //                         Wrap(
+        //                           children: [
+        //                             ClipRRect(
+        //                               borderRadius: BorderRadius.circular(360),
+        //                               child: CircleAvatar(
+        //                                 radius: 12,
+        //                                 child: Image.asset(
+        //                                     "assets/images/management1.png"),
+        //                               ),
+        //                             ),
+        //                             ClipRRect(
+        //                               borderRadius: BorderRadius.circular(360),
+        //                               child: CircleAvatar(
+        //                                 radius: 12,
+        //                                 child: Image.asset(
+        //                                     "assets/images/management2.png"),
+        //                               ),
+        //                             ),
+        //                             ClipRRect(
+        //                               borderRadius: BorderRadius.circular(360),
+        //                               child: CircleAvatar(
+        //                                 radius: 12,
+        //                                 child: Image.asset(
+        //                                     "assets/images/management3.png"),
+        //                               ),
+        //                             ),
+        //                           ],
+        //                         )
+        //                       ],
+        //                     )
+        //                   ],
+        //                 )
+        //               ],
+        //             )
+        //           ],
+        //         ),
+        //       ),
+        //       Positioned(
+        //           top: 440,
+        //           left: 25,
+        //           child: Column(
+        //             children: [
+        //               Row(
+        //                 children: [
+        //                   Container(
+        //                       alignment: Alignment.topLeft,
+        //                       width: MediaQuery.of(context).size.width * 0.9,
+        //                       child: ExpansionPanelList(
+        //                           dividerColor: Colors.transparent,
+        //                           elevation: 0,
+        //                           expansionCallback:
+        //                               (int index, bool isExpanded) {
+        //                             setState(() {
+        //                               items[index].isExpanded =
+        //                                   !items[index].isExpanded;
+        //                             });
+        //                           },
+        //                           children: items.map((ExpansionItem item) {
+        //                             return ExpansionPanel(
+        //                               canTapOnHeader: true,
+        //                               backgroundColor: const Color(0xFFF6F6F6),
+        //                               headerBuilder:
+        //                                   (context, bool isExpanded) {
+        //                                 return Container(
+        //                                     //color: Colors.yellow,
+        //                                     alignment: Alignment.centerLeft,
+        //                                     child: Wrap(
+        //                                       spacing: 0,
+        //                                       children: [
+        //                                         const Icon(
+        //                                           Icons.check_circle_sharp,
+        //                                           size: 23,
+        //                                         ),
+        //                                         const SizedBox(
+        //                                           width: 10,
+        //                                         ),
+        //                                         Text(item.header,
+        //                                             style: const TextStyle(
+        //                                                 fontWeight:
+        //                                                     FontWeight.w600,
+        //                                                 fontSize: 16,
+        //                                                 color:
+        //                                                     Color(0xff45546E))),
+        //                                       ],
+        //                                     ));
+        //                               },
+        //                               isExpanded: item.isExpanded,
+        //                               body: Container(
+        //                                   padding: const EdgeInsets.symmetric(
+        //                                       horizontal: 20),
+        //                                   alignment: Alignment.centerLeft,
+        //                                   clipBehavior: Clip.none,
+        //                                   width: MediaQuery.of(context)
+        //                                           .size
+        //                                           .width *
+        //                                       0.8,
+        //                                   height: MediaQuery.of(context)
+        //                                           .size
+        //                                           .height *
+        //                                       0.1,
+        //                                   color: Colors.white,
+        //                                   child: Text(
+        //                                     item.body,
+        //                                     style: const TextStyle(
+        //                                         fontWeight: FontWeight.w600),
+        //                                   )),
+        //                             );
+        //                           }).toList()))
+        //                 ],
+        //               ),
+        //             ],
+        //           ))
+        //     ],
+        //   ),
+        // ),
+        Positioned(
+          top: 180,
+          left: 0,
+          child: CircleAvatar(
+            radius: 18,
+            backgroundColor: Color.fromARGB(255, 131, 146, 173),
+          ),
+        ),
+        Positioned(
+          top: 180,
+          right: 0,
+          child: CircleAvatar(
+            radius: 18,
+            backgroundColor: Color.fromARGB(255, 131, 146, 173),
+          ),
+        ),
+      ]),
     );
   }
 }
 
 class ExpansionItem {
-  bool isExpanded;
-  final String header;
-  final String body;
-
   ExpansionItem({
     this.isExpanded = false,
     required this.header,
     required this.body,
   });
+
+  final String body;
+  final String header;
+  bool isExpanded;
 }

@@ -188,7 +188,7 @@ class _DetailedCustomercaseState extends State<DetailedCustomercase> {
             //         ]);
             PopupMenuButton<int>(
                 itemBuilder: (context) => [
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         value: 1,
                         child: Text(
                           "Flutter Open",
@@ -196,7 +196,7 @@ class _DetailedCustomercaseState extends State<DetailedCustomercase> {
                               color: Colors.black, fontWeight: FontWeight.w700),
                         ),
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         value: 2,
                         child: Text(
                           "Flutter Tutorial",
@@ -208,7 +208,7 @@ class _DetailedCustomercaseState extends State<DetailedCustomercase> {
                 icon: Container(
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: ShapeDecoration(
+                  decoration: const ShapeDecoration(
                       color: Colors.blue,
                       shape: StadiumBorder(
                         side: BorderSide(color: Colors.white, width: 2),

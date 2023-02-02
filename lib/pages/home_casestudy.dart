@@ -77,48 +77,59 @@ class _HomeCasestudyState extends State<HomeCasestudy> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
             backgroundColor: kprimary,
             onPressed: () {},
-            child: Flexible(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.zero,
-                child: GNav(
-                    padding: EdgeInsets.symmetric(vertical: 13, horizontal: 13),
-                    // padding:
-                    //     const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                    color: Colors.white54,
-                    duration: const Duration(microseconds: 19000),
-                    gap: 10,
+            child: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.zero,
+                  //color: Colors.yellow,
+                  child: Flexible(
+                    child: Container(
+                      // color: Colors.yellow,
+                      clipBehavior: Clip.none,
+                      padding: EdgeInsets.zero,
+                      child: GNav(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 13, horizontal: 13),
+                          // padding:
+                          //     const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                          color: Colors.white54,
+                          duration: const Duration(microseconds: 19000),
+                          gap: 10,
 
-                    //tabActiveBorder: Border.all(width: 2),
-                    selectedIndex: currentIndex,
-                    onTabChange: onTap,
+                          //tabActiveBorder: Border.all(width: 2),
+                          selectedIndex: currentIndex,
+                          onTabChange: onTap,
 
-                    // tabBorder: Border.all(color: Colors.redAccent),
-                    tabBackgroundColor: Colors.black,
-                    activeColor: Colors.white,
-                    tabs: [
-                      const GButton(
-                        margin: EdgeInsets.only(left: 10),
-                        icon: Icons.home,
-                        text: 'Home',
-                      ),
-                      const GButton(
-                        margin: EdgeInsets.only(top: 10, bottom: 10),
-                        icon: Icons.bookmark,
-                        text: 'Bookmarks',
-                      ),
-                      const GButton(
-                        margin: EdgeInsets.only(top: 10, bottom: 10),
-                        icon: Icons.bar_chart,
-                        text: 'Statistics',
-                      ),
-                      const GButton(
-                        margin: EdgeInsets.only(right: 10),
-                        icon: Icons.circle_sharp,
-                        text: 'About Kaar',
-                      )
-                    ]),
-              ),
+                          // tabBorder: Border.all(color: Colors.redAccent),
+                          tabBackgroundColor: Colors.black,
+                          activeColor: Colors.white,
+                          tabs: const [
+                            GButton(
+                              margin: EdgeInsets.only(left: 10),
+                              icon: Icons.home,
+                              text: 'Home',
+                            ),
+                            GButton(
+                              margin: EdgeInsets.only(),
+                              icon: Icons.bookmark,
+                              text: 'Bookmarks',
+                            ),
+                            GButton(
+                              margin: EdgeInsets.only(),
+                              icon: Icons.bar_chart,
+                              text: 'Statistics',
+                            ),
+                            GButton(
+                              //padding: EdgeInsets.only(left: 20),
+                              margin: EdgeInsets.only(right: 10),
+                              icon: Icons.circle_sharp,
+                              text: 'About Kaar',
+                            )
+                          ]),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:expense/models/expense/claimtypemodel.dart';
 import 'package:expense/pages/expense/createnewclaim.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -58,8 +59,9 @@ class _NewExpenseState extends State<NewExpense> {
                             children: [
                               const ListTile(
                                 title: Text("No expenses!",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13)),
                                 // trailing: Wrap(spacing: 10, children: [
                                 //   Icon(
                                 //     Icons.search,
@@ -113,14 +115,20 @@ class _NewExpenseState extends State<NewExpense> {
                                           height: 64,
                                           child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                  shape: const StadiumBorder(),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              32)),
+                                                  // shape: const StadiumBorder(
+                                                  //   side: BorderSide()
+                                                  // ),
                                                   elevation: 17,
                                                   backgroundColor: kprimary),
                                               onPressed: () {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const CreateNewClaim()));
+                                                            CreateNewClaim()));
                                               },
                                               child: const Text(
                                                 " +  Create New Claim",

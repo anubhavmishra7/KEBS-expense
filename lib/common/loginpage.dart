@@ -1,7 +1,5 @@
 import 'package:expense/extra/dashboard.dart';
 import 'package:expense/pages/dashboard.dart';
-import 'package:expense/screens/signupscreen.dart';
-import 'package:expense/utilities/expense_button.dart';
 import 'package:expense/utilities/style.dart';
 //import 'package:kcsm/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String uname = "a@kebs.com";
+  TextEditingController loginController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // final emailController = TextEditingController();
@@ -51,7 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 40,
                 ),
-                SizedBox(
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(8)),
                   height: 60,
                   width: 260,
                   child: OutlinedButton(
@@ -59,7 +61,6 @@ class _LoginPageState extends State<LoginPage> {
                       style: OutlinedButton.styleFrom(
 
                           //backgroundColor: Colors.white,
-
                           ),
                       child: Row(
                         children: [
@@ -81,11 +82,14 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 25,
                 ),
-                const SizedBox(
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(16)),
                   height: 60,
                   width: 260,
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: loginController,
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "name@example.com"),
                   ),
@@ -108,20 +112,25 @@ class _LoginPageState extends State<LoginPage> {
                   width: 264,
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Dashboard()));
+                        if (uname == loginController.text) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Dashboard()));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Enter {$uname} for now")));
+                        }
                       },
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
                         elevation: 20,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(11)),
-                        backgroundColor: Colors.redAccent,
+                        backgroundColor: kprimary,
+                      ),
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.white),
                       )),
                 ),
                 // ElevatedButton(

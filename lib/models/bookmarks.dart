@@ -40,6 +40,7 @@ class Caselist {
   }
 
   static List<Caselist> getBookmark() {
+    //print(_bookmarks);
     return _bookmarks;
   }
 }

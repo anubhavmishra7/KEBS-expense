@@ -1,4 +1,5 @@
 import 'package:expense/pages/expense/detailedexpense.dart';
+import 'package:expense/pages/expense/filter_expense.dart';
 import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -12,11 +13,11 @@ class ExpenseLanding extends StatefulWidget {
 
 class _ExpenseLandingState extends State<ExpenseLanding> {
   Map<String, double> dataMap = {
-    "Submitted": 20,
-    "Rejected": 20,
-    "Approved": 30,
-    "Draft": 10,
-    "Closed": 10
+    "Submitted (40)": 40,
+    "Rejected (20)": 20,
+    "Approved (20)": 30,
+    "Draft (10)": 10,
+    "Closed (10)": 10
   };
   List<String> claimsList = [
     "Trip expenses-Dinner 18 Feb\nINR 4,500",
@@ -92,7 +93,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
           visible: foundList.length == claimsList.length,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 40.0),
-            child: Container(
+            child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.09,
               width: MediaQuery.of(context).size.width * 0.35,
               child: FloatingActionButton(
@@ -145,6 +146,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                       controller: controller,
                                       onChanged: (value) => foundelement(value),
                                       decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.zero,
                                           suffixIcon: foundList.isEmpty
                                               ? Visibility(
                                                   child: IconButton(
@@ -168,10 +170,17 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                       color: Colors.black))),
                                     ),
                                   ),
-                                  const Padding(
+                                  Padding(
                                     padding: EdgeInsets.only(top: 8.0),
-                                    child: Icon(
-                                      Icons.filter_list,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ExpenseFilter()));
+                                      },
+                                      icon: Icon(Icons.filter_list),
                                       color: Colors.black,
                                     ),
                                   ),
@@ -227,6 +236,18 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                                     vertical:
                                                                         24),
                                                             child: PieChart(
+                                                              colorList: [
+                                                                Color(
+                                                                    0xffEE5188),
+                                                                Color(
+                                                                    0xff25C967),
+                                                                Color(
+                                                                    0xff70879E),
+                                                                Color(
+                                                                    0xffF69D1C),
+                                                                Color(
+                                                                    0xff4CA4FD),
+                                                              ],
                                                               chartType:
                                                                   ChartType
                                                                       .ring,

@@ -325,7 +325,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             fontSize: 15,
             fontFamily: 'Plus Jakarta Sans'),
       ),
-      selectedDotColor: Colors.redAccent,
+      selectedDotColor: kprimary,
       unSelectdDotColor: const Color.fromARGB(152, 158, 158, 158),
     );
     return introScreen;

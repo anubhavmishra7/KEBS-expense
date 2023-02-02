@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:expense/models/expense/claimtypemodel.dart';
 import 'package:expense/pages/expense/new_claim_created.dart';
 import 'package:expense/screens/camera_image.dart';
 import 'package:expense/utilities/style.dart';
@@ -7,11 +8,31 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CreateNewClaim extends StatefulWidget {
-  const CreateNewClaim({super.key});
+  const CreateNewClaim({Key? key}) : super(key: key);
 
   @override
   State<CreateNewClaim> createState() => _CreateNewClaimState();
 }
+
+class Claimtype {
+  final String type;
+  final IconData icon;
+  Claimtype({required this.type, required this.icon});
+
+  static List<DynamicWidget> listDynamic = [];
+}
+
+List<Claimtype> claimtype = <Claimtype>[
+  Claimtype(type: "Food & Beverages", icon: Icons.room_service),
+  Claimtype(type: "Accomodation", icon: Icons.hotel),
+  Claimtype(type: "Subscription", icon: Icons.money),
+  Claimtype(type: "Building Maintenance", icon: Icons.handyman),
+  Claimtype(type: "House Keeping", icon: Icons.workspace_premium),
+  Claimtype(type: "Internet Charges", icon: Icons.dangerous),
+  Claimtype(type: "Travelling Conveyance", icon: Icons.airplane_ticket),
+  // Claimtype(type: "IInsurance Expenses", icon: Icons.airplane_ticket),
+  Claimtype(type: "IInsurance Expenses", icon: Icons.health_and_safety)
+];
 
 class _CreateNewClaimState extends State<CreateNewClaim> {
   final _formKey = GlobalKey<FormState>();
@@ -26,17 +47,17 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
     "KEBS Managed Services"
   ];
 
-  final claimTypeList = [
-    "Food & Beverages",
-    "Accomodation",
-    "Subscription",
-    "Building Maintenance",
-    "Certifications",
-    "House Keeping",
-    "Internet Charges",
-    "Travelling Conveyance",
-    "Insurance Expences"
-  ];
+  // final claimTypeList = [
+  //   "Food & Beverages",
+  //   "Accomodation",
+  //   "Subscription",
+  //   "Building Maintenance",
+  //   "Certifications",
+  //   "House Keeping",
+  //   "Internet Charges",
+  //   "Travelling Conveyance",
+  //   "Insurance Expences"
+  // ];
 
   final currencyTypeList = ["INR", "USD", "KD", "AED", "SAR"];
 
@@ -44,12 +65,13 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
   TextEditingController costcenter = TextEditingController();
   TextEditingController attachment = TextEditingController();
 
-  static List<DynamicWidget> listDynamic = [];
+  // static List<DynamicWidget> listDynamic = [];
 
-  var currency = "INR";
+  var currency = "";
 
   addDynamic() {
-    listDynamic.add(new DynamicWidget());
+    Claimtype.listDynamic
+        .add(DynamicWidget(dynamicid: Claimtype.listDynamic.length));
     setState(() {
       addDynamic;
     });
@@ -57,10 +79,43 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
   removeDynamic() {
     setState(() {
-      if (listDynamic.isNotEmpty) {
-        listDynamic.removeLast();
+      if (Claimtype.listDynamic.isNotEmpty) {
+        Claimtype.listDynamic.removeLast();
       }
     });
+  }
+
+  bool isLoading = true;
+
+  costCenterDropdown() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+            child: ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  thickness: 1,
+                );
+              },
+              itemCount: costCenterList.length,
+              itemBuilder: ((context, index) {
+                return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        costcenter.text = costCenterList[index];
+                      });
+
+                      Navigator.pop(context);
+                    },
+                    child: ListTile(
+                      title: Text(costCenterList[index]),
+                    ));
+              }),
+            ),
+          );
+        });
   }
 
   DateTime today = DateTime.now();
@@ -85,6 +140,12 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
 //   //   final firstCamera = cameras.first;
 //   // }
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    isLoading = false;
+    super.setState(fn);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +155,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
           title: Text(
             "Expenses",
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 14,
               fontFamily: kfontFamily,
             ),
           ),
@@ -171,7 +232,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                     fontFamily: kfontFamily,
                                                   ),
                                                 ),
-                                                Container(
+                                                SizedBox(
                                                   height: 60,
                                                   child: Card(
                                                     elevation: 0,
@@ -186,19 +247,21 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                       // },
                                                       decoration:
                                                           InputDecoration(
-                                                              enabledBorder: const OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Colors
-                                                                          .black)),
+                                                              enabledBorder: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                          8),
+                                                                  borderSide: const BorderSide(
+                                                                      color: Color(
+                                                                          0xffB9C0CA))),
                                                               focusedBorder: OutlineInputBorder(
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
                                                                               8),
-                                                                  borderSide:
-                                                                      const BorderSide(
-                                                                          color: Colors
-                                                                              .black)),
+                                                                  borderSide: const BorderSide(
+                                                                      color: Colors
+                                                                          .black)),
                                                               border:
                                                                   OutlineInputBorder(
                                                                       borderSide:
@@ -206,9 +269,10 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                         color: Colors
                                                                             .black,
                                                                       ),
-                                                                      borderRadius: BorderRadius
-                                                                          .circular(
-                                                                              8)),
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  8)),
                                                               hintText:
                                                                   "Kaar Technologies India Pvt Ltd",
                                                               hintStyle: TextStyle(
@@ -243,67 +307,45 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                   child: Card(
                                                     elevation: 0,
                                                     child: TextFormField(
+                                                      // validator: (text) {
+                                                      //   if (text == null ||
+                                                      //       text.isEmpty) {
+                                                      //     return "Cost Center is required";
+                                                      //   }
+                                                      // },
                                                       controller: costcenter,
                                                       readOnly: true,
                                                       onTap: () {
-                                                        showModalBottomSheet(
-                                                            context: context,
-                                                            builder: (context) {
-                                                              return Container(
-                                                                height: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    0.5,
-                                                                child: ListView
-                                                                    .separated(
-                                                                  separatorBuilder:
-                                                                      (context,
-                                                                          index) {
-                                                                    return const Divider(
-                                                                      thickness:
-                                                                          1,
-                                                                    );
-                                                                  },
-                                                                  itemCount:
-                                                                      costCenterList
-                                                                          .length,
-                                                                  itemBuilder:
-                                                                      ((context,
-                                                                          index) {
-                                                                    return GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          setState(
-                                                                              () {
-                                                                            costcenter.text =
-                                                                                costCenterList[index];
-                                                                          });
-
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                        },
-                                                                        child:
-                                                                            ListTile(
-                                                                          title:
-                                                                              Text(costCenterList[index]),
-                                                                        ));
-                                                                  }),
-                                                                ),
-                                                              );
-                                                            });
+                                                        costCenterDropdown();
                                                       },
                                                       decoration:
                                                           InputDecoration(
+                                                              enabledBorder: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8),
+                                                                  borderSide: const BorderSide(
+                                                                      color: Color(
+                                                                          0xffB9C0CA))),
                                                               suffixIcon:
                                                                   const Icon(
                                                                 Icons.search,
-                                                                color: Colors
-                                                                    .black,
+                                                                color: Color(
+                                                                    0xffB9C0CA),
                                                               ),
                                                               floatingLabelBehavior:
                                                                   FloatingLabelBehavior
                                                                       .never,
+                                                              hintText:
+                                                                  "Select One",
+                                                              hintStyle:
+                                                                  TextStyle(
+                                                                color: const Color(
+                                                                    0xff868686),
+                                                                fontFamily:
+                                                                    kfontFamily,
+                                                              ),
                                                               labelText:
                                                                   "Select One",
                                                               labelStyle:
@@ -317,7 +359,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              10))),
+                                                                              8))),
                                                     ),
                                                   ),
 
@@ -334,6 +376,61 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                   //         .toList(),
                                                   //     onChanged: (val) {}),
                                                 ),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      vertical: 14.0),
+                                                  child: Row(
+                                                    children: [
+                                                      const Text(
+                                                        "Approvers:    ",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      Visibility(
+                                                        visible:
+                                                            currency == "INR",
+                                                        child: Row(
+                                                          children: [
+                                                            ClipRRect(
+                                                              child: ClipOval(
+                                                                child:
+                                                                    Image.asset(
+                                                                  "assets/images/management1.png",
+                                                                  height: 25,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            ClipRRect(
+                                                              child: ClipOval(
+                                                                clipBehavior:
+                                                                    Clip.hardEdge,
+                                                                child:
+                                                                    Image.asset(
+                                                                  "assets/images/management2.png",
+                                                                  height: 25,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            ClipRRect(
+                                                              child: ClipOval(
+                                                                clipBehavior:
+                                                                    Clip.hardEdge,
+                                                                child:
+                                                                    Image.asset(
+                                                                  "assets/images/management3.png",
+                                                                  height: 25,
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
                                               ],
                                             ),
                                           ),
@@ -366,14 +463,23 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                           ),
                                                         ),
                                                         Container(
-                                                          height: 58,
+                                                          height: 57,
                                                           child:
                                                               DropdownButtonFormField(
+                                                            isExpanded: true,
                                                             decoration: InputDecoration(
+                                                                enabledBorder: OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                8),
+                                                                    borderSide: const BorderSide(
+                                                                        color: Color(
+                                                                            0xffB9C0CA))),
                                                                 border: OutlineInputBorder(
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            10))),
+                                                                            8))),
                                                             hint: Text(
                                                               "Select One",
                                                               style: TextStyle(
@@ -382,12 +488,25 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                   color: const Color(
                                                                       0xff868686)),
                                                             ),
-                                                            items: claimTypeList
+                                                            items: claimtype
                                                                 .map((e1) =>
                                                                     DropdownMenuItem(
                                                                       value: e1,
-                                                                      child: Text(
-                                                                          e1),
+                                                                      child:
+                                                                          Container(
+                                                                        child:
+                                                                            Wrap(
+                                                                          spacing:
+                                                                              15,
+                                                                          children: [
+                                                                            Icon(e1.icon),
+                                                                            // Icon(icontypes.map((e) => Icon(e)).toList()),
+                                                                            //Icon(),
+                                                                            // Container(child: _icontypes.map((e) => Icon(e)).toList(),),
+                                                                            Text(e1.type),
+                                                                          ],
+                                                                        ),
+                                                                      ),
                                                                     ))
                                                                 .toList(),
                                                             onChanged:
@@ -417,10 +536,29 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                 ),
                                                               ),
                                                               TextFormField(
+                                                                validator:
+                                                                    (description) {
+                                                                  if (description ==
+                                                                          null ||
+                                                                      description
+                                                                          .isEmpty) {
+                                                                    return "Description is required";
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
                                                                 onTap: (() {}),
-                                                                maxLines: 3,
+                                                                minLines: 3,
+                                                                maxLines: 5,
                                                                 decoration:
                                                                     InputDecoration(
+                                                                  enabledBorder: OutlineInputBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8),
+                                                                      borderSide:
+                                                                          const BorderSide(
+                                                                              color: Color(0xffB9C0CA))),
                                                                   hintText:
                                                                       "Enter Here",
                                                                   hintStyle:
@@ -521,9 +659,10 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           floatingLabelBehavior: FloatingLabelBehavior.never,
                                                                           hintText: currency,
                                                                           hintStyle: TextStyle(color: Colors.black, fontFamily: kfontFamily, fontSize: 14),
-                                                                          labelText: currency,
+                                                                          labelText: "INR",
                                                                           labelStyle: TextStyle(color: const Color(0xff868686), fontFamily: kfontFamily, fontSize: 14),
-                                                                          border: const OutlineInputBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)))),
+                                                                          enabledBorder: const OutlineInputBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)), borderSide: BorderSide(color: Color(0xffB9C0CA))),
+                                                                          border: const OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)))),
                                                                     ),
                                                                   ),
                                                                   // Container(
@@ -549,13 +688,22 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                         0.54,
                                                                     child:
                                                                         TextFormField(
+                                                                      // validator:
+                                                                      //     (amount) {
+                                                                      //   if (amount ==
+                                                                      //           null ||
+                                                                      //       amount.isEmpty) {
+                                                                      //     return "Enter the Amount";
+                                                                      //   } else {
+                                                                      //     return null;
+                                                                      //   }
+                                                                      // },
                                                                       keyboardType:
                                                                           TextInputType
                                                                               .number,
                                                                       decoration: InputDecoration(
-                                                                          focusedBorder: const OutlineInputBorder(
-                                                                              borderSide: BorderSide(color: Colors.black),
-                                                                              borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
+                                                                          enabledBorder: const OutlineInputBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8)), borderSide: BorderSide(color: Color(0xffB9C0CA))),
+                                                                          // focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
                                                                           border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
                                                                           hintText: "",
                                                                           labelText: "Enter Amount Here",
@@ -603,6 +751,15 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                 height: 60,
                                                                 child:
                                                                     TextFormField(
+                                                                  // validator:
+                                                                  //     (date) {
+                                                                  //   if (date ==
+                                                                  //           null ||
+                                                                  //       date.isEmpty) {
+                                                                  //     return "Enter the Date";
+                                                                  //   }
+                                                                  //   return null;
+                                                                  // },
                                                                   controller:
                                                                       date,
                                                                   readOnly:
@@ -690,7 +847,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                       if (datepick !=
                                                                           null) {
                                                                         date.text =
-                                                                            DateFormat('dd-MM-yyyy').format(datepick);
+                                                                            DateFormat('dd.MM.yyyy').format(datepick);
                                                                       }
                                                                     });
                                                                   },
@@ -704,11 +861,14 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                       suffixIcon:
                                                                           const Icon(Icons
                                                                               .calendar_month_outlined),
-                                                                      border: OutlineInputBorder(
+                                                                      enabledBorder: OutlineInputBorder(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              8),
                                                                           borderSide: const BorderSide(
-                                                                              color: Colors.black,
-                                                                              style: BorderStyle.solid),
-                                                                          borderRadius: BorderRadius.circular(10)),
+                                                                              color: Color(
+                                                                                  0xffB9C0CA))),
+                                                                      border:
+                                                                          OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
                                                                       hintText: "",
                                                                       labelText: "DD MM YYYY",
                                                                       labelStyle: TextStyle(fontFamily: kfontFamily, color: const Color(0xff868686)),
@@ -750,82 +910,147 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           context,
                                                                       builder:
                                                                           (context) =>
-                                                                              Container(
+                                                                              SizedBox(
                                                                                 height: MediaQuery.of(context).size.height * 0.25,
                                                                                 child: Center(
-                                                                                  child: Container(
-                                                                                    decoration: const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(10))),
-                                                                                    padding: const EdgeInsets.only(top: 45),
-                                                                                    child: Row(
-                                                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                                      children: [
-                                                                                        Column(
-                                                                                          children: [
-                                                                                            CircleAvatar(
-                                                                                              radius: 40,
-                                                                                              backgroundColor: kColor,
-                                                                                              // Theme.of(context)
-                                                                                              //     .backgroundColor,
-                                                                                              child: const ClipOval(
-                                                                                                  child: Icon(
-                                                                                                Icons.add_a_photo,
-                                                                                                color: Colors.black,
-                                                                                              )),
-                                                                                            ),
-                                                                                            const Text("Take photo")
-                                                                                          ],
+                                                                                  child: Column(
+                                                                                    children: [
+                                                                                      const Padding(
+                                                                                        padding: EdgeInsets.only(top: 24.0),
+                                                                                        child: Text(
+                                                                                          "Upload  Attachment",
+                                                                                          style: TextStyle(color: Color(0xff45546E), fontSize: 14, fontWeight: FontWeight.w700),
                                                                                         ),
-                                                                                        Column(
-                                                                                          children: [
-                                                                                            CircleAvatar(
-                                                                                              radius: 40,
-                                                                                              backgroundColor: kColor,
-                                                                                              // Theme.of(context)
-                                                                                              //     .backgroundColor,
-                                                                                              child: ClipOval(
-                                                                                                  child: IconButton(
-                                                                                                onPressed: () async {
-                                                                                                  WidgetsFlutterBinding.ensureInitialized();
-                                                                                                  final cameras = await availableCameras();
-                                                                                                  final firstCamera = cameras.first;
-                                                                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
-                                                                                                },
-                                                                                                icon: const Icon(Icons.folder),
-                                                                                                color: Colors.black,
-                                                                                              )),
-                                                                                            ),
-                                                                                            const Text("Photo Library")
-                                                                                          ],
-                                                                                        ),
-                                                                                        Column(
-                                                                                          children: [
-                                                                                            CircleAvatar(
-                                                                                              radius: 40,
-                                                                                              backgroundColor: kColor,
-                                                                                              // Theme.of(context)
-                                                                                              //     .backgroundColor,
-                                                                                              child: const ClipOval(
-                                                                                                  child: Icon(
-                                                                                                Icons.add_photo_alternate,
-                                                                                                color: Colors.black,
-                                                                                              )),
-                                                                                            ),
-                                                                                            const Text("Choose File")
-                                                                                          ],
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
+                                                                                      ),
+                                                                                      Container(
+                                                                                        decoration: const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(10))),
+                                                                                        padding: const EdgeInsets.only(top: 25),
+                                                                                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                                                                                          Column(
+                                                                                            children: [
+                                                                                              Container(
+                                                                                                height: 80,
+                                                                                                width: 80,
+                                                                                                decoration: BoxDecoration(border: Border.all(color: const Color(0xffB9C0CA)), color: Colors.white, borderRadius: BorderRadius.circular(360)),
+
+                                                                                                // radius: 40,
+                                                                                                // backgroundColor: Colors.white,
+                                                                                                // Theme.of(context)
+                                                                                                //     .backgroundColor,
+                                                                                                child: const ClipOval(child: ImageIcon(AssetImage("assets/icons/add_a_photo.png"))),
+                                                                                              ),
+                                                                                              const SizedBox(
+                                                                                                height: 8,
+                                                                                              ),
+                                                                                              const Text(
+                                                                                                "Take photo",
+                                                                                                style: TextStyle(color: Color(0xff45546E)),
+                                                                                              )
+                                                                                            ],
+                                                                                          ),
+
+                                                                                          Column(
+                                                                                            children: [
+                                                                                              Container(
+                                                                                                height: 80,
+                                                                                                width: 80,
+                                                                                                decoration: BoxDecoration(border: Border.all(color: const Color(0xffB9C0CA)), color: Colors.white, borderRadius: BorderRadius.circular(360)),
+
+                                                                                                // radius: 40,
+                                                                                                // backgroundColor: Colors.white,
+                                                                                                // Theme.of(context)
+                                                                                                //     .backgroundColor,
+                                                                                                child: GestureDetector(
+                                                                                                  onTap: () async {
+                                                                                                    WidgetsFlutterBinding.ensureInitialized();
+                                                                                                    final cameras = await availableCameras();
+                                                                                                    final firstCamera = cameras.first;
+                                                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
+                                                                                                  },
+                                                                                                  child: const ClipOval(
+                                                                                                      child: ImageIcon(
+                                                                                                    AssetImage("assets/icons/add_photo_alternate.png"),
+                                                                                                  )),
+                                                                                                ),
+                                                                                              ),
+                                                                                              const SizedBox(
+                                                                                                height: 8,
+                                                                                              ),
+                                                                                              const Text("Photo Library", style: TextStyle(color: Color(0xff45546E)))
+                                                                                            ],
+                                                                                          ),
+
+                                                                                          Column(
+                                                                                            children: [
+                                                                                              Container(
+                                                                                                height: 80,
+                                                                                                width: 80,
+                                                                                                decoration: BoxDecoration(border: Border.all(color: const Color(0xffB9C0CA)), color: Colors.white, borderRadius: BorderRadius.circular(360)),
+
+                                                                                                // radius: 40,
+                                                                                                // backgroundColor: Colors.white,
+                                                                                                // Theme.of(context)
+                                                                                                //     .backgroundColor,
+                                                                                                child: const ClipOval(child: ImageIcon(AssetImage("assets/icons/folder.png"))),
+                                                                                              ),
+                                                                                              const SizedBox(
+                                                                                                height: 8,
+                                                                                              ),
+                                                                                              const Text("Choose File", style: TextStyle(fontWeight: FontWeight.w500, color: Color(0xff45546E)))
+                                                                                            ],
+                                                                                          ),
+
+                                                                                          // Column(
+                                                                                          //   children: [
+                                                                                          //     CircleAvatar(
+                                                                                          //       radius: 40,
+                                                                                          //       backgroundColor: kColor,
+                                                                                          //       // Theme.of(context)
+                                                                                          //       //     .backgroundColor,
+                                                                                          //       child: ClipOval(
+                                                                                          //           child: IconButton(
+                                                                                          //         onPressed: () async {
+                                                                                          //           WidgetsFlutterBinding.ensureInitialized();
+                                                                                          //           final cameras = await availableCameras();
+                                                                                          //           final firstCamera = cameras.first;
+                                                                                          //           Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
+                                                                                          //         },
+                                                                                          //         icon: const Icon(Icons.folder),
+                                                                                          //         color: Colors.black,
+                                                                                          //       )),
+                                                                                          //     ),
+                                                                                          //     const Text("Photo Library")
+                                                                                          //   ],
+                                                                                          // ),
+
+                                                                                          //   Column(
+                                                                                          //     children: [
+                                                                                          //       CircleAvatar(
+                                                                                          //         radius: 40,
+                                                                                          //         backgroundColor: kColor,
+                                                                                          //         // Theme.of(context)
+                                                                                          //         //     .backgroundColor,
+                                                                                          //         child: const ClipOval(
+                                                                                          //             child: Icon(
+                                                                                          //           Icons.add_photo_alternate,
+                                                                                          //           color: Colors.black,
+                                                                                          //         )),
+                                                                                          //       ),
+                                                                                          //       const Text("Choose File")
+                                                                                          //     ],
+                                                                                          //   ),
+                                                                                          // ],
+                                                                                        ]),
+                                                                                      ),
+                                                                                    ],
                                                                                   ),
                                                                                 ),
                                                                               ));
 
-                                                                  if (availableCameras() !=
-                                                                      null) {
-                                                                    attachment
-                                                                            .text =
-                                                                        ("Uploading")
-                                                                            .toString();
-                                                                  }
+                                                                  attachment
+                                                                          .text =
+                                                                      ("Uploading")
+                                                                          .toString();
                                                                   // WidgetsFlutterBinding.ensureInitialized();
                                                                   // final cameras = await availableCameras();
                                                                   // final firstCamera = cameras.first;
@@ -851,25 +1076,24 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           color:
                                                                               Color(0xff868686),
                                                                         ),
-                                                                        border: OutlineInputBorder(
-                                                                            borderSide: const BorderSide(
-                                                                                color: Colors
-                                                                                    .black,
-                                                                                style: BorderStyle
-                                                                                    .solid),
+                                                                        enabledBorder: OutlineInputBorder(
                                                                             borderRadius: BorderRadius.circular(
-                                                                                10)),
-                                                                        labelText:
-                                                                            "Tap To Add Attachment",
-                                                                        labelStyle:
-                                                                            TextStyle(
+                                                                                8),
+                                                                            borderSide: const BorderSide(
+                                                                                color: Color(
+                                                                                    0xffB9C0CA))),
+                                                                        border: OutlineInputBorder(
+                                                                            borderSide:
+                                                                                const BorderSide(color: Colors.black, style: BorderStyle.solid),
+                                                                            borderRadius: BorderRadius.circular(10)),
+                                                                        labelText: "Tap To Add Attachment",
+                                                                        labelStyle: TextStyle(
                                                                           color:
                                                                               const Color(0xff868686),
                                                                           fontFamily:
                                                                               kfontFamily,
                                                                         ),
-                                                                        floatingLabelBehavior:
-                                                                            FloatingLabelBehavior.never),
+                                                                        floatingLabelBehavior: FloatingLabelBehavior.never),
                                                               ),
                                                             ],
                                                           ),
@@ -883,51 +1107,56 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                       )),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14, vertical: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Wrap(
-                                        children: [
-                                          TextButton(
-                                              onPressed: () {
-                                                addDynamic();
-                                              },
-                                              child: Text(
-                                                "+ Add Another Claim",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily: kfontFamily,
-                                                    color: Colors.black),
-                                              )),
-                                        ],
-                                      ),
-                                    ),
-                                    Visibility(
-                                      visible: listDynamic.isNotEmpty,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: kprimary),
-                                          onPressed: () {
-                                            removeDynamic();
-                                          },
-                                          child: const Text("Remove")),
-                                    )
-                                  ],
-                                ),
-                              ),
                               ListView.builder(
                                   padding: EdgeInsets.zero,
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: listDynamic.length,
+                                  itemCount: Claimtype.listDynamic.length,
                                   itemBuilder: (_, index) =>
-                                      listDynamic[index]),
+                                      Claimtype.listDynamic[index]),
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {
+                                          addDynamic();
+                                        },
+                                        child: Text(
+                                          "+ Add Another Claim",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: kfontFamily,
+                                              color: Colors.black),
+                                        )),
+                                    Visibility(
+                                      visible: Claimtype.listDynamic.isNotEmpty,
+                                      child: IconButton(
+                                          // style: TextButton.styleFrom(
+                                          //     backgroundColor: kprimary),
+                                          onPressed: () {
+                                            removeDynamic();
+                                          },
+                                          icon: Icon(Icons.delete_outline,
+                                              color: kprimary)),
+                                    )
+
+                                    // Padding(
+                                    //   padding: const EdgeInsets.symmetric(
+                                    //       horizontal: 14, vertical: 8),
+                                    //   child: Row(
+                                    //     mainAxisAlignment:
+                                    //         MainAxisAlignment.spaceBetween,
+                                    //     children: [
+
+                                    //     ],
+                                    //   ),
+                                    // ),
+                                  ],
+                                ),
+                              ),
                               Padding(
                                 padding:
                                     const EdgeInsets.only(left: 14.0, top: 8),
@@ -940,6 +1169,13 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                         height: 48,
                                         child: ElevatedButton(
                                           onPressed: () {
+                                            // if (_formKey.currentState!
+                                            //     .validate()) {
+                                            //   ScaffoldMessenger.of(context)
+                                            //       .showSnackBar(const SnackBar(
+                                            //           content: Text(
+                                            //               "Form validated")));
+                                            // }
                                             // _formKey.currentState!.validate();
                                             showModalBottomSheet(
                                                 context: context,
@@ -983,7 +1219,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                       kfontFamily),
                                                             ),
                                                             Text(
-                                                              "Are you sure to submit this claim request?\nIf yes, tap Submit Claim below.",
+                                                              "Are you sure to submit this claim request?\nIf yes, tap \"Submit Claim\" below.",
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
@@ -1005,7 +1241,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                     MainAxisAlignment
                                                                         .center,
                                                                 children: [
-                                                                  Container(
+                                                                  SizedBox(
                                                                     height: MediaQuery.of(context)
                                                                             .size
                                                                             .height *
@@ -1016,6 +1252,14 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           Navigator.push(
                                                                               context,
                                                                               MaterialPageRoute(builder: (context) => const NewClaimCreated()));
+                                                                          if (_formKey
+                                                                              .currentState!
+                                                                              .validate()) {
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Form validated")));
+                                                                          }
+                                                                          _formKey
+                                                                              .currentState!
+                                                                              .validate();
                                                                         },
                                                                         child: const Text("Submit Claim")),
                                                                   ),
@@ -1045,7 +1289,14 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                         ),
                                       ),
                                       TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              _formKey.currentState!.reset();
+                                              date.clear();
+                                              costcenter.clear();
+                                              attachment.clear();
+                                            });
+                                          },
                                           child: const Text(
                                             "Clear",
                                             style: TextStyle(
@@ -1067,14 +1318,39 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
           ]),
         ));
   }
+
+  // _approvers() async {
+  //   await Future.delayed(Duration(milliseconds: 20000));
+  //   Text("Hehe");
+  // }
 }
 
 class DynamicWidget extends StatefulWidget {
-  const DynamicWidget({super.key});
+  final int dynamicid;
+  DynamicWidget({super.key, required this.dynamicid});
 
   @override
   State<DynamicWidget> createState() => _DynamicWidgetState();
 }
+
+// class Claimtypedynamic {
+//   final String type;
+//   final IconData icon;
+//   Claimtypedynamic({required this.type, required this.icon});
+// }
+
+// List<Claimtype> claimtypedynamic = <Claimtype>[
+//   Claimtype(type: "Food & Beverages", icon: Icons.room_service),
+//   Claimtype(type: "Accomodation", icon: Icons.hotel),
+//   Claimtype(type: "Subscription", icon: Icons.money),
+//   Claimtype(type: "Building Maintenance", icon: Icons.handyman),
+//   Claimtype(type: "House Keeping", icon: Icons.workspace_premium),
+//   Claimtype(type: "Internet Charges", icon: Icons.dangerous),
+//   Claimtype(
+//       type: "Travelling Conveyance", icon: Icons.nest_cam_wired_stand_outlined),
+//   Claimtype(type: "IInsurance Expenses", icon: Icons.airplane_ticket),
+//   Claimtype(type: "IInsurance Expenses", icon: Icons.health_and_safety)
+// ];
 
 class _DynamicWidgetState extends State<DynamicWidget> {
   // CreateNewClaim remove = new CreateNewClaim();
@@ -1103,6 +1379,21 @@ class _DynamicWidgetState extends State<DynamicWidget> {
     "Insurance Expences"
   ];
 
+  // addDynamic() {
+  //   Claimtype.listDynamic.add(DynamicWidget());
+  //   setState(() {
+  //     addDynamic;
+  //   });
+  // }
+
+  // removeDynamic() {
+  //   setState(() {
+  //     if (Claimtype.listDynamic.isNotEmpty) {
+  //       Claimtype.listDynamic.remove;
+  //     }
+  //   });
+  // }
+
   final currencyTypeList = ["INR", "USD", "KD", "AED", "SAR"];
 
   TextEditingController date = TextEditingController();
@@ -1110,7 +1401,13 @@ class _DynamicWidgetState extends State<DynamicWidget> {
   TextEditingController costcenter = TextEditingController();
 
   TextEditingController attachment = TextEditingController();
-  final _formKey1 = GlobalKey<FormState>();
+  // final _formKey1 = GlobalKey<FormState>();
+  onDelete(int index) {
+    setState(() {
+      Claimtype.listDynamic.remove(index + 1);
+    });
+    print(index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1127,6 +1424,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                          onPressed: onDelete(widget.dynamicid),
+                          icon: Icon(Icons.delete)),
+                    ),
                     Text(
                       "Claim Type *\n",
                       style: TextStyle(
@@ -1138,6 +1441,10 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                       height: 58,
                       child: DropdownButtonFormField(
                         decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    const BorderSide(color: Color(0xffB9C0CA))),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10))),
                         hint: Text(
@@ -1147,10 +1454,23 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                             fontFamily: kfontFamily,
                           ),
                         ),
-                        items: claimTypeList1
+                        items: claimtype
                             .map((e1) => DropdownMenuItem(
                                   value: e1,
-                                  child: Text(e1),
+                                  child: Wrap(
+                                    spacing: 15,
+                                    // mainAxisSize:
+                                    //     MainAxisSize.max,
+                                    // crossAxisAlignment:
+                                    //     CrossAxisAlignment.start,
+                                    children: [
+                                      Icon(e1.icon),
+                                      // Icon(icontypes.map((e) => Icon(e)).toList()),
+                                      //Icon(),
+                                      // Container(child: _icontypes.map((e) => Icon(e)).toList(),),
+                                      Text("${e1.type}"),
+                                    ],
+                                  ),
                                 ))
                             .toList(),
                         onChanged: (val1) {},
@@ -1177,11 +1497,15 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                 color: const Color(0xff868686),
                                 fontFamily: kfontFamily,
                               ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xffB9C0CA))),
                               border: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                       color: Colors.black,
                                       style: BorderStyle.solid),
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(8)),
                             ),
                           ),
                         ],
@@ -1253,6 +1577,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                   },
                                   readOnly: true,
                                   decoration: InputDecoration(
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(8),
+                                              bottomLeft: Radius.circular(8)),
+                                          borderSide: BorderSide(
+                                              color: Color(0xffB9C0CA))),
                                       focusedBorder: const OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.black),
@@ -1302,6 +1632,12 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(8),
+                                              bottomRight: Radius.circular(8)),
+                                          borderSide: BorderSide(
+                                              color: Color(0xffB9C0CA))),
                                       focusedBorder: const OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.black),
@@ -1442,13 +1778,17 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                                 });
                               },
                               decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xffB9C0CA))),
                                   suffixIcon:
                                       const Icon(Icons.calendar_month_outlined),
                                   border: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                           color: Colors.black,
                                           style: BorderStyle.solid),
-                                      borderRadius: BorderRadius.circular(10)),
+                                      borderRadius: BorderRadius.circular(8)),
                                   hintText: "",
                                   labelText: "DD MM YYYY",
                                   labelStyle: TextStyle(
@@ -1480,98 +1820,222 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                             onTap: () async {
                               showModalBottomSheet(
                                   context: context,
-                                  builder: (context) => Container(
+                                  builder: (context) => SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.25,
                                         child: Center(
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(30),
-                                                    topRight:
-                                                        Radius.circular(10))),
-                                            padding:
-                                                const EdgeInsets.only(top: 45),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      radius: 40,
-                                                      backgroundColor: kColor,
-                                                      // Theme.of(context)
-                                                      //     .backgroundColor,
-                                                      child: const ClipOval(
-                                                          child: Icon(
-                                                        Icons.add_a_photo,
-                                                        color: Colors.black,
-                                                      )),
-                                                    ),
-                                                    const Text("Take photo")
-                                                  ],
+                                          child: Column(
+                                            children: [
+                                              const Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 24.0),
+                                                child: Text(
+                                                  "Upload  Attachment",
+                                                  style: TextStyle(
+                                                      color: Color(0xff45546E),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w700),
                                                 ),
-                                                Column(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      radius: 40,
-                                                      backgroundColor: kColor,
-                                                      // Theme.of(context)
-                                                      //     .backgroundColor,
-                                                      child: ClipOval(
-                                                          child: IconButton(
-                                                        onPressed: () async {
-                                                          WidgetsFlutterBinding
-                                                              .ensureInitialized();
-                                                          final cameras =
-                                                              await availableCameras();
-                                                          final firstCamera =
-                                                              cameras.first;
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder: (context) =>
-                                                                      CameraImages(
-                                                                          camera:
-                                                                              firstCamera)));
-                                                        },
-                                                        icon: const Icon(
-                                                            Icons.folder),
-                                                        color: Colors.black,
-                                                      )),
-                                                    ),
-                                                    const Text("Photo Library")
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      radius: 40,
-                                                      backgroundColor: kColor,
-                                                      // Theme.of(context)
-                                                      //     .backgroundColor,
-                                                      child: const ClipOval(
-                                                          child: Icon(
-                                                        Icons
-                                                            .add_photo_alternate,
-                                                        color: Colors.black,
-                                                      )),
-                                                    ),
-                                                    const Text("Choose File")
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                              ),
+                                              Container(
+                                                decoration: const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(30),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    10))),
+                                                padding: const EdgeInsets.only(
+                                                    top: 25),
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Column(
+                                                        children: [
+                                                          Container(
+                                                            height: 80,
+                                                            width: 80,
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA)),
+                                                                color: Colors
+                                                                    .transparent,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            360)),
+
+                                                            // radius: 40,
+                                                            // backgroundColor: Colors.white,
+                                                            // Theme.of(context)
+                                                            //     .backgroundColor,
+                                                            child: const ClipOval(
+                                                                child: ImageIcon(
+                                                                    AssetImage(
+                                                                        "assets/icons/add_a_photo.png"))),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 8,
+                                                          ),
+                                                          const Text(
+                                                            "Take photo",
+                                                            style: TextStyle(
+                                                                color: Color(
+                                                                    0xff45546E)),
+                                                          )
+                                                        ],
+                                                      ),
+
+                                                      Column(
+                                                        children: [
+                                                          Container(
+                                                            height: 80,
+                                                            width: 80,
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA)),
+                                                                color: Colors
+                                                                    .transparent,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            360)),
+
+                                                            // radius: 40,
+                                                            // backgroundColor: Colors.white,
+                                                            // Theme.of(context)
+                                                            //     .backgroundColor,
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () async {
+                                                                WidgetsFlutterBinding
+                                                                    .ensureInitialized();
+                                                                final cameras =
+                                                                    await availableCameras();
+                                                                final firstCamera =
+                                                                    cameras
+                                                                        .first;
+                                                                Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                CameraImages(camera: firstCamera)));
+                                                              },
+                                                              child:
+                                                                  const ClipOval(
+                                                                      child:
+                                                                          ImageIcon(
+                                                                AssetImage(
+                                                                    "assets/icons/add_photo_alternate.png"),
+                                                              )),
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 8,
+                                                          ),
+                                                          const Text(
+                                                              "Photo Library",
+                                                              style: TextStyle(
+                                                                  color: Color(
+                                                                      0xff45546E)))
+                                                        ],
+                                                      ),
+
+                                                      Column(
+                                                        children: [
+                                                          Container(
+                                                            height: 80,
+                                                            width: 80,
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA)),
+                                                                color: Colors
+                                                                    .transparent,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            360)),
+
+                                                            // radius: 40,
+                                                            // backgroundColor: Colors.white,
+                                                            // Theme.of(context)
+                                                            //     .backgroundColor,
+                                                            child: const ClipOval(
+                                                                child: ImageIcon(
+                                                                    AssetImage(
+                                                                        "assets/icons/folder.png"))),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 8,
+                                                          ),
+                                                          const Text(
+                                                              "Choose File",
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Color(
+                                                                      0xff45546E)))
+                                                        ],
+                                                      ),
+
+                                                      // Column(
+                                                      //   children: [
+                                                      //     CircleAvatar(
+                                                      //       radius: 40,
+                                                      //       backgroundColor: kColor,
+                                                      //       // Theme.of(context)
+                                                      //       //     .backgroundColor,
+                                                      //       child: ClipOval(
+                                                      //           child: IconButton(
+                                                      //         onPressed: () async {
+                                                      //           WidgetsFlutterBinding.ensureInitialized();
+                                                      //           final cameras = await availableCameras();
+                                                      //           final firstCamera = cameras.first;
+                                                      //           Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
+                                                      //         },
+                                                      //         icon: const Icon(Icons.folder),
+                                                      //         color: Colors.black,
+                                                      //       )),
+                                                      //     ),
+                                                      //     const Text("Photo Library")
+                                                      //   ],
+                                                      // ),
+
+                                                      //   Column(
+                                                      //     children: [
+                                                      //       CircleAvatar(
+                                                      //         radius: 40,
+                                                      //         backgroundColor: kColor,
+                                                      //         // Theme.of(context)
+                                                      //         //     .backgroundColor,
+                                                      //         child: const ClipOval(
+                                                      //             child: Icon(
+                                                      //           Icons.add_photo_alternate,
+                                                      //           color: Colors.black,
+                                                      //         )),
+                                                      //       ),
+                                                      //       const Text("Choose File")
+                                                      //     ],
+                                                      //   ),
+                                                      // ],
+                                                    ]),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ));
 
-                              if (availableCameras() != null) {
-                                attachment.text = ("Uploading").toString();
-                              }
+                              attachment.text = ("Uploading").toString();
                               // WidgetsFlutterBinding.ensureInitialized();
                               // final cameras = await availableCameras();
                               // final firstCamera = cameras.first;
@@ -1583,10 +2047,18 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                               //                 camera: firstCamera)));
                             },
                             decoration: InputDecoration(
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
                                 prefixIcon: const Icon(
                                   Icons.attachment,
                                   color: Color(0xff868686),
                                 ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: const BorderSide(
+                                        color: Color(0xffB9C0CA))),
                                 border: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                         color: Colors.black,

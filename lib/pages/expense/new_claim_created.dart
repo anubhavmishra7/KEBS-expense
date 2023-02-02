@@ -17,7 +17,11 @@ class NewClaimCreated extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/claimsubmission1.png"),
+            Image.asset(
+              "assets/images/gif-unscreen.gif",
+              height: 200,
+              width: 200,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -33,7 +37,7 @@ class NewClaimCreated extends StatelessWidget {
               height: 10,
             ),
             const Text(
-              "You will be notiufied while someone at your company opens\nthis request and take relevant action.",
+              "You will be notified while someone at your company opens\nthis request and take relevant action.",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Color(0xff868686),
@@ -76,7 +80,7 @@ class NewClaimCreated extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ExpenseLanding()));
+                            builder: (context) => const ExpenseLanding()));
                   },
                   child: const Text(
                     "Or, Go back to My Claims",

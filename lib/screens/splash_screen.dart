@@ -1,11 +1,10 @@
 //import 'package:flutter/src/widgets/container.dart';
 //import 'dart:js';
 //import 'package:path/path.dart as path';
-
-import 'package:expense/common/loginpage.dart';
+// import 'package:expense/common/loginpage.dart';
 //import 'package:expense/screens/onboard.dart';
 import 'package:expense/screens/onboarding_screen.dart';
-import 'package:expense/utilities/style.dart';
+// import 'package:expense/utilities/style.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     _home();
   }
-
   _home() async {
     await Future.delayed(const Duration(milliseconds: 2000), () {});
     Navigator.pushReplacement(
@@ -32,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        //color: Colors.red,
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
               // mainAxisSiz: MainAxisAlignment.end,

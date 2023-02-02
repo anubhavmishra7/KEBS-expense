@@ -1,7 +1,7 @@
-import 'package:expense/pages/expense/expenselanding.dart';
+// import 'package:expense/pages/expense/expenselanding.dart';
 import 'package:expense/pages/expense/new_expense.dart';
 import 'package:expense/pages/home_casestudy.dart';
-import 'package:expense/pages/kcsm/casestudy.dart';
+// import 'package:expense/pages/kcsm/casestudy.dart';
 import 'package:expense/utilities/style.dart';
 //import 'package:kcsm/pages/casestudy.dart';
 //import 'package:kcsm/pages/home_casestudy.dart';
@@ -31,12 +31,17 @@ class _DashboardState extends State<Dashboard> {
                     //decoration: BoxDecoration(),
                     child: Image.asset('assets/images/landing1.png'),
                   ),
-                  Text(
-                    "KEBS",
-                    style: kTitleStyle,
-                  ),
-                  const SizedBox(
-                    width: 85,
+                  Wrap(
+                    children: [
+                      Container(
+                        //decoration: BoxDecoration(),
+                        child: Image.asset('assets/icons/KEBSlogoIcon.png'),
+                      ),
+                      Text(" KEBS", style: kkebsStyle),
+                      const SizedBox(
+                        width: 85,
+                      ),
+                    ],
                   ),
                   Container(
                     child: Image.asset('assets/images/search.png'),
@@ -112,14 +117,14 @@ class _DashboardState extends State<Dashboard> {
                           SizedBox(
                             height: 7,
                           ),
-                          const Text(
+                          Text(
                             '02 November 2022',
                             style: TextStyle(color: Colors.white, fontSize: 12),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
-                          const Text(
+                          Text(
                             'Pending Approvals',
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
@@ -147,11 +152,15 @@ class _DashboardState extends State<Dashboard> {
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Center(
-                                  child: Text(
-                                'Approvals',
-                                style: TextStyle(color: Colors.white),
-                              )),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      'Approvals',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
 
                               //color: Colors.yellow,
 
@@ -185,9 +194,15 @@ class _DashboardState extends State<Dashboard> {
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Center(
-                                  child: Text('Leave\nRequest',
-                                      style: TextStyle(color: Colors.white))),
+                              child: const Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      'Leave\nRequest',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
                             ),
                             Container(
                               width: 116,
@@ -196,9 +211,15 @@ class _DashboardState extends State<Dashboard> {
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Center(
-                                  child: Text('Tasks',
-                                      style: TextStyle(color: Colors.white))),
+                              child: const Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      'Tasks',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
                             ),
                             Container(
                               width: 116,
@@ -207,9 +228,15 @@ class _DashboardState extends State<Dashboard> {
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Center(
-                                  child: Text('Varience',
-                                      style: TextStyle(color: Colors.white))),
+                              child: const Padding(
+                                padding: EdgeInsets.all(20.0),
+                                child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      'Varience',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                              ),
                             ),
                             const SizedBox()
                           ],
@@ -397,7 +424,8 @@ class _DashboardState extends State<Dashboard> {
       child: ListView(
         padding: EdgeInsets.zero,
         shrinkWrap: true,
-        physics: const ScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
+        // physics: const ScrollPhysics(),
         children: <Widget>[
           Container(
             decoration: BoxDecoration(color: kColor),
@@ -420,6 +448,7 @@ class _DashboardState extends State<Dashboard> {
                     child: Column(
                       children: <Widget>[
                         Container(
+                          padding: const EdgeInsets.only(top: 10),
                           margin: const EdgeInsets.symmetric(
                               horizontal: 11.0, vertical: 5),
                           // height: 20.0,
@@ -727,10 +756,10 @@ class Choice {
 }
 
 List<Choice> choices = <Choice>[
-  const Choice(title: 'Dashboard', icon: Icons.home),
+  const Choice(title: 'Dashboard', icon: Icons.grid_goldenratio_outlined),
   const Choice(title: 'MIS', icon: Icons.contacts),
   const Choice(title: 'Cash Flow', icon: Icons.map),
-  const Choice(title: 'Expense', icon: Icons.phone),
+  const Choice(title: 'Expense', icon: Icons.explore),
   const Choice(title: 'Case Study', icon: Icons.currency_exchange_rounded),
 ];
 
@@ -755,11 +784,12 @@ class SelectCard extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.elliptical(56, 56)),
               ),
               child: IconButton(
+                splashRadius: 1,
                 icon:
                     Icon(choice.icon, size: 24, color: const Color(0xFF45546E)),
                 iconSize: 50,
                 color: Colors.green,
-                splashColor: Colors.purple,
+                // splashColor: Colors.purple,
                 onPressed: () {
                   if (choice.title == "Case Study") {
                     Navigator.push(
