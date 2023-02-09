@@ -11,11 +11,17 @@ class ExpenseLanding extends StatefulWidget {
   State<ExpenseLanding> createState() => _ExpenseLandingState();
 }
 
+// class Search {
+//   String searched = "";
+//   // Searched({required this.searched});
+// }
+
 class _ExpenseLandingState extends State<ExpenseLanding> {
+  // String searched = "";
   Map<String, double> dataMap = {
-    "Submitted (40)": 40,
+    "Submitted (40)            ": 40,
     "Rejected (20)": 20,
-    "Approved (20)": 30,
+    "Approved (20)             ": 30,
     "Draft (10)": 10,
     "Closed (10)": 10
   };
@@ -51,7 +57,8 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
     super.initState();
   }
 
-  final controller = TextEditingController();
+  final searchcontroller = TextEditingController();
+  String searched = "";
 
   void foundelement(String enteredText) {
     List<String> results = [];
@@ -71,7 +78,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
 
   @override
   void dispose() {
-    controller.dispose();
+    searchcontroller.dispose();
     super.dispose();
   }
 
@@ -94,7 +101,8 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 40.0),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.09,
+              // height: 64,
+              height: MediaQuery.of(context).size.height * 0.08,
               width: MediaQuery.of(context).size.width * 0.35,
               child: FloatingActionButton(
                 backgroundColor: const Color(0xffee4961),
@@ -133,6 +141,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                             children: [
                               ListTile(
                                 title: Text("${foundList.length} expenses",
+                                    // title: Text("$searched expenses",
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold)),
                                 trailing: Wrap(spacing: 15, children: [
@@ -143,15 +152,22 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                         MediaQuery.of(context).size.width * 0.5,
                                     height: 45,
                                     child: TextField(
-                                      controller: controller,
-                                      onChanged: (value) => foundelement(value),
+                                      controller: searchcontroller,
+                                      onChanged: (String value) {
+                                        setState(() {
+                                          searched = value;
+                                        });
+
+                                        foundelement(value);
+                                      },
                                       decoration: InputDecoration(
                                           contentPadding: EdgeInsets.zero,
                                           suffixIcon: foundList.isEmpty
                                               ? Visibility(
                                                   child: IconButton(
                                                       onPressed: () {
-                                                        controller.clear();
+                                                        searchcontroller
+                                                            .clear();
                                                       },
                                                       icon: (const Icon(
                                                         Icons.cancel,
@@ -170,19 +186,16 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                       color: Colors.black))),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8.0),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ExpenseFilter()));
-                                      },
-                                      icon: Icon(Icons.filter_list),
-                                      color: Colors.black,
-                                    ),
+                                  IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ExpenseFilter()));
+                                    },
+                                    icon: Icon(Icons.filter_list),
+                                    color: Colors.black,
                                   ),
                                 ]),
                               ),
@@ -236,7 +249,7 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                                     vertical:
                                                                         24),
                                                             child: PieChart(
-                                                              colorList: [
+                                                              colorList: const [
                                                                 Color(
                                                                     0xffEE5188),
                                                                 Color(
@@ -248,6 +261,8 @@ class _ExpenseLandingState extends State<ExpenseLanding> {
                                                                 Color(
                                                                     0xff4CA4FD),
                                                               ],
+                                                              // centerText:
+                                                              //     "Total Claims\n23",
                                                               chartType:
                                                                   ChartType
                                                                       .ring,
@@ -592,8 +607,8 @@ buildNoResult(context) {
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            "No results for “Insurance” in Expenses.\nMaybe you forgot to add this claim.",
+          Text(
+            "No results for '${_ExpenseLandingState().searched}' in Expenses.\nMaybe you forgot to add this claim.",
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Color(0xff868686),

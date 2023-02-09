@@ -273,7 +273,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           end: Alignment.bottomRight,
           colors: [Colors.white, Colors.white]),
       pageRoute: MaterialPageRoute(
-        builder: (context) => const LoginPage(),
+        // builder: (context) => const LoginPage(),
+        builder: (context) => Oauth(),
       ),
       nextButton: const Text(
         'Continue',

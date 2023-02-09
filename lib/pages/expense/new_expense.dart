@@ -47,106 +47,114 @@ class _NewExpenseState extends State<NewExpense> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 2.0,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const ListTile(
-                                title: Text("No expenses!",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13)),
-                                // trailing: Wrap(spacing: 10, children: [
-                                //   Icon(
-                                //     Icons.search,
-                                //     color: Colors.black,
-                                //   ),
-                                //   Icon(
-                                //     Icons.filter_list,
-                                //     color: Colors.black,
-                                //   )
-                                // ]
-                                // ),
-                              ),
-                              SingleChildScrollView(
-                                child: Center(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 75.0),
-                                    child: Column(
-                                      children: [
-                                        Image.asset(
-                                          "assets/images/expense.png",
-                                          scale: 2.2,
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        RichText(
-                                            textAlign: TextAlign.center,
-                                            strutStyle:
-                                                const StrutStyle(height: 1),
-                                            text: TextSpan(
-                                                style: const TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 12),
-                                                children: <InlineSpan>[
-                                                  TextSpan(
-                                                      text: "It's Empty Here!",
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontFamily:
-                                                              kfontFamily,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          color: Colors.black)),
-                                                  const TextSpan(
-                                                      text:
-                                                          "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
-                                                ])),
-                                        SizedBox(
-                                          width: 211,
-                                          height: 64,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              32)),
-                                                  // shape: const StadiumBorder(
-                                                  //   side: BorderSide()
-                                                  // ),
-                                                  elevation: 17,
-                                                  backgroundColor: kprimary),
-                                              onPressed: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            CreateNewClaim()));
-                                              },
-                                              child: const Text(
-                                                " +  Create New Claim",
-                                                style: TextStyle(fontSize: 14),
-                                              )),
-                                        )
-                                      ],
+                    child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 2.0,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const ListTile(
+                                  title: Text("No expenses!",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14)),
+                                  // trailing: Wrap(spacing: 10, children: [
+                                  //   Icon(
+                                  //     Icons.search,
+                                  //     color: Colors.black,
+                                  //   ),
+                                  //   Icon(
+                                  //     Icons.filter_list,
+                                  //     color: Colors.black,
+                                  //   )
+                                  // ]
+                                  // ),
+                                ),
+                                SingleChildScrollView(
+                                  child: Center(
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 75.0),
+                                      child: Column(
+                                        children: [
+                                          Image.asset(
+                                            "assets/images/expense.png",
+                                            scale: 2.2,
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          RichText(
+                                              textAlign: TextAlign.center,
+                                              strutStyle:
+                                                  const StrutStyle(height: 1),
+                                              text: TextSpan(
+                                                  style: const TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 12),
+                                                  children: <InlineSpan>[
+                                                    TextSpan(
+                                                        text:
+                                                            "It's Empty Here!",
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontFamily:
+                                                                kfontFamily,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color:
+                                                                Colors.black)),
+                                                    const TextSpan(
+                                                        text:
+                                                            "\n\nSubmit bills if you have spent\nbehalf of the company and get it reimbursed.\n\n")
+                                                  ])),
+                                          SizedBox(
+                                            width: 211,
+                                            height: 64,
+                                            child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        32)),
+                                                    // shape: const StadiumBorder(
+                                                    //   side: BorderSide()
+                                                    // ),
+                                                    elevation: 17,
+                                                    backgroundColor: kprimary),
+                                                onPressed: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              CreateNewClaim()));
+                                                },
+                                                child: const Text(
+                                                  " +  Create New Claim",
+                                                  style:
+                                                      TextStyle(fontSize: 14),
+                                                )),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              )
-                            ],
+                                const SizedBox(
+                                  height: 30,
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )))
           ]),
         ));

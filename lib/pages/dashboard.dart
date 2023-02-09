@@ -56,7 +56,8 @@ class _DashboardState extends State<Dashboard> {
               ),
               bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(10),
-                  child: Container(
+                  child: 
+                  Container(
                     //color: Colors.yellow,
                     decoration: BoxDecoration(
                         color: kColor,
@@ -73,7 +74,9 @@ class _DashboardState extends State<Dashboard> {
                       width: 70,
                       height: 5,
                     )),
-                  )),
+                  )
+                  ),
+              
               iconTheme: const IconThemeData(
                 color: Colors.black,
               ),
@@ -112,21 +115,30 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           Text(
                             'Welcome Back,John!',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: TextStyle(
+                                fontFamily: 'Plus Jakarta Sans',
+                                color: Colors.white,
+                                fontSize: 20),
                           ),
                           SizedBox(
                             height: 7,
                           ),
                           Text(
                             '02 November 2022',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
+                            style: TextStyle(
+                                fontFamily: 'Plus Jakarta Sans',
+                                color: Colors.white,
+                                fontSize: 12),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           Text(
                             'Pending Approvals',
-                            style: TextStyle(color: Colors.white, fontSize: 15),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontFamily: 'Plus Jakarta Sans'),
                           ),
                         ],
                       ),
@@ -146,20 +158,31 @@ class _DashboardState extends State<Dashboard> {
                           children: [
                             const SizedBox(),
                             Container(
+                              padding: const EdgeInsets.all(16),
                               width: 116,
                               height: 104,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(
-                                      'Approvals',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Text(
+                                    '02',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Expense\nRequests',
+                                    style: TextStyle(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: Colors.white),
+                                  ),
+                                ],
                               ),
 
                               //color: Colors.yellow,
@@ -188,54 +211,86 @@ class _DashboardState extends State<Dashboard> {
                               // ),
                             ),
                             Container(
+                              padding: const EdgeInsets.all(16),
                               width: 116,
                               height: 104,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(
-                                      'Leave\nRequest',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Text(
+                                    '02',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Leave\nRequests',
+                                    style: TextStyle(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
                             Container(
+                              padding: const EdgeInsets.all(16),
                               width: 116,
                               height: 104,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(
-                                      'Tasks',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Text(
+                                    '04',
+                                    style: TextStyle(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Tasks',
+                                    style: TextStyle(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
                             Container(
+                              padding: const EdgeInsets.all(16),
                               width: 116,
                               height: 104,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFDC3E4B),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(20.0),
-                                child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(
-                                      'Varience',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Text(
+                                    '04',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Varience',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
                             const SizedBox()
@@ -456,9 +511,13 @@ class _DashboardState extends State<Dashboard> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              const Icon(Icons.format_list_numbered,
-                                  size: 18,
-                                  color: Color.fromRGBO(17, 20, 52, 1)),
+                              headList[index] == "CRM"
+                                  ? const Icon(Icons.radio,
+                                      size: 18,
+                                      color: Color.fromRGBO(17, 20, 52, 1))
+                                  : headList[index] == "Sales"
+                                      ? (const Icon(Icons.co2))
+                                      : const Icon(Icons.bolt),
                               const Padding(
                                   padding: EdgeInsets.only(right: 5.0)),
                               Text(headList[index],
@@ -475,7 +534,7 @@ class _DashboardState extends State<Dashboard> {
                         Container(
                           // decoration: BoxDecoration(
                           //     borderRadius: BorderRadius.circular(26)),
-                          color: Colors.white,
+                          //color: Colors.yellow,
                           height: MediaQuery.of(context).size.height / 3.6,
                           width: MediaQuery.of(context).size.width,
                           child: GridView.count(
@@ -749,6 +808,7 @@ class _DashboardState extends State<Dashboard> {
 //         );
 //   }
 // }
+
 class Choice {
   const Choice({required this.title, required this.icon});
   final String title;
@@ -761,6 +821,9 @@ List<Choice> choices = <Choice>[
   const Choice(title: 'Cash Flow', icon: Icons.map),
   const Choice(title: 'Expense', icon: Icons.explore),
   const Choice(title: 'Case Study', icon: Icons.currency_exchange_rounded),
+  // const Choice(title: 'Case Study', icon: Icons.currency_exchange_rounded),
+  // const Choice(title: 'Case Study', icon: Icons.currency_exchange_rounded),
+  // const Choice(title: 'Case Study', icon: Icons.currency_exchange_rounded),
 ];
 
 class SelectCard extends StatelessWidget {
@@ -780,6 +843,7 @@ class SelectCard extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: const BoxDecoration(
+                //color: Colors.yellow,
                 color: Color.fromRGBO(245, 245, 246, 1),
                 borderRadius: BorderRadius.all(Radius.elliptical(56, 56)),
               ),
@@ -801,6 +865,13 @@ class SelectCard extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const NewExpense()));
+                  } else if (choice.title == "Dashboard") {
+                    //Navigator.popUntil(context, ModalRoute.withName('/login'));
+                    Navigator.pop(context);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const NewExpense()));
                   } else {}
                 },
               ),
@@ -814,7 +885,48 @@ class SelectCard extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     height: 1.1))
           ],
-        ),
+        )
+        // Column(children: [
+        //     Container(
+        //       margin: const EdgeInsets.symmetric(vertical: 10.0),
+        //       width: 40,
+        //       height: 40,
+        //       decoration: const BoxDecoration(
+        //         color: Colors.yellow,
+        //         // color: Color.fromRGBO(245, 245, 246, 1),
+        //         borderRadius: BorderRadius.all(Radius.elliptical(56, 56)),
+        //       ),
+        //       child: IconButton(
+        //         splashRadius: 1,
+        //         icon: Icon(choice.icon,
+        //             size: 24, color: const Color(0xFF45546E)),
+        //         iconSize: 50,
+        //         color: Colors.green,
+        //         // splashColor: Colors.purple,
+        //         onPressed: () {
+        //           if (choice.title == "Case Study") {
+        //             Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => const HomeCasestudy()));
+        //           } else if (choice.title == "Expense") {
+        //             Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => const NewExpense()));
+        //           } else {}
+        //         },
+        //       ),
+        //     ),
+        //     Text(choice.title,
+        //         style: const TextStyle(
+        //             color: Color.fromRGBO(17, 20, 52, 1),
+        //             fontFamily: 'Plus Jakarta Sans',
+        //             fontSize: 13,
+        //             letterSpacing: 0,
+        //             fontWeight: FontWeight.w500,
+        //             height: 1.1))
+        //   ])
       ],
     );
   }

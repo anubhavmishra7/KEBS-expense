@@ -54,54 +54,78 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                     useSafeArea: true,
                     context: context,
                     builder: (context) => Dialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.36,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
-                                  "Download Attachment(s)",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600),
-                                ),
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  color: kColor,
-                                  child: const ListTile(
-                                    leading: Icon(Icons.picture_as_pdf),
-                                    title: Text("IMG 7635.jpg"),
-                                    trailing:
-                                        Icon(Icons.file_download_outlined),
+                                  padding: const EdgeInsets.all(24),
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        "Download Attachment(s)",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        color: kColor,
+                                        child: const ListTile(
+                                          leading: Icon(Icons.picture_as_pdf),
+                                          title: Text("IMG 7635.jpg"),
+                                          trailing: Icon(
+                                              Icons.file_download_outlined),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        color: kColor,
+                                        child: const ListTile(
+                                          leading: Icon(Icons.picture_as_pdf),
+                                          title: Text("IMG 7635.jpg"),
+                                          trailing: Icon(
+                                              Icons.file_download_outlined),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                      content: Text(
+                                                          "Files Downloaded")));
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: kprimary),
+                                            child: const Text("Download All")),
+                                      )
+                                    ],
                                   ),
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  color: kColor,
-                                  child: const ListTile(
-                                    leading: Icon(Icons.picture_as_pdf),
-                                    title: Text("IMG 7635.jpg"),
-                                    trailing:
-                                        Icon(Icons.file_download_outlined),
-                                  ),
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                                content:
-                                                    Text("Files Downloaded")));
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: kprimary),
-                                      child: const Text("Download All")),
                                 )
                               ],
                             ),
@@ -137,7 +161,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
           ),
         ),
         SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.only(top: 88.0),
             child: Container(
@@ -158,63 +182,68 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        "Amount Requested",
-                                        style:
-                                            TextStyle(color: Color(0xff868686)),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        " INR 4,500",
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xff45546E),
-                                            fontSize: 16,
-                                            fontFamily: 'Plus Jakarta Sans'),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox()
-                                ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: const [
+                                        Text(
+                                          "Amount Requested",
+                                          style: TextStyle(
+                                              color: Color(0xff868686)),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          " INR 4,500",
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xff45546E),
+                                              fontSize: 16,
+                                              fontFamily: 'Plus Jakarta Sans'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  "Amount Claimed",
-                                  style: TextStyle(color: Color(0xff868686)),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "INR 0.00",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xff45546E),
-                                      fontSize: 16,
-                                      fontFamily: 'Plus Jakarta Sans'),
-                                )
-                              ],
-                            )
-                          ],
+                              const SizedBox(
+                                width: 50,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    "Amount Claimed",
+                                    style: TextStyle(color: Color(0xff868686)),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "INR 0.00",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff45546E),
+                                        fontSize: 16,
+                                        fontFamily: 'Plus Jakarta Sans'),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                         Row(
-                          children: [
+                          children: const [
                             Text(
                               '-----------------------------------------------------------------------------------------',
                               style: TextStyle(color: Colors.grey),
@@ -230,7 +259,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Cost Center",
                                       style: TextStyle(
@@ -410,7 +439,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
                       child: Container(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         child: Container(
                           child: Column(
                             children: [
@@ -830,7 +859,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
         //     ],
         //   ),
         // ),
-        Positioned(
+        const Positioned(
           top: 180,
           left: 0,
           child: CircleAvatar(
@@ -838,7 +867,7 @@ class _DetailedExpenseState extends State<DetailedExpense> {
             backgroundColor: Color.fromARGB(255, 131, 146, 173),
           ),
         ),
-        Positioned(
+        const Positioned(
           top: 180,
           right: 0,
           child: CircleAvatar(

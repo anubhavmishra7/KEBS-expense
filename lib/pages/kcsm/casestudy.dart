@@ -231,6 +231,7 @@ class _CustomerCaseStudyState extends State<CustomerCaseStudy> {
   }
 
   Future<List<CustomerCaselist>> getData() async {
+    await Future.delayed(Duration(milliseconds: 400000));
     const url =
         "https://kaarqual.kebs.app/api/intg/6dc4242b-2336-4c03-a6f3-48a8d261ff86/publicAPI/getCustomerListPublicV1?limit=10";
     final uri = Uri.parse(url);
@@ -248,9 +249,8 @@ class _CustomerCaseStudyState extends State<CustomerCaseStudy> {
         userData.add(cases);
       }
     } else {
-      CircularProgressIndicator();
+      const CircularProgressIndicator();
     }
-
     return userData;
   }
 
@@ -613,6 +613,7 @@ class _CustomerCaseStudyState extends State<CustomerCaseStudy> {
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
+                        // child: CircularProgressIndicator(),
                         child: Text("${snapshot.error}"),
                       );
                     } else if (snapshot.hasData) {

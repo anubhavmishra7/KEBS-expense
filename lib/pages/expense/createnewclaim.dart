@@ -22,7 +22,7 @@ class Claimtype {
   static List<DynamicWidget> listDynamic = [];
 }
 
-List<Claimtype> claimtype = <Claimtype>[
+List<Claimtype> claimtypelist = <Claimtype>[
   Claimtype(type: "Food & Beverages", icon: Icons.room_service),
   Claimtype(type: "Accomodation", icon: Icons.hotel),
   Claimtype(type: "Subscription", icon: Icons.money),
@@ -34,8 +34,241 @@ List<Claimtype> claimtype = <Claimtype>[
   Claimtype(type: "IInsurance Expenses", icon: Icons.health_and_safety)
 ];
 
+class PeopleInvolved {
+  final String name;
+  //final IconData icon;
+  PeopleInvolved({required this.name});
+
+  // static List<DynamicWidget> listDynamic = [];
+}
+
+List<PeopleInvolved> peopleinvolved = <PeopleInvolved>[
+  PeopleInvolved(name: "Anubhav"),
+  PeopleInvolved(name: "Jung kook"),
+  PeopleInvolved(name: "V"),
+  PeopleInvolved(name: "Jimin"),
+  PeopleInvolved(name: "jhope"),
+  PeopleInvolved(name: "Anubhav"),
+  // Claimtype(type: "IInsurance Expenses", icon: Icons.airplane_ticket),
+];
+
 class _CreateNewClaimState extends State<CreateNewClaim> {
   final _formKey = GlobalKey<FormState>();
+
+  TextEditingController peopleinvolvedcontroller = TextEditingController();
+
+  var claimtypeicon = claimtypelist.map((e) => Icon(e.icon));
+
+  claimtypebottomsheet() {
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        //enableDrag: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8), topRight: Radius.circular(8))),
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            // height: MediaQuery.of(context).size.height * 0.3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  Container(
+                    //color: Colors.yellow,
+                    decoration: BoxDecoration(
+                        color: kColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    width: double.maxFinite,
+                    padding: const EdgeInsets.only(top: 10, bottom: 15),
+                    child: Center(
+                        child: Container(
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(131, 158, 158, 158),
+                          borderRadius: BorderRadius.circular(10)),
+                      width: 70,
+                      height: 5,
+                    )),
+                  ),
+                  Container(
+                      height: 48,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Search claim type",
+                            labelStyle: TextStyle(
+                                fontFamily: kfontFamily,
+                                color: Color(0xffB9C0CA)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                      )),
+                  Container(
+                    // padding: const EdgeInsets.symmetric(horizontal: 12),
+                    // width: double.maxFinite,
+                    // decoration: BoxDecoration(
+                    //     // color: Colors.yellow,
+                    //     ),
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    // height: double.maxFinite,
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      separatorBuilder: (context, index) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Divider(
+                            thickness: 1,
+                          ),
+                        );
+                      },
+                      itemCount: claimtypelist.length,
+                      itemBuilder: ((context, index) {
+                        var ctype = claimtypelist[index];
+                        return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                claimtype.text = ctype.type;
+                              });
+
+                              Navigator.pop(context);
+                            },
+                            child: ListTile(
+                              leading: Icon(ctype.icon),
+                              title: Text(
+                                ctype.type,
+                                //costCenterList[index],
+                                style: const TextStyle(
+                                    color: Color(0xff45546E),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
+                              ),
+
+                              // subtitle: costCenterList[index] == "KEBS India"
+                              //     ? Text(
+                              //         "Used Recently",
+                              //         style: TextStyle(
+                              //             fontFamily: 'Plus Jakarta Sans',
+                              //             fontWeight: FontWeight.w400,
+                              //             color: Color(0xfFF27A6C)),
+                              //       )
+                              //     : Text("")),
+                            ));
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  peopleinvolvedbottomsheet() {
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        //enableDrag: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8), topRight: Radius.circular(8))),
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            // height: MediaQuery.of(context).size.height * 0.3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  Container(
+                    //color: Colors.yellow,
+                    decoration: BoxDecoration(
+                        color: kColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    width: double.maxFinite,
+                    padding: const EdgeInsets.only(top: 10, bottom: 15),
+                    child: Center(
+                        child: Container(
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(131, 158, 158, 158),
+                          borderRadius: BorderRadius.circular(10)),
+                      width: 70,
+                      height: 5,
+                    )),
+                  ),
+                  Container(
+                      height: 48,
+                      child: TextFormField(
+                        controller: peopleinvolvedcontroller,
+                        decoration: InputDecoration(
+                            labelText: "Search People Involved",
+                            labelStyle: TextStyle(
+                                fontFamily: kfontFamily,
+                                color: const Color(0xffB9C0CA)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                      )),
+                  Container(
+                    // padding: const EdgeInsets.symmetric(horizontal: 12),
+                    // width: double.maxFinite,
+                    // decoration: BoxDecoration(
+                    //     // color: Colors.yellow,
+                    //     ),
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    // height: double.maxFinite,
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      separatorBuilder: (context, index) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Divider(
+                            thickness: 1,
+                          ),
+                        );
+                      },
+                      itemCount: peopleinvolved.length,
+                      itemBuilder: ((context, index) {
+                        var ptype = peopleinvolved[index];
+                        return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                peopleinvolvedcontroller.text = ptype.name;
+                              });
+
+                              Navigator.pop(context);
+                            },
+                            child: ListTile(
+                              // leading: Icon(ptype.name),
+                              title: Text(
+                                ptype.name,
+                                //costCenterList[index],
+                                style: const TextStyle(
+                                    color: Color(0xff45546E),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
+                              ),
+
+                              // subtitle: costCenterList[index] == "KEBS India"
+                              //     ? Text(
+                              //         "Used Recently",
+                              //         style: TextStyle(
+                              //             fontFamily: 'Plus Jakarta Sans',
+                              //             fontWeight: FontWeight.w400,
+                              //             color: Color(0xfFF27A6C)),
+                              //       )
+                              //     : Text("")),
+                            ));
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   final costCenterList = [
     "KEBS India",
@@ -64,14 +297,20 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
   TextEditingController date = TextEditingController();
   TextEditingController costcenter = TextEditingController();
   TextEditingController attachment = TextEditingController();
+  TextEditingController claimtype = TextEditingController();
 
   // static List<DynamicWidget> listDynamic = [];
 
-  var currency = "";
+  var currency = " INR ";
 
   addDynamic() {
-    Claimtype.listDynamic
-        .add(DynamicWidget(dynamicid: Claimtype.listDynamic.length));
+    Claimtype.listDynamic.add(DynamicWidget(
+        dynamicid: Claimtype.listDynamic.length,
+        onDelPressed: (int index) {
+          setState(() {
+            Claimtype.listDynamic.removeAt(index);
+          });
+        }));
     setState(() {
       addDynamic;
     });
@@ -89,14 +328,26 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
   costCenterDropdown() {
     showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8), topRight: Radius.circular(8))),
         context: context,
         builder: (context) {
           return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            // width: double.maxFinite,
+            // decoration: BoxDecoration(
+            //     // color: Colors.yellow,
+            //     ),
             height: MediaQuery.of(context).size.height * 0.5,
             child: ListView.separated(
+              padding: EdgeInsets.zero,
               separatorBuilder: (context, index) {
-                return const Divider(
-                  thickness: 1,
+                return const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Divider(
+                    thickness: 1,
+                  ),
                 );
               },
               itemCount: costCenterList.length,
@@ -109,9 +360,26 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
                       Navigator.pop(context);
                     },
-                    child: ListTile(
-                      title: Text(costCenterList[index]),
-                    ));
+                    child: Container(
+                        padding: EdgeInsets.zero,
+                        child: ListTile(
+                          title: Text(
+                            costCenterList[index],
+                            style: const TextStyle(
+                                color: Color(0xff45546E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14),
+                          ),
+                          // subtitle: costCenterList[index] == "KEBS India"
+                          //     ? Text(
+                          //         "Used Recently",
+                          //         style: TextStyle(
+                          //             fontFamily: 'Plus Jakarta Sans',
+                          //             fontWeight: FontWeight.w400,
+                          //             color: Color(0xfFF27A6C)),
+                          //       )
+                          //     : Text("")),
+                        )));
               }),
             ),
           );
@@ -140,12 +408,12 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
 //   //   final firstCamera = cameras.first;
 //   // }
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    isLoading = false;
-    super.setState(fn);
-  }
+  // @override
+  // void setState(VoidCallback fn) {
+  //   // TODO: implement setState
+  //   isLoading = false;
+  //   super.setState(fn);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +459,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                 title: Text("Create New Claim Request",
                                     style: TextStyle(
                                         fontFamily: kfontFamily,
-                                        fontSize: 15,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w600)),
                                 // trailing: Wrap(spacing: 10, children: [
                                 //   Icon(
@@ -225,11 +493,87 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  "Legal Entity\n",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily: kfontFamily,
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8.0),
+                                                  child: Text(
+                                                    "Claimed By",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontFamily: kfontFamily,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 60,
+                                                  child: Card(
+                                                    elevation: 0,
+                                                    child: TextFormField(
+                                                      enableInteractiveSelection:
+                                                          false,
+                                                      focusNode: FocusNode(),
+                                                      enabled: false,
+
+                                                      // readOnly: true,
+                                                      // validator: (msg) {
+                                                      //   if (msg!.isEmpty) {
+                                                      //     return "Enter Name";
+                                                      //   }
+                                                      //   return null;
+                                                      // },
+                                                      decoration: InputDecoration(
+                                                          disabledBorder: OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(8),
+                                                              borderSide: const BorderSide(
+                                                                  // color: Color.fromARGB(
+                                                                  //     255,
+                                                                  //     23,
+                                                                  //     108,
+                                                                  //     227))),
+                                                                  color: Color(0xff45546E))),
+                                                          enabledBorder: OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(8),
+                                                              borderSide: const BorderSide(
+                                                                  // color: Color.fromARGB(
+                                                                  //     255,
+                                                                  //     23,
+                                                                  //     108,
+                                                                  //     227))),
+                                                                  color: Color(0xff45546E))),
+                                                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Colors.black)),
+                                                          border: OutlineInputBorder(
+                                                              borderSide: const BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                              borderRadius: BorderRadius.circular(8)),
+                                                          labelText: "Anubhav",
+                                                          labelStyle: TextStyle(color: Color(0xff45546E), fontFamily: kfontFamily),
+                                                          hintText: "Anubhav",
+                                                          hintStyle: TextStyle(color: Color(0xff45546E), fontFamily: kfontFamily),
+                                                          // labelText:
+                                                          //     "Kaar Technologies India Pvt Ltd",
+                                                          // labelStyle: TextStyle(
+                                                          //     color: const Color(
+                                                          //         0xffB9C0CA),
+                                                          //     fontFamily:
+                                                          //         kfontFamily),
+                                                          floatingLabelBehavior: FloatingLabelBehavior.never),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 8.0),
+                                                  child: Text(
+                                                    "Legal Entity",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontFamily: kfontFamily,
+                                                    ),
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -245,56 +589,44 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                       //   }
                                                       //   return null;
                                                       // },
-                                                      decoration:
-                                                          InputDecoration(
-                                                              enabledBorder: OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius.circular(
-                                                                          8),
-                                                                  borderSide: const BorderSide(
-                                                                      color: Color(
-                                                                          0xffB9C0CA))),
-                                                              focusedBorder: OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8),
-                                                                  borderSide: const BorderSide(
-                                                                      color: Colors
-                                                                          .black)),
-                                                              border:
-                                                                  OutlineInputBorder(
-                                                                      borderSide:
-                                                                          const BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                                  8)),
-                                                              hintText:
-                                                                  "Kaar Technologies India Pvt Ltd",
-                                                              hintStyle: TextStyle(
-                                                                  fontFamily:
-                                                                      kfontFamily),
-                                                              labelText:
-                                                                  "Kaar Technologies India Pvt Ltd",
-                                                              labelStyle: TextStyle(
-                                                                  fontFamily:
-                                                                      kfontFamily),
-                                                              floatingLabelBehavior:
-                                                                  FloatingLabelBehavior
-                                                                      .never),
+                                                      decoration: InputDecoration(
+                                                          enabledBorder: OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(8),
+                                                              borderSide: const BorderSide(
+                                                                  // color: Color.fromARGB(
+                                                                  //     255,
+                                                                  //     23,
+                                                                  //     108,
+                                                                  //     227))),
+                                                                  color: Color(0xff45546E))),
+                                                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Colors.black)),
+                                                          border: OutlineInputBorder(
+                                                              borderSide: const BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                              ),
+                                                              borderRadius: BorderRadius.circular(8)),
+                                                          hintText: "Kaar Technoloogies India Pvt Ltd",
+                                                          hintStyle: TextStyle(
+                                                              //  color: Colors.black,
+
+                                                              fontFamily: kfontFamily),
+                                                          // labelText:
+                                                          //     "Kaar Technologies India Pvt Ltd",
+                                                          // labelStyle: TextStyle(
+                                                          //     color: const Color(
+                                                          //         0xffB9C0CA),
+                                                          //     fontFamily:
+                                                          //         kfontFamily),
+                                                          floatingLabelBehavior: FloatingLabelBehavior.never),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 12.0),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 8.0),
                                                   child: Text(
-                                                    "Cost Center *\n",
+                                                    "Cost Center *",
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -320,14 +652,30 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                       },
                                                       decoration:
                                                           InputDecoration(
+                                                              // disabledBorder: OutlineInputBorder(
+                                                              //     borderRadius:
+                                                              //         BorderRadius.circular(
+                                                              //             8),
+                                                              //     borderSide: const BorderSide(
+                                                              //         color: Colors
+                                                              //             .black)),
+                                                              focusedBorder: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8),
+                                                                  borderSide: const BorderSide(
+                                                                      color: Colors
+                                                                          .black)),
                                                               enabledBorder: OutlineInputBorder(
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
                                                                               8),
                                                                   borderSide: const BorderSide(
-                                                                      color: Color(
-                                                                          0xffB9C0CA))),
+                                                                      color:
+                                                                          Color(
+                                                                              0xffB9C0CA))),
                                                               suffixIcon:
                                                                   const Icon(
                                                                 Icons.search,
@@ -342,7 +690,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                               hintStyle:
                                                                   TextStyle(
                                                                 color: const Color(
-                                                                    0xff868686),
+                                                                    0xffB9C0CA),
                                                                 fontFamily:
                                                                     kfontFamily,
                                                               ),
@@ -351,15 +699,18 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                               labelStyle:
                                                                   TextStyle(
                                                                 color: const Color(
-                                                                    0xff868686),
+                                                                    0xffB9C0CA),
                                                                 fontFamily:
                                                                     kfontFamily,
                                                               ),
                                                               border: OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8))),
+                                                                  // borderSide: const BorderSide(
+                                                                  //     color: Color.fromRGBO(
+                                                                  //         16,
+                                                                  //         104,
+                                                                  //         228,
+                                                                  //         1)),
+                                                                  borderRadius: BorderRadius.circular(8))),
                                                     ),
                                                   ),
 
@@ -378,8 +729,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                 ),
                                                 Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
-                                                      vertical: 14.0),
+                                                      .symmetric(vertical: 8.0),
                                                   child: Row(
                                                     children: [
                                                       const Text(
@@ -392,40 +742,130 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                       Visibility(
                                                         visible:
                                                             currency == "INR",
-                                                        child: Row(
-                                                          children: [
-                                                            ClipRRect(
-                                                              child: ClipOval(
-                                                                child:
-                                                                    Image.asset(
-                                                                  "assets/images/management1.png",
-                                                                  height: 25,
+                                                        child: GestureDetector(
+                                                          onTap: () {
+                                                            showDialog(
+                                                                useSafeArea:
+                                                                    true,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) =>
+                                                                        Dialog(
+                                                                          shape:
+                                                                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                const EdgeInsets.all(24.0),
+                                                                            child:
+                                                                                Container(
+                                                                              width: MediaQuery.of(context).size.width * 0.9,
+                                                                              height: MediaQuery.of(context).size.height * 0.35,
+                                                                              child: Column(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                                                children: [
+                                                                                  const Text(
+                                                                                    "Approvers",
+                                                                                    style: TextStyle(color: Color(0xff45546E), fontSize: 15, fontWeight: FontWeight.w600),
+                                                                                  ),
+                                                                                  Container(
+                                                                                    color: Colors.white,
+                                                                                    child: ListTile(
+                                                                                      contentPadding: EdgeInsets.zero,
+                                                                                      leading: ClipRRect(
+                                                                                        child: ClipOval(
+                                                                                          child: Image.asset(
+                                                                                            "assets/images/management1.png",
+                                                                                            height: 35,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      title: const Text("Maran Nagarajan"),
+                                                                                      subtitle: const Text("CEO-Kaar"),
+                                                                                    ),
+                                                                                  ),
+                                                                                  const Divider(
+                                                                                    thickness: 1,
+                                                                                  ),
+                                                                                  Container(
+                                                                                    //width: MediaQuery.of(context).size.width * 0.6,
+                                                                                    color: Colors.white,
+                                                                                    child: ListTile(
+                                                                                      contentPadding: EdgeInsets.zero,
+                                                                                      leading: ClipRRect(
+                                                                                        child: ClipOval(
+                                                                                          child: Image.asset(
+                                                                                            "assets/images/management2.png",
+                                                                                            height: 35,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      title: const Text("Sukumaran"),
+                                                                                      subtitle: const Text("Head of KEBS"),
+                                                                                    ),
+                                                                                  ),
+                                                                                  const Divider(
+                                                                                    thickness: 1,
+                                                                                  ),
+                                                                                  Container(
+                                                                                    //width: MediaQuery.of(context).size.width * 0.6,
+                                                                                    color: Colors.white,
+                                                                                    child: ListTile(
+                                                                                      contentPadding: EdgeInsets.zero,
+                                                                                      leading: ClipRRect(
+                                                                                        child: ClipOval(
+                                                                                          child: Image.asset(
+                                                                                            "assets/images/management1.png",
+                                                                                            height: 35,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                      title: const Text("Anubhav"),
+                                                                                      subtitle: const Text("Whole Mobile App Development Team"),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ));
+                                                          },
+                                                          child: Row(
+                                                            children: [
+                                                              ClipRRect(
+                                                                child: ClipOval(
+                                                                  child: Image
+                                                                      .asset(
+                                                                    "assets/images/management1.png",
+                                                                    height: 25,
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            ClipRRect(
-                                                              child: ClipOval(
-                                                                clipBehavior:
-                                                                    Clip.hardEdge,
-                                                                child:
-                                                                    Image.asset(
-                                                                  "assets/images/management2.png",
-                                                                  height: 25,
+                                                              ClipRRect(
+                                                                child: ClipOval(
+                                                                  clipBehavior:
+                                                                      Clip.hardEdge,
+                                                                  child: Image
+                                                                      .asset(
+                                                                    "assets/images/management2.png",
+                                                                    height: 25,
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            ClipRRect(
-                                                              child: ClipOval(
-                                                                clipBehavior:
-                                                                    Clip.hardEdge,
-                                                                child:
-                                                                    Image.asset(
-                                                                  "assets/images/management3.png",
-                                                                  height: 25,
+                                                              ClipRRect(
+                                                                child: ClipOval(
+                                                                  clipBehavior:
+                                                                      Clip.hardEdge,
+                                                                  child: Image
+                                                                      .asset(
+                                                                    "assets/images/management3.png",
+                                                                    height: 25,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            )
-                                                          ],
+                                                              )
+                                                            ],
+                                                          ),
                                                         ),
                                                       )
                                                     ],
@@ -453,72 +893,173 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(
-                                                          "Claim Type *\n",
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontFamily:
-                                                                kfontFamily,
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          height: 57,
-                                                          child:
-                                                              DropdownButtonFormField(
-                                                            isExpanded: true,
-                                                            decoration: InputDecoration(
-                                                                enabledBorder: OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                8),
-                                                                    borderSide: const BorderSide(
-                                                                        color: Color(
-                                                                            0xffB9C0CA))),
-                                                                border: OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8))),
-                                                            hint: Text(
-                                                              "Select One",
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      kfontFamily,
-                                                                  color: const Color(
-                                                                      0xff868686)),
-                                                            ),
-                                                            items: claimtype
-                                                                .map((e1) =>
-                                                                    DropdownMenuItem(
-                                                                      value: e1,
-                                                                      child:
-                                                                          Container(
-                                                                        child:
-                                                                            Wrap(
-                                                                          spacing:
-                                                                              15,
-                                                                          children: [
-                                                                            Icon(e1.icon),
-                                                                            // Icon(icontypes.map((e) => Icon(e)).toList()),
-                                                                            //Icon(),
-                                                                            // Container(child: _icontypes.map((e) => Icon(e)).toList(),),
-                                                                            Text(e1.type),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ))
-                                                                .toList(),
-                                                            onChanged:
-                                                                (val1) {},
-                                                          ),
-                                                        ),
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
                                                                       .symmetric(
                                                                   vertical:
-                                                                      12.0),
+                                                                      10.0),
+                                                          child: Text(
+                                                            "Claim Type *",
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontFamily:
+                                                                  kfontFamily,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 60,
+                                                          child: Card(
+                                                            elevation: 0,
+                                                            child:
+                                                                TextFormField(
+                                                              // validator: (text) {
+                                                              //   if (text == null ||
+                                                              //       text.isEmpty) {
+                                                              //     return "Cost Center is required";
+                                                              //   }
+                                                              // },
+                                                              controller:
+                                                                  claimtype,
+                                                              readOnly: true,
+                                                              onTap: () {
+                                                                claimtypebottomsheet();
+                                                              },
+                                                              decoration: InputDecoration(
+                                                                  // disabledBorder: OutlineInputBorder(
+                                                                  //     borderRadius:
+                                                                  //         BorderRadius.circular(
+                                                                  //             8),
+                                                                  //     borderSide: const BorderSide(
+                                                                  //         color: Colors
+                                                                  //             .black)),
+                                                                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Colors.black)),
+                                                                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Color(0xffB9C0CA))),
+                                                                  suffixIcon: const Icon(
+                                                                    Icons
+                                                                        .search,
+                                                                    color: Color(
+                                                                        0xffB9C0CA),
+                                                                  ),
+                                                                  prefixIcon: (claimtypeicon.first),
+                                                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                                                  hintText: "Select One",
+                                                                  hintStyle: TextStyle(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA),
+                                                                    fontFamily:
+                                                                        kfontFamily,
+                                                                  ),
+                                                                  labelText: "Select One",
+                                                                  labelStyle: TextStyle(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA),
+                                                                    fontFamily:
+                                                                        kfontFamily,
+                                                                  ),
+                                                                  border: OutlineInputBorder(
+                                                                      // borderSide: const BorderSide(
+                                                                      //     color: Color.fromRGBO(
+                                                                      //         16,
+                                                                      //         104,
+                                                                      //         228,
+                                                                      //         1)),
+                                                                      borderRadius: BorderRadius.circular(8))),
+                                                            ),
+                                                          ),
+
+                                                          // child: DropdownButtonFormField(
+                                                          //     hint: Text("Select One"),
+                                                          //     icon: Icon(Icons.search),
+                                                          //     decoration: InputDecoration(
+                                                          //         border: OutlineInputBorder(
+                                                          //             borderRadius:
+                                                          //                 BorderRadius.circular(10))),
+                                                          //     items: costCenterList
+                                                          //         .map((e) => DropdownMenuItem(
+                                                          //             child: Text(e), value: e))
+                                                          //         .toList(),
+                                                          //     onChanged: (val) {}),
+                                                        ),
+
+                                                        // Container(
+                                                        //   height: 57,
+                                                        //   child:
+                                                        //       DropdownButtonFormField(
+                                                        //     borderRadius:
+                                                        //         BorderRadius
+                                                        //             .circular(
+                                                        //                 10),
+                                                        //     isExpanded: true,
+                                                        //     decoration: InputDecoration(
+                                                        //         focusedBorder: OutlineInputBorder(
+                                                        //             borderRadius:
+                                                        //                 BorderRadius.circular(
+                                                        //                     8),
+                                                        //             borderSide: const BorderSide(
+                                                        //                 color: Colors
+                                                        //                     .black)),
+                                                        //         enabledBorder: OutlineInputBorder(
+                                                        //             borderRadius:
+                                                        //                 BorderRadius
+                                                        //                     .circular(
+                                                        //                         8),
+                                                        //             borderSide: const BorderSide(
+                                                        //                 color: Color(
+                                                        //                     0xffB9C0CA))),
+                                                        //         border: OutlineInputBorder(
+                                                        //             borderRadius:
+                                                        //                 BorderRadius.circular(
+                                                        //                     8))),
+                                                        //     hint: Text(
+                                                        //       "Select One",
+                                                        //       style: TextStyle(
+                                                        //           fontFamily:
+                                                        //               kfontFamily,
+                                                        //           color: const Color(
+                                                        //               0xffB9C0CA)),
+                                                        //     ),
+                                                        //     items: claimtype
+                                                        //         .map((e1) =>
+                                                        //             DropdownMenuItem(
+                                                        //               value: e1,
+                                                        //               child:
+                                                        //                   Wrap(
+                                                        //                 spacing:
+                                                        //                     15,
+                                                        //                 children: [
+                                                        //                   Align(
+                                                        //                       alignment: Alignment.centerLeft,
+                                                        //                       child: Row(
+                                                        //                         children: [
+                                                        //                           Icon(e1.icon),
+                                                        //                           const SizedBox(
+                                                        //                             width: 15,
+                                                        //                           ),
+                                                        //                           Text(e1.type),
+                                                        //                         ],
+                                                        //                       )),
+                                                        //                   // Icon(icontypes.map((e) => Icon(e)).toList()),
+                                                        //                   //Icon(),
+                                                        //                   // Container(child: _icontypes.map((e) => Icon(e)).toList(),),
+                                                        //                 ],
+                                                        //               ),
+                                                        //             ))
+                                                        //         .toList(),
+                                                        //     onChanged:
+                                                        //         (val1) {},
+                                                        //   ),
+
+                                                        // ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      10.0),
                                                           child: Column(
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
@@ -564,7 +1105,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                   hintStyle:
                                                                       const TextStyle(
                                                                           color:
-                                                                              Color(0xff868686)),
+                                                                              Color(0xffB9C0CA)),
                                                                   border: OutlineInputBorder(
                                                                       borderSide: const BorderSide(
                                                                           color: Colors
@@ -654,13 +1195,13 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           suffixIcon: const Icon(
                                                                             Icons.arrow_drop_down,
                                                                             color:
-                                                                                Colors.black,
+                                                                                Color(0xffB9C0CA),
                                                                           ),
                                                                           floatingLabelBehavior: FloatingLabelBehavior.never,
                                                                           hintText: currency,
                                                                           hintStyle: TextStyle(color: Colors.black, fontFamily: kfontFamily, fontSize: 14),
-                                                                          labelText: "INR",
-                                                                          labelStyle: TextStyle(color: const Color(0xff868686), fontFamily: kfontFamily, fontSize: 14),
+                                                                          labelText: currency,
+                                                                          labelStyle: TextStyle(color: Colors.black, fontFamily: kfontFamily, fontSize: 14),
                                                                           enabledBorder: const OutlineInputBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)), borderSide: BorderSide(color: Color(0xffB9C0CA))),
                                                                           border: const OutlineInputBorder(borderSide: BorderSide(), borderRadius: BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)))),
                                                                     ),
@@ -707,7 +1248,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
                                                                           hintText: "",
                                                                           labelText: "Enter Amount Here",
-                                                                          labelStyle: TextStyle(color: const Color(0xff868686), fontFamily: kfontFamily),
+                                                                          labelStyle: TextStyle(color: const Color(0xffB9C0CA), fontFamily: kfontFamily),
                                                                           floatingLabelBehavior: FloatingLabelBehavior.never),
                                                                     ),
                                                                   ),
@@ -738,6 +1279,160 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                             children: [
                                                               Text(
                                                                 "Billed Date *\n",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontFamily:
+                                                                      kfontFamily,
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                height: 55,
+                                                                child:
+                                                                    TextFormField(
+                                                                  // validator:
+                                                                  //     (date) {
+                                                                  //   if (date ==
+                                                                  //           null ||
+                                                                  //       date.isEmpty) {
+                                                                  //     return "Enter the Date";
+                                                                  //   }
+                                                                  //   return null;
+                                                                  // },
+                                                                  controller:
+                                                                      date,
+                                                                  readOnly:
+                                                                      true,
+
+                                                                  // onTap: (() {
+                                                                  //   showDialog(
+                                                                  //       useSafeArea:
+                                                                  //           true,
+                                                                  //       context:
+                                                                  //           context,
+                                                                  //       builder:
+                                                                  //           (context) =>
+                                                                  //               Dialog(
+                                                                  //                 child:
+                                                                  //                     Container(
+                                                                  //                   height: MediaQuery.of(context).size.height * 0.45,
+                                                                  //                   //width: MediaQuery.of(context).size.width * 1.0,
+                                                                  //                   child: Container(
+                                                                  //                     //  height: MediaQuery.of(context).size.height * 0.7,
+                                                                  //                     color: kColor,
+                                                                  //                     child: TableCalendar(
+                                                                  //                       availableGestures: AvailableGestures.all,
+                                                                  //                       rowHeight: 42,
+                                                                  //                       focusedDay: today,
+                                                                  //                       selectedDayPredicate: (days) => isSameDay(days, today),
+                                                                  //                       headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                                                                  //                       firstDay: DateTime.utc(2010, 10, 16),
+                                                                  //                       lastDay: DateTime.utc(2030, 10, 15),
+                                                                  //                       onDaySelected: _onDaySelected,
+                                                                  //                     ),
+                                                                  //                   ),
+                                                                  //                 ),
+                                                                  //               ));
+
+                                                                  //   setState(() {
+                                                                  //     if (datepick !=
+                                                                  //         null) {
+                                                                  //       date.text = DateFormat(
+                                                                  //               'dd-MM-yyyy')
+                                                                  //           .format(
+                                                                  //               datepick);
+                                                                  //     }
+                                                                  //   });
+                                                                  // },
+                                                                  // Dialog(
+                                                                  //     child:
+                                                                  //         Container(
+                                                                  //   child: TableCalendar(
+                                                                  //       focusedDay:
+                                                                  //           today,
+                                                                  //       firstDay:
+                                                                  //           DateTime.utc(
+                                                                  //               2010,
+                                                                  //               10,
+                                                                  //               16),
+                                                                  //       lastDay:
+                                                                  //           DateTime.utc(
+                                                                  //               2030,
+                                                                  //               10,
+                                                                  //               15)),
+                                                                  // ));
+                                                                  //}),
+                                                                  onTap:
+                                                                      () async {
+                                                                    DateTime? datepick = await showDatePicker(
+                                                                        helpText: "",
+                                                                        builder: (context, child) {
+                                                                          return Theme(
+                                                                            data: ThemeData().copyWith(
+
+                                                                                // backgroundColor: Colors.white,
+                                                                                colorScheme: const ColorScheme.dark(onPrimary: Colors.black, onSurface: Colors.black, surface: Colors.white)),
+                                                                            child:
+                                                                                child!,
+                                                                          );
+                                                                        },
+                                                                        context: context,
+                                                                        initialDate: DateTime.now(),
+                                                                        firstDate: DateTime(1999),
+                                                                        lastDate: DateTime(2100));
+
+                                                                    setState(
+                                                                        () {
+                                                                      if (datepick !=
+                                                                          null) {
+                                                                        date.text =
+                                                                            DateFormat('dd.MM.yyyy').format(datepick);
+                                                                      }
+                                                                    });
+                                                                  },
+                                                                  decoration: InputDecoration(
+                                                                      focusedBorder: const OutlineInputBorder(
+                                                                          borderSide: BorderSide(
+                                                                              color: Colors
+                                                                                  .black),
+                                                                          borderRadius: BorderRadius.all(Radius.circular(
+                                                                              8))),
+                                                                      suffixIcon: const Icon(
+                                                                          Icons
+                                                                              .calendar_month_outlined,
+                                                                          color: Color(
+                                                                              0xffB9C0CA)),
+                                                                      enabledBorder: OutlineInputBorder(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              8),
+                                                                          borderSide:
+                                                                              const BorderSide(color: Color(0xffB9C0CA))),
+                                                                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
+                                                                      hintText: "",
+                                                                      labelText: "DD MM YYYY",
+                                                                      labelStyle: TextStyle(fontFamily: kfontFamily, color: const Color(0xffB9C0CA)),
+                                                                      floatingLabelBehavior: FloatingLabelBehavior.never),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      12.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Expense Duration *\n",
                                                                 style:
                                                                     TextStyle(
                                                                   fontWeight:
@@ -829,12 +1524,12 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                         helpText: "",
                                                                         builder: (context, child) {
                                                                           return Theme(
-                                                                            child:
-                                                                                child!,
                                                                             data: ThemeData().copyWith(
 
                                                                                 // backgroundColor: Colors.white,
                                                                                 colorScheme: const ColorScheme.dark(onPrimary: Colors.black, onSurface: Colors.black, surface: Colors.white)),
+                                                                            child:
+                                                                                child!,
                                                                           );
                                                                         },
                                                                         context: context,
@@ -858,26 +1553,110 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                                   .black),
                                                                           borderRadius: BorderRadius.all(Radius.circular(
                                                                               8))),
-                                                                      suffixIcon:
-                                                                          const Icon(Icons
-                                                                              .calendar_month_outlined),
+                                                                      suffixIcon: const Icon(
+                                                                          Icons
+                                                                              .calendar_month_outlined,
+                                                                          color: Color(
+                                                                              0xffB9C0CA)),
                                                                       enabledBorder: OutlineInputBorder(
                                                                           borderRadius: BorderRadius.circular(
                                                                               8),
-                                                                          borderSide: const BorderSide(
-                                                                              color: Color(
-                                                                                  0xffB9C0CA))),
-                                                                      border:
-                                                                          OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
+                                                                          borderSide:
+                                                                              const BorderSide(color: Color(0xffB9C0CA))),
+                                                                      border: OutlineInputBorder(borderSide: const BorderSide(color: Colors.black, style: BorderStyle.solid), borderRadius: BorderRadius.circular(10)),
                                                                       hintText: "",
-                                                                      labelText: "DD MM YYYY",
-                                                                      labelStyle: TextStyle(fontFamily: kfontFamily, color: const Color(0xff868686)),
+                                                                      labelText: "DD MM YYYY - DD MM YYYY",
+                                                                      labelStyle: TextStyle(fontFamily: kfontFamily, color: const Color(0xffB9C0CA)),
                                                                       floatingLabelBehavior: FloatingLabelBehavior.never),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
                                                         ),
+                                                        Text(
+                                                          "People Involved *\n",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontFamily:
+                                                                kfontFamily,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 60,
+                                                          child: Card(
+                                                            elevation: 0,
+                                                            child:
+                                                                TextFormField(
+                                                              // validator: (text) {
+                                                              //   if (text == null ||
+                                                              //       text.isEmpty) {
+                                                              //     return "Cost Center is required";
+                                                              //   }
+                                                              // },
+                                                              controller:
+                                                                  peopleinvolvedcontroller,
+                                                              readOnly: true,
+                                                              onTap: () {
+                                                                peopleinvolvedbottomsheet();
+                                                              },
+                                                              decoration: InputDecoration(
+                                                                  // disabledBorder: OutlineInputBorder(
+                                                                  //     borderRadius:
+                                                                  //         BorderRadius.circular(
+                                                                  //             8),
+                                                                  //     borderSide: const BorderSide(
+                                                                  //         color: Colors
+                                                                  //             .black)),
+                                                                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Colors.black)),
+                                                                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Color(0xffB9C0CA))),
+                                                                  suffixIcon: const Icon(
+                                                                    Icons
+                                                                        .arrow_drop_down,
+                                                                    color: Color(
+                                                                        0xffB9C0CA),
+                                                                  ),
+                                                                  // prefixIcon: (claimtypeicon.first),
+                                                                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                                                                  hintText: "Persons Involved",
+                                                                  hintStyle: TextStyle(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA),
+                                                                    fontFamily:
+                                                                        kfontFamily,
+                                                                  ),
+                                                                  labelText: "Select One",
+                                                                  labelStyle: TextStyle(
+                                                                    color: const Color(
+                                                                        0xffB9C0CA),
+                                                                    fontFamily:
+                                                                        kfontFamily,
+                                                                  ),
+                                                                  border: OutlineInputBorder(
+                                                                      // borderSide: const BorderSide(
+                                                                      //     color: Color.fromRGBO(
+                                                                      //         16,
+                                                                      //         104,
+                                                                      //         228,
+                                                                      //         1)),
+                                                                      borderRadius: BorderRadius.circular(8))),
+                                                            ),
+                                                          ),
+
+                                                          // child: DropdownButtonFormField(
+                                                          //     hint: Text("Select One"),
+                                                          //     icon: Icon(Icons.search),
+                                                          //     decoration: InputDecoration(
+                                                          //         border: OutlineInputBorder(
+                                                          //             borderRadius:
+                                                          //                 BorderRadius.circular(10))),
+                                                          //     items: costCenterList
+                                                          //         .map((e) => DropdownMenuItem(
+                                                          //             child: Text(e), value: e))
+                                                          //         .toList(),
+                                                          //     onChanged: (val) {}),
+                                                        ),
+
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
@@ -1074,7 +1853,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                           Icons
                                                                               .attachment,
                                                                           color:
-                                                                              Color(0xff868686),
+                                                                              Color(0xffB9C0CA),
                                                                         ),
                                                                         enabledBorder: OutlineInputBorder(
                                                                             borderRadius: BorderRadius.circular(
@@ -1089,7 +1868,7 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                                                         labelText: "Tap To Add Attachment",
                                                                         labelStyle: TextStyle(
                                                                           color:
-                                                                              const Color(0xff868686),
+                                                                              const Color(0xffB9C0CA),
                                                                           fontFamily:
                                                                               kfontFamily,
                                                                         ),
@@ -1292,6 +2071,8 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
                                           onPressed: () {
                                             setState(() {
                                               _formKey.currentState!.reset();
+                                              peopleinvolvedcontroller.clear();
+                                              claimtype.clear();
                                               date.clear();
                                               costcenter.clear();
                                               attachment.clear();
@@ -1327,7 +2108,9 @@ class _CreateNewClaimState extends State<CreateNewClaim> {
 
 class DynamicWidget extends StatefulWidget {
   final int dynamicid;
-  DynamicWidget({super.key, required this.dynamicid});
+  final Function onDelPressed;
+  const DynamicWidget(
+      {super.key, required this.dynamicid, required this.onDelPressed});
 
   @override
   State<DynamicWidget> createState() => _DynamicWidgetState();
@@ -1353,9 +2136,221 @@ class DynamicWidget extends StatefulWidget {
 // ];
 
 class _DynamicWidgetState extends State<DynamicWidget> {
+  claimtypebottomsheetdynamic() {
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        //enableDrag: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8), topRight: Radius.circular(8))),
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            // height: MediaQuery.of(context).size.height * 0.3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  Container(
+                    //color: Colors.yellow,
+                    decoration: BoxDecoration(
+                        color: kColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    width: double.maxFinite,
+                    padding: const EdgeInsets.only(top: 10, bottom: 15),
+                    child: Center(
+                        child: Container(
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(131, 158, 158, 158),
+                          borderRadius: BorderRadius.circular(10)),
+                      width: 70,
+                      height: 5,
+                    )),
+                  ),
+                  Container(
+                      height: 48,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Search claim type",
+                            labelStyle: TextStyle(
+                                fontFamily: kfontFamily,
+                                color: Color(0xffB9C0CA)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                      )),
+                  Container(
+                    // padding: const EdgeInsets.symmetric(horizontal: 12),
+                    // width: double.maxFinite,
+                    // decoration: BoxDecoration(
+                    //     // color: Colors.yellow,
+                    //     ),
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    // height: double.maxFinite,
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      separatorBuilder: (context, index) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Divider(
+                            thickness: 1,
+                          ),
+                        );
+                      },
+                      itemCount: claimtypelist.length,
+                      itemBuilder: ((context, index) {
+                        var ctype = claimtypelist[index];
+                        return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                claimtypedynamiccontroller.text = ctype.type;
+                              });
+
+                              Navigator.pop(context);
+                            },
+                            child: ListTile(
+                              leading: Icon(ctype.icon),
+                              title: Text(
+                                ctype.type,
+                                //costCenterList[index],
+                                style: const TextStyle(
+                                    color: Color(0xff45546E),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
+                              ),
+
+                              // subtitle: costCenterList[index] == "KEBS India"
+                              //     ? Text(
+                              //         "Used Recently",
+                              //         style: TextStyle(
+                              //             fontFamily: 'Plus Jakarta Sans',
+                              //             fontWeight: FontWeight.w400,
+                              //             color: Color(0xfFF27A6C)),
+                              //       )
+                              //     : Text("")),
+                            ));
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  peopleinvolveddynamicbottomsheet() {
+    showModalBottomSheet<dynamic>(
+        isScrollControlled: true,
+        //enableDrag: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8), topRight: Radius.circular(8))),
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            // height: MediaQuery.of(context).size.height * 0.3,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  Container(
+                    //color: Colors.yellow,
+                    decoration: BoxDecoration(
+                        color: kColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    width: double.maxFinite,
+                    padding: const EdgeInsets.only(top: 10, bottom: 15),
+                    child: Center(
+                        child: Container(
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(131, 158, 158, 158),
+                          borderRadius: BorderRadius.circular(10)),
+                      width: 70,
+                      height: 5,
+                    )),
+                  ),
+                  Container(
+                      height: 48,
+                      child: TextFormField(
+                        controller: peopleinvolveddynamiccontroller,
+                        decoration: InputDecoration(
+                            labelText: "Search People Involved",
+                            labelStyle: TextStyle(
+                                fontFamily: kfontFamily,
+                                color: const Color(0xffB9C0CA)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                      )),
+                  Container(
+                    // padding: const EdgeInsets.symmetric(horizontal: 12),
+                    // width: double.maxFinite,
+                    // decoration: BoxDecoration(
+                    //     // color: Colors.yellow,
+                    //     ),
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    // height: double.maxFinite,
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      separatorBuilder: (context, index) {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Divider(
+                            thickness: 1,
+                          ),
+                        );
+                      },
+                      itemCount: peopleinvolved.length,
+                      itemBuilder: ((context, index) {
+                        var ptype = peopleinvolved[index];
+                        return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                peopleinvolveddynamiccontroller.text =
+                                    ptype.name;
+                              });
+
+                              Navigator.pop(context);
+                            },
+                            child: ListTile(
+                              // leading: Icon(ptype.name),
+                              title: Text(
+                                ptype.name,
+                                //costCenterList[index],
+                                style: const TextStyle(
+                                    color: Color(0xff45546E),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14),
+                              ),
+
+                              // subtitle: costCenterList[index] == "KEBS India"
+                              //     ? Text(
+                              //         "Used Recently",
+                              //         style: TextStyle(
+                              //             fontFamily: 'Plus Jakarta Sans',
+                              //             fontWeight: FontWeight.w400,
+                              //             color: Color(0xfFF27A6C)),
+                              //       )
+                              //     : Text("")),
+                            ));
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   // CreateNewClaim remove = new CreateNewClaim();
 
-  var currency1 = "INR";
+  var currency1 = " INR ";
 
   final costCenterList1 = [
     "KEBS India",
@@ -1379,6 +2374,8 @@ class _DynamicWidgetState extends State<DynamicWidget> {
     "Insurance Expences"
   ];
 
+  var claimtypedynamicicon = claimtypelist.map((e) => Icon(e.icon));
+
   // addDynamic() {
   //   Claimtype.listDynamic.add(DynamicWidget());
   //   setState(() {
@@ -1399,15 +2396,18 @@ class _DynamicWidgetState extends State<DynamicWidget> {
   TextEditingController date = TextEditingController();
 
   TextEditingController costcenter = TextEditingController();
+  TextEditingController claimtypedynamiccontroller = TextEditingController();
+  TextEditingController peopleinvolveddynamiccontroller =
+      TextEditingController();
 
   TextEditingController attachment = TextEditingController();
   // final _formKey1 = GlobalKey<FormState>();
-  onDelete(int index) {
-    setState(() {
-      Claimtype.listDynamic.remove(index + 1);
-    });
-    print(index);
-  }
+  // onDelete(int index) {
+  //   setState(() {
+  //     Claimtype.listDynamic.remove(index + 1);
+  //   });
+  //   print(index);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -1422,661 +2422,1042 @@ class _DynamicWidgetState extends State<DynamicWidget> {
             child: Column(
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Align(
                       alignment: Alignment.topRight,
                       child: IconButton(
-                          onPressed: onDelete(widget.dynamicid),
-                          icon: Icon(Icons.delete)),
+                          onPressed: () {
+                            widget.onDelPressed(widget.dynamicid);
+                          },
+                          icon: const Icon(Icons.delete)),
                     ),
-                    Text(
-                      "Claim Type *\n",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: kfontFamily,
-                      ),
-                    ),
-                    Container(
-                      height: 58,
-                      child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    const BorderSide(color: Color(0xffB9C0CA))),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        hint: Text(
-                          "Select One",
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Claim Type *\n",
                           style: TextStyle(
-                            color: const Color(0xff868686),
+                            fontWeight: FontWeight.w600,
                             fontFamily: kfontFamily,
                           ),
                         ),
-                        items: claimtype
-                            .map((e1) => DropdownMenuItem(
-                                  value: e1,
-                                  child: Wrap(
-                                    spacing: 15,
-                                    // mainAxisSize:
-                                    //     MainAxisSize.max,
-                                    // crossAxisAlignment:
-                                    //     CrossAxisAlignment.start,
-                                    children: [
-                                      Icon(e1.icon),
-                                      // Icon(icontypes.map((e) => Icon(e)).toList()),
-                                      //Icon(),
-                                      // Container(child: _icontypes.map((e) => Icon(e)).toList(),),
-                                      Text("${e1.type}"),
-                                    ],
-                                  ),
-                                ))
-                            .toList(),
-                        onChanged: (val1) {},
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Description *\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: kfontFamily,
-                            ),
-                          ),
-                          TextFormField(
-                            onTap: (() {}),
-                            maxLines: 3,
-                            decoration: InputDecoration(
-                              hintText: "Enter Here",
-                              hintStyle: TextStyle(
-                                color: const Color(0xff868686),
-                                fontFamily: kfontFamily,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                      color: Color(0xffB9C0CA))),
-                              border: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Colors.black,
-                                      style: BorderStyle.solid),
-                                  borderRadius: BorderRadius.circular(8)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Amount *\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: kfontFamily,
-                            ),
-                          ),
-                          Wrap(
-                            spacing: 0,
-                            children: [
-                              Container(
-                                width: 99,
-                                height: 60,
-                                child: TextFormField(
-                                  onTap: () {
-                                    showDialog(
-                                        useSafeArea: true,
-                                        context: context,
-                                        builder: (context) => Dialog(
-                                              child: Container(
-                                                // decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
-                                                // width: MediaQuery.of(context).size.width * 0.3,
-                                                //height: MediaQuery.of(context).size.height * 0.5,
-                                                child: Container(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 24),
-                                                  child: ListView.separated(
-                                                      shrinkWrap: true,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return ListTile(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              currency1 =
-                                                                  currencyTypeList[
-                                                                      index];
-                                                              Navigator.pop(
-                                                                  context);
-                                                            });
-                                                          },
-                                                          title: Text(
-                                                              currencyTypeList[
-                                                                  index]),
-                                                        );
-                                                      },
-                                                      separatorBuilder:
-                                                          (context, index) {
-                                                        return const Divider(
-                                                          thickness: 1,
-                                                        );
-                                                      },
-                                                      itemCount:
-                                                          currencyTypeList
-                                                              .length),
-                                                ),
-                                              ),
-                                            ));
-                                  },
-                                  readOnly: true,
-                                  decoration: InputDecoration(
-                                      enabledBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(8),
-                                              bottomLeft: Radius.circular(8)),
-                                          borderSide: BorderSide(
-                                              color: Color(0xffB9C0CA))),
-                                      focusedBorder: const OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.black),
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(8),
-                                              bottomLeft: Radius.circular(8))),
-                                      suffixIcon: const Icon(
-                                        Icons.arrow_drop_down,
-                                        color: Colors.black,
-                                      ),
-                                      floatingLabelBehavior:
-                                          FloatingLabelBehavior.never,
-                                      hintText: currency1,
-                                      hintStyle: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: kfontFamily,
-                                          fontSize: 14),
-                                      labelText: currency1,
-                                      labelStyle: TextStyle(
-                                          color: const Color(0xff868686),
-                                          fontFamily: kfontFamily,
-                                          fontSize: 14),
-                                      border: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(8),
-                                              bottomLeft: Radius.circular(8)))),
-                                ),
-                              ),
-                              // Container(
-                              //   width: 70,
-                              //   child: DropdownButtonFormField(
-                              //     value: currencyTypeList[0],
-                              //     items: currencyTypeList.map((e1) {
-                              //       return DropdownMenuItem(
-                              //         child: Text(e1),
-                              //         value: e1,
-                              //       );
-                              //     }).toList(),
-                              //     onChanged: (country) {
-                              //       print("You selected: $country");
-                              //     },
-                              //   ),
-                              // ),
-                              Container(
-                                height: 60,
-                                width: MediaQuery.of(context).size.width * 0.54,
-                                child: TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                      enabledBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(8),
-                                              bottomRight: Radius.circular(8)),
-                                          borderSide: BorderSide(
-                                              color: Color(0xffB9C0CA))),
-                                      focusedBorder: const OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: Colors.black),
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(8),
-                                              bottomRight: Radius.circular(8))),
-                                      border: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black,
-                                              style: BorderStyle.solid),
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(8),
-                                              bottomRight: Radius.circular(8))),
-                                      hintText: "",
-                                      labelText: "Enter Amount Here",
-                                      labelStyle: TextStyle(
-                                          color: const Color(0xff868686),
-                                          fontFamily: kfontFamily),
-                                      floatingLabelBehavior:
-                                          FloatingLabelBehavior.never),
-                                ),
-                              ),
-
-                              // DropdownButtonFormField(
-                              //     items: currencyTypeList
-                              //         .map((e2) => DropdownMenuItem(
-                              //               child: Text(e2),
-                              //               value: e2,
-                              //             ))
-                              //         .toList(),
-                              //     onChanged: ((e2) {})),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Billed Date *\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: kfontFamily,
-                            ),
-                          ),
-                          Container(
-                            height: 60,
+                        SizedBox(
+                          height: 60,
+                          child: Card(
+                            elevation: 0,
                             child: TextFormField(
-                              controller: date,
-                              readOnly: true,
-
-                              // onTap: (() {
-                              //   showDialog(
-                              //       useSafeArea:
-                              //           true,
-                              //       context:
-                              //           context,
-                              //       builder:
-                              //           (context) =>
-                              //               Dialog(
-                              //                 child:
-                              //                     Container(
-                              //                   height: MediaQuery.of(context).size.height * 0.45,
-                              //                   //width: MediaQuery.of(context).size.width * 1.0,
-                              //                   child: Container(
-                              //                     //  height: MediaQuery.of(context).size.height * 0.7,
-                              //                     color: kColor,
-                              //                     child: TableCalendar(
-                              //                       availableGestures: AvailableGestures.all,
-                              //                       rowHeight: 42,
-                              //                       focusedDay: today,
-                              //                       selectedDayPredicate: (days) => isSameDay(days, today),
-                              //                       headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
-                              //                       firstDay: DateTime.utc(2010, 10, 16),
-                              //                       lastDay: DateTime.utc(2030, 10, 15),
-                              //                       onDaySelected: _onDaySelected,
-                              //                     ),
-                              //                   ),
-                              //                 ),
-                              //               ));
-
-                              //   setState(() {
-                              //     if (datepick !=
-                              //         null) {
-                              //       date.text = DateFormat(
-                              //               'dd-MM-yyyy')
-                              //           .format(
-                              //               datepick);
-                              //     }
-                              //   });
+                              // validator: (text) {
+                              //   if (text == null ||
+                              //       text.isEmpty) {
+                              //     return "Cost Center is required";
+                              //   }
                               // },
-                              // Dialog(
-                              //     child:
-                              //         Container(
-                              //   child: TableCalendar(
-                              //       focusedDay:
-                              //           today,
-                              //       firstDay:
-                              //           DateTime.utc(
-                              //               2010,
-                              //               10,
-                              //               16),
-                              //       lastDay:
-                              //           DateTime.utc(
-                              //               2030,
-                              //               10,
-                              //               15)),
-                              // ));
-                              //}),
-                              onTap: () async {
-                                DateTime? datepick = await showDatePicker(
-                                    helpText: "",
-                                    builder: (context, child) {
-                                      return Theme(
-                                        child: child!,
-                                        data: ThemeData().copyWith(
-
-                                            // backgroundColor: Colors.white,
-                                            colorScheme: const ColorScheme.dark(
-                                                onPrimary: Colors.black,
-                                                onSurface: Colors.black,
-                                                surface: Colors.white)),
-                                      );
-                                    },
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(1999),
-                                    lastDate: DateTime(2100));
-
-                                setState(() {
-                                  if (datepick != null) {
-                                    date.text = DateFormat('dd-MM-yyyy')
-                                        .format(datepick);
-                                  }
-                                });
+                              controller: claimtypedynamiccontroller,
+                              readOnly: true,
+                              onTap: () {
+                                claimtypebottomsheetdynamic();
                               },
                               decoration: InputDecoration(
+                                  // disabledBorder: OutlineInputBorder(
+                                  //     borderRadius:
+                                  //         BorderRadius.circular(
+                                  //             8),
+                                  //     borderSide: const BorderSide(
+                                  //         color: Colors
+                                  //             .black)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                          color: Colors.black)),
                                   enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: const BorderSide(
                                           color: Color(0xffB9C0CA))),
-                                  suffixIcon:
-                                      const Icon(Icons.calendar_month_outlined),
+                                  suffixIcon: const Icon(
+                                    Icons.search,
+                                    color: Color(0xffB9C0CA),
+                                  ),
+                                  prefixIcon: (claimtypedynamicicon.first),
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.never,
+                                  hintText: "Select One",
+                                  hintStyle: TextStyle(
+                                    color: const Color(0xffB9C0CA),
+                                    fontFamily: kfontFamily,
+                                  ),
+                                  labelText: "Select One",
+                                  labelStyle: TextStyle(
+                                    color: const Color(0xffB9C0CA),
+                                    fontFamily: kfontFamily,
+                                  ),
+                                  border: OutlineInputBorder(
+                                      // borderSide: const BorderSide(
+                                      //     color: Color.fromRGBO(
+                                      //         16,
+                                      //         104,
+                                      //         228,
+                                      //         1)),
+                                      borderRadius: BorderRadius.circular(8))),
+                            ),
+                          ),
+
+                          // child: DropdownButtonFormField(
+                          //     hint: Text("Select One"),
+                          //     icon: Icon(Icons.search),
+                          //     decoration: InputDecoration(
+                          //         border: OutlineInputBorder(
+                          //             borderRadius:
+                          //                 BorderRadius.circular(10))),
+                          //     items: costCenterList
+                          //         .map((e) => DropdownMenuItem(
+                          //             child: Text(e), value: e))
+                          //         .toList(),
+                          //     onChanged: (val) {}),
+                        ),
+
+                        // Container(
+                        //   height: 57,
+                        //   child:
+                        //       DropdownButtonFormField(
+                        //     borderRadius:
+                        //         BorderRadius
+                        //             .circular(
+                        //                 10),
+                        //     isExpanded: true,
+                        //     decoration: InputDecoration(
+                        //         focusedBorder: OutlineInputBorder(
+                        //             borderRadius:
+                        //                 BorderRadius.circular(
+                        //                     8),
+                        //             borderSide: const BorderSide(
+                        //                 color: Colors
+                        //                     .black)),
+                        //         enabledBorder: OutlineInputBorder(
+                        //             borderRadius:
+                        //                 BorderRadius
+                        //                     .circular(
+                        //                         8),
+                        //             borderSide: const BorderSide(
+                        //                 color: Color(
+                        //                     0xffB9C0CA))),
+                        //         border: OutlineInputBorder(
+                        //             borderRadius:
+                        //                 BorderRadius.circular(
+                        //                     8))),
+                        //     hint: Text(
+                        //       "Select One",
+                        //       style: TextStyle(
+                        //           fontFamily:
+                        //               kfontFamily,
+                        //           color: const Color(
+                        //               0xffB9C0CA)),
+                        //     ),
+                        //     items: claimtype
+                        //         .map((e1) =>
+                        //             DropdownMenuItem(
+                        //               value: e1,
+                        //               child:
+                        //                   Wrap(
+                        //                 spacing:
+                        //                     15,
+                        //                 children: [
+                        //                   Align(
+                        //                       alignment: Alignment.centerLeft,
+                        //                       child: Row(
+                        //                         children: [
+                        //                           Icon(e1.icon),
+                        //                           const SizedBox(
+                        //                             width: 15,
+                        //                           ),
+                        //                           Text(e1.type),
+                        //                         ],
+                        //                       )),
+                        //                   // Icon(icontypes.map((e) => Icon(e)).toList()),
+                        //                   //Icon(),
+                        //                   // Container(child: _icontypes.map((e) => Icon(e)).toList(),),
+                        //                 ],
+                        //               ),
+                        //             ))
+                        //         .toList(),
+                        //     onChanged:
+                        //         (val1) {},
+                        //   ),
+
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Description *\n",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: kfontFamily,
+                                ),
+                              ),
+                              TextFormField(
+                                validator: (description) {
+                                  if (description == null ||
+                                      description.isEmpty) {
+                                    return "Description is required";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onTap: (() {}),
+                                minLines: 3,
+                                maxLines: 5,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xffB9C0CA))),
+                                  hintText: "Enter Here",
+                                  hintStyle:
+                                      const TextStyle(color: Color(0xffB9C0CA)),
                                   border: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                           color: Colors.black,
                                           style: BorderStyle.solid),
-                                      borderRadius: BorderRadius.circular(8)),
-                                  hintText: "",
-                                  labelText: "DD MM YYYY",
-                                  labelStyle: TextStyle(
-                                    color: const Color(0xff868686),
-                                    fontFamily: kfontFamily,
-                                  ),
-                                  floatingLabelBehavior:
-                                      FloatingLabelBehavior.never),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Attachments If Any\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: kfontFamily,
-                            ),
-                          ),
-                          TextFormField(
-                            controller: attachment,
-                            readOnly: true,
-                            onTap: () async {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.25,
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              const Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 24.0),
-                                                child: Text(
-                                                  "Upload  Attachment",
-                                                  style: TextStyle(
-                                                      color: Color(0xff45546E),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                              ),
-                                              Container(
-                                                decoration: const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
-                                                                .circular(30),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    10))),
-                                                padding: const EdgeInsets.only(
-                                                    top: 25),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      Column(
-                                                        children: [
-                                                          Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color: const Color(
-                                                                        0xffB9C0CA)),
-                                                                color: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            360)),
-
-                                                            // radius: 40,
-                                                            // backgroundColor: Colors.white,
-                                                            // Theme.of(context)
-                                                            //     .backgroundColor,
-                                                            child: const ClipOval(
-                                                                child: ImageIcon(
-                                                                    AssetImage(
-                                                                        "assets/icons/add_a_photo.png"))),
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 8,
-                                                          ),
-                                                          const Text(
-                                                            "Take photo",
-                                                            style: TextStyle(
-                                                                color: Color(
-                                                                    0xff45546E)),
-                                                          )
-                                                        ],
-                                                      ),
-
-                                                      Column(
-                                                        children: [
-                                                          Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color: const Color(
-                                                                        0xffB9C0CA)),
-                                                                color: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            360)),
-
-                                                            // radius: 40,
-                                                            // backgroundColor: Colors.white,
-                                                            // Theme.of(context)
-                                                            //     .backgroundColor,
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () async {
-                                                                WidgetsFlutterBinding
-                                                                    .ensureInitialized();
-                                                                final cameras =
-                                                                    await availableCameras();
-                                                                final firstCamera =
-                                                                    cameras
-                                                                        .first;
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                CameraImages(camera: firstCamera)));
-                                                              },
-                                                              child:
-                                                                  const ClipOval(
-                                                                      child:
-                                                                          ImageIcon(
-                                                                AssetImage(
-                                                                    "assets/icons/add_photo_alternate.png"),
-                                                              )),
-                                                            ),
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 8,
-                                                          ),
-                                                          const Text(
-                                                              "Photo Library",
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xff45546E)))
-                                                        ],
-                                                      ),
-
-                                                      Column(
-                                                        children: [
-                                                          Container(
-                                                            height: 80,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color: const Color(
-                                                                        0xffB9C0CA)),
-                                                                color: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            360)),
-
-                                                            // radius: 40,
-                                                            // backgroundColor: Colors.white,
-                                                            // Theme.of(context)
-                                                            //     .backgroundColor,
-                                                            child: const ClipOval(
-                                                                child: ImageIcon(
-                                                                    AssetImage(
-                                                                        "assets/icons/folder.png"))),
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 8,
-                                                          ),
-                                                          const Text(
-                                                              "Choose File",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  color: Color(
-                                                                      0xff45546E)))
-                                                        ],
-                                                      ),
-
-                                                      // Column(
-                                                      //   children: [
-                                                      //     CircleAvatar(
-                                                      //       radius: 40,
-                                                      //       backgroundColor: kColor,
-                                                      //       // Theme.of(context)
-                                                      //       //     .backgroundColor,
-                                                      //       child: ClipOval(
-                                                      //           child: IconButton(
-                                                      //         onPressed: () async {
-                                                      //           WidgetsFlutterBinding.ensureInitialized();
-                                                      //           final cameras = await availableCameras();
-                                                      //           final firstCamera = cameras.first;
-                                                      //           Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
-                                                      //         },
-                                                      //         icon: const Icon(Icons.folder),
-                                                      //         color: Colors.black,
-                                                      //       )),
-                                                      //     ),
-                                                      //     const Text("Photo Library")
-                                                      //   ],
-                                                      // ),
-
-                                                      //   Column(
-                                                      //     children: [
-                                                      //       CircleAvatar(
-                                                      //         radius: 40,
-                                                      //         backgroundColor: kColor,
-                                                      //         // Theme.of(context)
-                                                      //         //     .backgroundColor,
-                                                      //         child: const ClipOval(
-                                                      //             child: Icon(
-                                                      //           Icons.add_photo_alternate,
-                                                      //           color: Colors.black,
-                                                      //         )),
-                                                      //       ),
-                                                      //       const Text("Choose File")
-                                                      //     ],
-                                                      //   ),
-                                                      // ],
-                                                    ]),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ));
-
-                              attachment.text = ("Uploading").toString();
-                              // WidgetsFlutterBinding.ensureInitialized();
-                              // final cameras = await availableCameras();
-                              // final firstCamera = cameras.first;
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             CameraImages(
-                              //                 camera: firstCamera)));
-                            },
-                            decoration: InputDecoration(
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
-                                prefixIcon: const Icon(
-                                  Icons.attachment,
-                                  color: Color(0xff868686),
+                                      borderRadius: BorderRadius.circular(10)),
                                 ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xffB9C0CA))),
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Colors.black,
-                                        style: BorderStyle.solid),
-                                    borderRadius: BorderRadius.circular(10)),
-                                labelText: "Tap To Add Attachment",
-                                labelStyle: TextStyle(
-                                  color: const Color(0xff868686),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Amount *\n",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
                                   fontFamily: kfontFamily,
                                 ),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.never),
+                              ),
+                              Wrap(
+                                spacing: 0,
+                                children: [
+                                  Container(
+                                    width: 99,
+                                    height: 60,
+                                    child: TextFormField(
+                                      onTap: () {
+                                        showDialog(
+                                            useSafeArea: true,
+                                            context: context,
+                                            builder: (context) => Dialog(
+                                                  child: Container(
+                                                    // decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
+                                                    // width: MediaQuery.of(context).size.width * 0.3,
+                                                    //height: MediaQuery.of(context).size.height * 0.5,
+                                                    child: Container(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 24),
+                                                      child: ListView.separated(
+                                                          shrinkWrap: true,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            return ListTile(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  currency1 =
+                                                                      currencyTypeList[
+                                                                          index];
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                });
+                                                              },
+                                                              title: Text(
+                                                                  currencyTypeList[
+                                                                      index]),
+                                                            );
+                                                          },
+                                                          separatorBuilder:
+                                                              (context, index) {
+                                                            return const Divider(
+                                                              thickness: 1,
+                                                            );
+                                                          },
+                                                          itemCount:
+                                                              currencyTypeList
+                                                                  .length),
+                                                    ),
+                                                  ),
+                                                ));
+                                      },
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(8),
+                                                  bottomLeft:
+                                                      Radius.circular(8))),
+                                          suffixIcon: const Icon(
+                                            Icons.arrow_drop_down,
+                                            color: Color(0xffB9C0CA),
+                                          ),
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          hintText: currency1,
+                                          hintStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: kfontFamily,
+                                              fontSize: 14),
+                                          labelText: currency1,
+                                          labelStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: kfontFamily,
+                                              fontSize: 14),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(8),
+                                                  bottomLeft:
+                                                      Radius.circular(8)),
+                                              borderSide: BorderSide(
+                                                  color: Color(0xffB9C0CA))),
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(8),
+                                                  bottomLeft:
+                                                      Radius.circular(8)))),
+                                    ),
+                                  ),
+                                  // Container(
+                                  //   width: 70,
+                                  //   child: DropdownButtonFormField(
+                                  //     value: currencyTypeList[0],
+                                  //     items: currencyTypeList.map((e1) {
+                                  //       return DropdownMenuItem(
+                                  //         child: Text(e1),
+                                  //         value: e1,
+                                  //       );
+                                  //     }).toList(),
+                                  //     onChanged: (country) {
+                                  //       print("You selected: $country");
+                                  //     },
+                                  //   ),
+                                  // ),
+                                  Container(
+                                    height: 60,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.54,
+                                    child: TextFormField(
+                                      // validator:
+                                      //     (amount) {
+                                      //   if (amount ==
+                                      //           null ||
+                                      //       amount.isEmpty) {
+                                      //     return "Enter the Amount";
+                                      //   } else {
+                                      //     return null;
+                                      //   }
+                                      // },
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                          enabledBorder:
+                                              const OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight: Radius
+                                                              .circular(8),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  8)),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          Color(0xffB9C0CA))),
+                                          // focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.black), borderRadius: BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))),
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  style: BorderStyle.solid),
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(8),
+                                                  bottomRight:
+                                                      Radius.circular(8))),
+                                          hintText: "",
+                                          labelText: "Enter Amount Here",
+                                          labelStyle: TextStyle(
+                                              color: const Color(0xffB9C0CA),
+                                              fontFamily: kfontFamily),
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never),
+                                    ),
+                                  ),
+
+                                  // DropdownButtonFormField(
+                                  //     items: currencyTypeList
+                                  //         .map((e2) => DropdownMenuItem(
+                                  //               child: Text(e2),
+                                  //               value: e2,
+                                  //             ))
+                                  //         .toList(),
+                                  //     onChanged: ((e2) {})),
+                                ],
+                              )
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Billed Date *\n",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: kfontFamily,
+                                ),
+                              ),
+                              Container(
+                                height: 60,
+                                child: TextFormField(
+                                  // validator:
+                                  //     (date) {
+                                  //   if (date ==
+                                  //           null ||
+                                  //       date.isEmpty) {
+                                  //     return "Enter the Date";
+                                  //   }
+                                  //   return null;
+                                  // },
+                                  controller: date,
+                                  readOnly: true,
+
+                                  // onTap: (() {
+                                  //   showDialog(
+                                  //       useSafeArea:
+                                  //           true,
+                                  //       context:
+                                  //           context,
+                                  //       builder:
+                                  //           (context) =>
+                                  //               Dialog(
+                                  //                 child:
+                                  //                     Container(
+                                  //                   height: MediaQuery.of(context).size.height * 0.45,
+                                  //                   //width: MediaQuery.of(context).size.width * 1.0,
+                                  //                   child: Container(
+                                  //                     //  height: MediaQuery.of(context).size.height * 0.7,
+                                  //                     color: kColor,
+                                  //                     child: TableCalendar(
+                                  //                       availableGestures: AvailableGestures.all,
+                                  //                       rowHeight: 42,
+                                  //                       focusedDay: today,
+                                  //                       selectedDayPredicate: (days) => isSameDay(days, today),
+                                  //                       headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                                  //                       firstDay: DateTime.utc(2010, 10, 16),
+                                  //                       lastDay: DateTime.utc(2030, 10, 15),
+                                  //                       onDaySelected: _onDaySelected,
+                                  //                     ),
+                                  //                   ),
+                                  //                 ),
+                                  //               ));
+
+                                  //   setState(() {
+                                  //     if (datepick !=
+                                  //         null) {
+                                  //       date.text = DateFormat(
+                                  //               'dd-MM-yyyy')
+                                  //           .format(
+                                  //               datepick);
+                                  //     }
+                                  //   });
+                                  // },
+                                  // Dialog(
+                                  //     child:
+                                  //         Container(
+                                  //   child: TableCalendar(
+                                  //       focusedDay:
+                                  //           today,
+                                  //       firstDay:
+                                  //           DateTime.utc(
+                                  //               2010,
+                                  //               10,
+                                  //               16),
+                                  //       lastDay:
+                                  //           DateTime.utc(
+                                  //               2030,
+                                  //               10,
+                                  //               15)),
+                                  // ));
+                                  //}),
+                                  onTap: () async {
+                                    DateTime? datepick = await showDatePicker(
+                                        helpText: "",
+                                        builder: (context, child) {
+                                          return Theme(
+                                            data: ThemeData().copyWith(
+
+                                                // backgroundColor: Colors.white,
+                                                colorScheme:
+                                                    const ColorScheme.dark(
+                                                        onPrimary: Colors.black,
+                                                        onSurface: Colors.black,
+                                                        surface: Colors.white)),
+                                            child: child!,
+                                          );
+                                        },
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1999),
+                                        lastDate: DateTime(2100));
+
+                                    setState(() {
+                                      if (datepick != null) {
+                                        date.text = DateFormat('dd.MM.yyyy')
+                                            .format(datepick);
+                                      }
+                                    });
+                                  },
+                                  decoration: InputDecoration(
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8))),
+                                      suffixIcon: const Icon(
+                                          Icons.calendar_month_outlined,
+                                          color: Color(0xffB9C0CA)),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xffB9C0CA))),
+                                      border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              style: BorderStyle.solid),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      hintText: "",
+                                      labelText: "DD MM YYYY",
+                                      labelStyle: TextStyle(
+                                          fontFamily: kfontFamily,
+                                          color: const Color(0xffB9C0CA)),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Expense Duration *\n",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: kfontFamily,
+                                ),
+                              ),
+                              Container(
+                                height: 60,
+                                child: TextFormField(
+                                  // validator:
+                                  //     (date) {
+                                  //   if (date ==
+                                  //           null ||
+                                  //       date.isEmpty) {
+                                  //     return "Enter the Date";
+                                  //   }
+                                  //   return null;
+                                  // },
+                                  controller: date,
+                                  readOnly: true,
+
+                                  // onTap: (() {
+                                  //   showDialog(
+                                  //       useSafeArea:
+                                  //           true,
+                                  //       context:
+                                  //           context,
+                                  //       builder:
+                                  //           (context) =>
+                                  //               Dialog(
+                                  //                 child:
+                                  //                     Container(
+                                  //                   height: MediaQuery.of(context).size.height * 0.45,
+                                  //                   //width: MediaQuery.of(context).size.width * 1.0,
+                                  //                   child: Container(
+                                  //                     //  height: MediaQuery.of(context).size.height * 0.7,
+                                  //                     color: kColor,
+                                  //                     child: TableCalendar(
+                                  //                       availableGestures: AvailableGestures.all,
+                                  //                       rowHeight: 42,
+                                  //                       focusedDay: today,
+                                  //                       selectedDayPredicate: (days) => isSameDay(days, today),
+                                  //                       headerStyle: HeaderStyle(titleCentered: true, formatButtonVisible: false),
+                                  //                       firstDay: DateTime.utc(2010, 10, 16),
+                                  //                       lastDay: DateTime.utc(2030, 10, 15),
+                                  //                       onDaySelected: _onDaySelected,
+                                  //                     ),
+                                  //                   ),
+                                  //                 ),
+                                  //               ));
+
+                                  //   setState(() {
+                                  //     if (datepick !=
+                                  //         null) {
+                                  //       date.text = DateFormat(
+                                  //               'dd-MM-yyyy')
+                                  //           .format(
+                                  //               datepick);
+                                  //     }
+                                  //   });
+                                  // },
+                                  // Dialog(
+                                  //     child:
+                                  //         Container(
+                                  //   child: TableCalendar(
+                                  //       focusedDay:
+                                  //           today,
+                                  //       firstDay:
+                                  //           DateTime.utc(
+                                  //               2010,
+                                  //               10,
+                                  //               16),
+                                  //       lastDay:
+                                  //           DateTime.utc(
+                                  //               2030,
+                                  //               10,
+                                  //               15)),
+                                  // ));
+                                  //}),
+                                  onTap: () async {
+                                    DateTime? datepick = await showDatePicker(
+                                        helpText: "",
+                                        builder: (context, child) {
+                                          return Theme(
+                                            data: ThemeData().copyWith(
+
+                                                // backgroundColor: Colors.white,
+                                                colorScheme:
+                                                    const ColorScheme.dark(
+                                                        onPrimary: Colors.black,
+                                                        onSurface: Colors.black,
+                                                        surface: Colors.white)),
+                                            child: child!,
+                                          );
+                                        },
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1999),
+                                        lastDate: DateTime(2100));
+
+                                    setState(() {
+                                      if (datepick != null) {
+                                        date.text = DateFormat('dd.MM.yyyy')
+                                            .format(datepick);
+                                      }
+                                    });
+                                  },
+                                  decoration: InputDecoration(
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8))),
+                                      suffixIcon: const Icon(
+                                          Icons.calendar_month_outlined,
+                                          color: Color(0xffB9C0CA)),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          borderSide: const BorderSide(
+                                              color: Color(0xffB9C0CA))),
+                                      border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Colors.black,
+                                              style: BorderStyle.solid),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      hintText: "",
+                                      labelText: "DD MM YYYY - DD MM YYYY",
+                                      labelStyle: TextStyle(
+                                          fontFamily: kfontFamily,
+                                          color: const Color(0xffB9C0CA)),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          "People Involved *\n",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: kfontFamily,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 60,
+                          child: Card(
+                            elevation: 0,
+                            child: TextFormField(
+                              // validator: (text) {
+                              //   if (text == null ||
+                              //       text.isEmpty) {
+                              //     return "Cost Center is required";
+                              //   }
+                              // },
+                              controller: peopleinvolveddynamiccontroller,
+                              readOnly: true,
+                              onTap: () {
+                                peopleinvolveddynamicbottomsheet();
+                              },
+                              decoration: InputDecoration(
+                                  // disabledBorder: OutlineInputBorder(
+                                  //     borderRadius:
+                                  //         BorderRadius.circular(
+                                  //             8),
+                                  //     borderSide: const BorderSide(
+                                  //         color: Colors
+                                  //             .black)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                          color: Colors.black)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xffB9C0CA))),
+                                  suffixIcon: const Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Color(0xffB9C0CA),
+                                  ),
+                                  // prefixIcon: (claimtypeicon.first),
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.never,
+                                  hintText: "Persons Involved",
+                                  hintStyle: TextStyle(
+                                    color: const Color(0xffB9C0CA),
+                                    fontFamily: kfontFamily,
+                                  ),
+                                  labelText: "Select One",
+                                  labelStyle: TextStyle(
+                                    color: const Color(0xffB9C0CA),
+                                    fontFamily: kfontFamily,
+                                  ),
+                                  border: OutlineInputBorder(
+                                      // borderSide: const BorderSide(
+                                      //     color: Color.fromRGBO(
+                                      //         16,
+                                      //         104,
+                                      //         228,
+                                      //         1)),
+                                      borderRadius: BorderRadius.circular(8))),
+                            ),
+                          ),
+
+                          // child: DropdownButtonFormField(
+                          //     hint: Text("Select One"),
+                          //     icon: Icon(Icons.search),
+                          //     decoration: InputDecoration(
+                          //         border: OutlineInputBorder(
+                          //             borderRadius:
+                          //                 BorderRadius.circular(10))),
+                          //     items: costCenterList
+                          //         .map((e) => DropdownMenuItem(
+                          //             child: Text(e), value: e))
+                          //         .toList(),
+                          //     onChanged: (val) {}),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Attachments If Any\n",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: kfontFamily,
+                                ),
+                              ),
+                              TextFormField(
+                                controller: attachment,
+                                readOnly: true,
+                                onTap: () async {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) => SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.25,
+                                            child: Center(
+                                              child: Column(
+                                                children: [
+                                                  const Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 24.0),
+                                                    child: Text(
+                                                      "Upload  Attachment",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Color(0xff45546E),
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    decoration: const BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        30),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10))),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 25),
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          Column(
+                                                            children: [
+                                                              Container(
+                                                                height: 80,
+                                                                width: 80,
+                                                                decoration: BoxDecoration(
+                                                                    border: Border.all(
+                                                                        color: const Color(
+                                                                            0xffB9C0CA)),
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            360)),
+
+                                                                // radius: 40,
+                                                                // backgroundColor: Colors.white,
+                                                                // Theme.of(context)
+                                                                //     .backgroundColor,
+                                                                child: const ClipOval(
+                                                                    child: ImageIcon(
+                                                                        AssetImage(
+                                                                            "assets/icons/add_a_photo.png"))),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 8,
+                                                              ),
+                                                              const Text(
+                                                                "Take photo",
+                                                                style: TextStyle(
+                                                                    color: Color(
+                                                                        0xff45546E)),
+                                                              )
+                                                            ],
+                                                          ),
+
+                                                          Column(
+                                                            children: [
+                                                              Container(
+                                                                height: 80,
+                                                                width: 80,
+                                                                decoration: BoxDecoration(
+                                                                    border: Border.all(
+                                                                        color: const Color(
+                                                                            0xffB9C0CA)),
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            360)),
+
+                                                                // radius: 40,
+                                                                // backgroundColor: Colors.white,
+                                                                // Theme.of(context)
+                                                                //     .backgroundColor,
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap:
+                                                                      () async {
+                                                                    WidgetsFlutterBinding
+                                                                        .ensureInitialized();
+                                                                    final cameras =
+                                                                        await availableCameras();
+                                                                    final firstCamera =
+                                                                        cameras
+                                                                            .first;
+                                                                    Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) =>
+                                                                                CameraImages(camera: firstCamera)));
+                                                                  },
+                                                                  child:
+                                                                      const ClipOval(
+                                                                          child:
+                                                                              ImageIcon(
+                                                                    AssetImage(
+                                                                        "assets/icons/add_photo_alternate.png"),
+                                                                  )),
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 8,
+                                                              ),
+                                                              const Text(
+                                                                  "Photo Library",
+                                                                  style: TextStyle(
+                                                                      color: Color(
+                                                                          0xff45546E)))
+                                                            ],
+                                                          ),
+
+                                                          Column(
+                                                            children: [
+                                                              Container(
+                                                                height: 80,
+                                                                width: 80,
+                                                                decoration: BoxDecoration(
+                                                                    border: Border.all(
+                                                                        color: const Color(
+                                                                            0xffB9C0CA)),
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            360)),
+
+                                                                // radius: 40,
+                                                                // backgroundColor: Colors.white,
+                                                                // Theme.of(context)
+                                                                //     .backgroundColor,
+                                                                child: const ClipOval(
+                                                                    child: ImageIcon(
+                                                                        AssetImage(
+                                                                            "assets/icons/folder.png"))),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 8,
+                                                              ),
+                                                              const Text(
+                                                                  "Choose File",
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      color: Color(
+                                                                          0xff45546E)))
+                                                            ],
+                                                          ),
+
+                                                          // Column(
+                                                          //   children: [
+                                                          //     CircleAvatar(
+                                                          //       radius: 40,
+                                                          //       backgroundColor: kColor,
+                                                          //       // Theme.of(context)
+                                                          //       //     .backgroundColor,
+                                                          //       child: ClipOval(
+                                                          //           child: IconButton(
+                                                          //         onPressed: () async {
+                                                          //           WidgetsFlutterBinding.ensureInitialized();
+                                                          //           final cameras = await availableCameras();
+                                                          //           final firstCamera = cameras.first;
+                                                          //           Navigator.push(context, MaterialPageRoute(builder: (context) => CameraImages(camera: firstCamera)));
+                                                          //         },
+                                                          //         icon: const Icon(Icons.folder),
+                                                          //         color: Colors.black,
+                                                          //       )),
+                                                          //     ),
+                                                          //     const Text("Photo Library")
+                                                          //   ],
+                                                          // ),
+
+                                                          //   Column(
+                                                          //     children: [
+                                                          //       CircleAvatar(
+                                                          //         radius: 40,
+                                                          //         backgroundColor: kColor,
+                                                          //         // Theme.of(context)
+                                                          //         //     .backgroundColor,
+                                                          //         child: const ClipOval(
+                                                          //             child: Icon(
+                                                          //           Icons.add_photo_alternate,
+                                                          //           color: Colors.black,
+                                                          //         )),
+                                                          //       ),
+                                                          //       const Text("Choose File")
+                                                          //     ],
+                                                          //   ),
+                                                          // ],
+                                                        ]),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ));
+
+                                  attachment.text = ("Uploading").toString();
+                                  // WidgetsFlutterBinding.ensureInitialized();
+                                  // final cameras = await availableCameras();
+                                  // final firstCamera = cameras.first;
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             CameraImages(
+                                  //                 camera: firstCamera)));
+                                },
+                                decoration: InputDecoration(
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(8))),
+                                    prefixIcon: const Icon(
+                                      Icons.attachment,
+                                      color: Color(0xffB9C0CA),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                            color: Color(0xffB9C0CA))),
+                                    border: OutlineInputBorder(
+                                        borderSide: const BorderSide(
+                                            color: Colors.black,
+                                            style: BorderStyle.solid),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    labelText: "Tap To Add Attachment",
+                                    labelStyle: TextStyle(
+                                      color: const Color(0xffB9C0CA),
+                                      fontFamily: kfontFamily,
+                                    ),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
                   ],
-                )
+                ),
               ],
             )),
       ),

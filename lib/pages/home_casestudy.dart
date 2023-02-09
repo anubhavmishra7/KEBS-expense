@@ -70,7 +70,7 @@ class _HomeCasestudyState extends State<HomeCasestudy> {
         padding: const EdgeInsets.only(bottom: 30.0),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.09,
-          width: MediaQuery.of(context).size.width * 0.8,
+          width: MediaQuery.of(context).size.width * 0.81,
           child: FloatingActionButton(
             elevation: 20,
             shape:
@@ -80,7 +80,7 @@ class _HomeCasestudyState extends State<HomeCasestudy> {
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.zero,
+                  //padding: EdgeInsets.zero,
                   //color: Colors.yellow,
                   child: Flexible(
                     child: Container(

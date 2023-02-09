@@ -1,3 +1,4 @@
+import 'package:expense/common/aad_oauth.dart';
 import 'package:expense/models/bookmarks.dart';
 import 'package:expense/extra/dashboard.dart';
 import 'package:expense/common/loginpage.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.red),
       home: const SplashScreen(),
       routes: <String, WidgetBuilder>{
-        '/login': (BuildContext context) => const LoginPage()
+        '/login': (BuildContext context) => Oauth(),
+        '/another': (BuildContext context) => TestOauth()
       },
     );
   }
